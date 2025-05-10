@@ -1,0 +1,270 @@
+.main {
+	font-family: 'Roboto', sans-serif;
+}
+
+/* Видео и затемнение */
+.heroSection {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	/* Полный экран */
+	overflow: hidden;
+	color: #fff;
+}
+
+.backgroundVideo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: 0;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* Шапка */
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 50px;
+	z-index: 3;
+	background: rgba(255, 255, 255, 0.85);
+	flex-wrap: wrap;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+}
+
+.logoText {
+	margin-left: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #064469;
+}
+
+.nav {
+	flex-grow: 1;
+	margin: 0 40px;
+}
+
+.navList {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+	margin: 0;
+	padding: 0;
+}
+
+.navList a {
+	color: #064469;
+	font-weight: 600;
+	text-decoration: none;
+	font-size: 18px;
+	transition: color 0.3s;
+}
+
+.navList a:hover {
+	color: #072D44;
+	text-decoration: underline;
+}
+
+.contacts {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.phone {
+	font-size: 18px;
+	color: #064469;
+	text-decoration: none;
+}
+
+.lockMenu {
+	position: relative;
+}
+
+.lockIcon {
+	font-size: 24px;
+	cursor: pointer;
+	color: #064469;
+}
+
+.dropdown {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background: white;
+	padding: 10px;
+	border-radius: 6px;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+	display: none;
+	flex-direction: column;
+	gap: 10px;
+	z-index: 10;
+}
+
+.lockMenu:hover .dropdown {
+	display: flex;
+}
+
+.dropdown button {
+	background: none;
+	border: none;
+	font-size: 16px;
+	text-align: left;
+	cursor: pointer;
+	color: #064469;
+}
+
+.dropdown button:hover {
+	text-decoration: underline;
+}
+
+/* Контент на фоне видео */
+.heroContent {
+	position: absolute;
+	top: 55%;
+	/* Чуть ниже центра, чтобы не накладываться на шапку */
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 2;
+}
+
+.heroTitle {
+	font-size: 3rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.heroButton {
+	padding: 12px 30px;
+	background-color: #0070f3;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	font-size: 1.2rem;
+	text-decoration: none;
+	transition: background-color 0.3s;
+}
+
+.heroButton:hover {
+	background-color: #005bb5;
+}
+
+/* Карточки */
+.cardsSection {
+	background: #f9f9f9;
+	padding: 60px 20px;
+	color: #000;
+}
+
+.cardsContainer {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	gap: 30px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.card {
+	background: white;
+	padding: 20px;
+	width: 300px;
+	border-radius: 10px;
+	text-align: center;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+	transition: transform 0.3s;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+}
+
+.card img {
+	height: 60px;
+	margin-bottom: 15px;
+}
+
+.card h3 {
+	margin-bottom: 10px;
+	font-size: 20px;
+	color: #064469;
+}
+
+.card p {
+	font-size: 14px;
+	color: #333;
+}
+
+/* Бургер-меню */
+.burger {
+	display: none;
+	font-size: 28px;
+	color: #064469;
+	cursor: pointer;
+	z-index: 4;
+}
+
+/* Мобильная навигация */
+@media (max-width: 768px) {
+	.nav {
+		position: absolute;
+		top: 80px;
+		right: 0;
+		background: rgba(255, 255, 255, 0.95);
+		width: 200px;
+		padding: 20px;
+		border-radius: 8px;
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 15px;
+		display: none;
+	}
+
+	.navOpen {
+		display: flex;
+	}
+
+	.navList {
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.contacts {
+		display: none;
+	}
+
+	.burger {
+		display: block;
+	}
+}
+
+/* Мобильная адаптация паддингов */
+@media (max-width: 768px) {
+	.header {
+		padding: 10px 20px;
+	}
+}
