@@ -1,0 +1,145 @@
+/* =======================
+   Header.module.css (локальные стили для хедера)
+   ======================= */
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 60px;
+	background: var(--c-bg-blur);
+	backdrop-filter: blur(4px);
+	z-index: 100;
+	font-family: "Montserrat", sans-serif;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+}
+
+/* Подпись после логотипа оформлена так же, как пункты меню */
+.orgName {
+	margin-left: 20px;
+	font-size: 16px;
+	/* как меню */
+	font-weight: 600;
+	/* как меню */
+	color: var(--c-primary);
+	/* как меню */
+	white-space: nowrap;
+}
+
+.nav {
+	flex-grow: 1;
+	margin: 0 60px;
+}
+
+.navList {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.navList a {
+	color: var(--c-primary);
+	font-weight: 600;
+	font-size: 16px;
+	text-decoration: none;
+	transition: color 0.3s;
+}
+
+.navList a:hover,
+.navList a:focus {
+	color: var(--c-primary-dark);
+	text-decoration: underline;
+}
+
+.contacts {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.phone {
+	font-size: 16px;
+	font-weight: 700;
+	color: var(--c-primary);
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.lockLink {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-weight: 600;
+	color: var(--c-primary);
+	text-decoration: none;
+}
+
+.lockLink:hover {
+	text-decoration: underline;
+}
+
+.lockIcon {
+	font-size: 20px;
+}
+
+.burger {
+	display: none;
+	font-size: 24px;
+	color: var(--c-primary);
+	background: none;
+	border: none;
+	cursor: pointer;
+	z-index: 101;
+}
+
+@media (max-width: 768px) {
+	.burger {
+		display: block;
+	}
+
+	.nav {
+		position: absolute;
+		top: 64px;
+		right: 16px;
+		background: rgba(255, 255, 255, 0.95);
+		border-radius: 8px;
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+		width: 200px;
+		padding: 15px;
+		transform: translateY(-15px);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.3s, transform 0.3s;
+	}
+
+	.navOpen {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	.navList {
+		flex-direction: column;
+		gap: 14px;
+		align-items: flex-start;
+	}
+
+	.contacts {
+		display: none;
+	}
+
+	.orgName {
+		display: none;
+	}
+}
