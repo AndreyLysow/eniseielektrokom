@@ -1,95 +1,89 @@
+// HomePage.jsx (полностью переписанный)
 "use client";
 
 import { useRef, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import Image from "next/image";
-import Header from "../header";   // ← подключаем шапку
-import styles from "../../styles/main.module.css";
+import Image   from "next/image";
+import Header  from "../header";
+import Footer  from "../footer";
+import styles  from "../../styles/main.module.css";
 
-// Модалки (если ещё понадобятся)
-const LoginModal = dynamic(() => import("../LoginModal"));
-const RegisterModal = dynamic(() => import("../RegisterModal"));
+// Ленивая загрузка модалок, откроются только по событию
+const LoginModal    = dynamic(() => import("../LoginModal"),    { ssr: false });
+const RegisterModal = dynamic(() => import("../RegisterModal"), { ssr: false });
 
 export default function HomePage() {
   const videoRef = useRef(null);
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin,    setShowLogin]    = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
-  /* Нормализуем скорость видео */
+  /* скорость видео */
   useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.playbackRate = 0.25;
-      video.play().catch((err) => console.warn("Ошибка воспроизведения:", err));
+    const v = videoRef.current;
+    if (v) {
+      v.playbackRate = 0.25;
+      v.play().catch(() => {});
     }
   }, []);
 
+  /* анимация карточек */
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add(styles.visible)),
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll("." + styles.card).forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  /* кнопка наверх */
+  const [topBtn, setTopBtn] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setTopBtn(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
   return (
-    <main className={styles.main}>
-      {/* ГЛОБАЛЬНАЯ ШАПКА */}
+    <main className={styles.mainWrapper}>
       <Header />
 
-      {/* Герой-секция */}
-      <section className={styles.heroSection}>
-        <video
-          ref={videoRef}
-          className={styles.backgroundVideo}
-          src="/eniseysk.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-        <div className={styles.overlay}></div>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>Енисейтеплоком</h1>
-          <Link href="/about" className={styles.heroButton}>
-            Подробнее
-          </Link>
-        </div>
-      </section>
+      {/* Фикс‑видео */}
+      <div className={styles.videoWrap}>
+        <video ref={videoRef} className={styles.videoBg} src="/eniseysk.mp4" autoPlay muted loop playsInline />
+        <div className={styles.overlay} />
+      </div>
 
       {/* Карточки */}
       <section className={styles.cardsSection}>
         <div className={styles.cardsContainer}>
           <div className={styles.card}>
-            <Image
-              src="/announcement-icon.png"
-              alt="Объявления"
-              width={60}
-              height={60}
-            />
+            <Image src="/announcement-icon.png" alt="Объявления" width={60} height={60} />
             <h3>Объявления</h3>
             <p>Актуальная информация для потребителей коммунальных услуг</p>
           </div>
-
           <div className={styles.card}>
-            <Image
-              src="/payment-icon.png"
-              alt="Оплата услуг"
-              width={60}
-              height={60}
-            />
+            <Image src="/payment-icon.png" alt="Оплата" width={60} height={60} />
             <h3>Оплата услуг</h3>
-            <p>Узнайте о способах подачи показаний и оплаты коммунальных услуг</p>
+            <p>Способы подачи показаний и оплаты коммунальных услуг</p>
           </div>
-
           <div className={styles.card}>
-            <Image
-              src="/house-icon.png"
-              alt="Технологическое присоединение"
-              width={60}
-              height={60}
-            />
+            <Image src="/house-icon.png" alt="Присоединение" width={60} height={60} />
             <h3>Технологическое присоединение</h3>
             <p>Информация о технологическом присоединении</p>
           </div>
         </div>
       </section>
 
-      {/* Модалки (по-желанию вернуть) */}
-      {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
+      <Footer />
+
+      {/* Кнопка "Наверх" */}
+      <button onClick={scrollTop} className={`scroll-to-top ${topBtn ? styles.show : ""}`} aria-label="Наверх">↑</button>
+
+      {/* Модалки (открываешь через setShowLogin(true) и т.д.) */}
+      {showLogin    && <LoginModal    onClose={() => setShowLogin(false)}    />}
       {showRegister && <RegisterModal onClose={() => setShowRegister(false)} />}
     </main>
   );

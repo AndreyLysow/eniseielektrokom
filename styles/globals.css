@@ -1,11 +1,6 @@
-/* =======================
-   globals.css (Глобальные стили)
-   ======================= */
-
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 :root {
-	--background: #ffffff;
 	--foreground: #171717;
 	--c-primary: #064469;
 	--c-primary-dark: #072D44;
@@ -14,7 +9,6 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--background: #0a0a0a;
 		--foreground: #ededed;
 	}
 }
@@ -23,8 +17,9 @@ html,
 body {
 	max-width: 100vw;
 	overflow-x: hidden;
+	background: transparent;
+	/* 🔧 убрали белый фон */
 	color: var(--foreground);
-	background: var(--background);
 	font-family: 'Montserrat', 'Roboto', Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
