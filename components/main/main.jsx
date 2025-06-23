@@ -1,89 +1,73 @@
-// HomePage.jsx (полностью переписанный)
+// ===================== HomePage.jsx =====================
 "use client";
-
 import { useRef, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import Image   from "next/image";
-import Header  from "../header";
-import Footer  from "../footer";
-import styles  from "../../styles/main.module.css";
+import Image from "next/image";
+import Header from "../header";
+import Footer from "../footer";
+import styles from "../../styles/main.module.css";
 
-// Ленивая загрузка модалок, откроются только по событию
-const LoginModal    = dynamic(() => import("../LoginModal"),    { ssr: false });
+const LoginModal = dynamic(() => import("../LoginModal"), { ssr: false });
 const RegisterModal = dynamic(() => import("../RegisterModal"), { ssr: false });
 
 export default function HomePage() {
   const videoRef = useRef(null);
-  const [showLogin,    setShowLogin]    = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [register, setRegister] = useState(false);
 
-  /* скорость видео */
   useEffect(() => {
-    const v = videoRef.current;
-    if (v) {
-      v.playbackRate = 0.25;
-      v.play().catch(() => {});
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.25;
+      videoRef.current.play().catch(() => {});
     }
   }, []);
 
-  /* анимация карточек */
   useEffect(() => {
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add(styles.visible)),
-      { threshold: 0.15 }
-    );
-    document.querySelectorAll("." + styles.card).forEach(el => io.observe(el));
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add(styles.visible));
+    }, { threshold: 0.2 });
+    document.querySelectorAll(`.${styles.card}`).forEach(el => io.observe(el));
     return () => io.disconnect();
   }, []);
 
-  /* кнопка наверх */
-  const [topBtn, setTopBtn] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setTopBtn(window.scrollY > 300);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const cards = [
+    { img: "/attention.png", title: "Объявления", text: "Актуальная информация для потребителей коммунальных услуг" },
+    { img: "/pay.png", title: "Оплата услуг", text: "Способы подачи показаний и оплаты коммунальных услуг" },
+    { img: "/grafik.png", title: "График отключения", text: "Информация об отключениях ГВС в межотопительный период" },
+	{ img: "/tehpris.png", title: "Тех. присоединение", text: "Информация о технологическом присоединении" },
+	{ img: "/avaria.png", title: "Сообщить о аварии", text: "Сообщить о технологических нарушениях на системах ГВС и теплоснабжения" }
+  ];
 
   return (
-    <main className={styles.mainWrapper}>
+    <main className={styles.wrapper}>
       <Header />
 
-      {/* Фикс‑видео */}
+      {/* Видео‑фон */}
       <div className={styles.videoWrap}>
-        <video ref={videoRef} className={styles.videoBg} src="/eniseysk.mp4" autoPlay muted loop playsInline />
+        <video ref={videoRef} src="/eniseysk.mp4" className={styles.videoBg} autoPlay muted loop playsInline />
         <div className={styles.overlay} />
       </div>
 
       {/* Карточки */}
       <section className={styles.cardsSection}>
         <div className={styles.cardsContainer}>
-          <div className={styles.card}>
-            <Image src="/announcement-icon.png" alt="Объявления" width={60} height={60} />
-            <h3>Объявления</h3>
-            <p>Актуальная информация для потребителей коммунальных услуг</p>
-          </div>
-          <div className={styles.card}>
-            <Image src="/payment-icon.png" alt="Оплата" width={60} height={60} />
-            <h3>Оплата услуг</h3>
-            <p>Способы подачи показаний и оплаты коммунальных услуг</p>
-          </div>
-          <div className={styles.card}>
-            <Image src="/house-icon.png" alt="Присоединение" width={60} height={60} />
-            <h3>Технологическое присоединение</h3>
-            <p>Информация о технологическом присоединении</p>
-          </div>
+          {cards.map(c => (
+            <div key={c.title} className={styles.card}>
+              <Image src={c.img} alt={c.title} fill />
+              <div className={styles.cardOverlay}>
+                <h3>{c.title}</h3>
+                <p>{c.text}</p>
+                <button className={styles.cardButton}>Подробнее</button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
       <Footer />
 
-
-
-      {/* Модалки (открываешь через setShowLogin(true) и т.д.) */}
-      {showLogin    && <LoginModal    onClose={() => setShowLogin(false)}    />}
-      {showRegister && <RegisterModal onClose={() => setShowRegister(false)} />}
+      {login && <LoginModal onClose={() => setLogin(false)} />}
+      {register && <RegisterModal onClose={() => setRegister(false)} />}
     </main>
   );
 }
