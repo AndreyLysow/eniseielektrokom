@@ -1,3 +1,5 @@
+/* ================= Footer.module.css (полностью обновлён) ================= */
+
 .footer {
 	background-color: #151F48;
 	color: #ffffff;
@@ -25,17 +27,21 @@
 	gap: 40px;
 }
 
+/* ─────────── Логотип и название ─────────── */
 .footerLogoSection {
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	width: 200px;
+	flex-direction: row;
+	/* логотип + текст в одну строку */
+	align-items: center;
+	/* выравнивание по вертикали */
+	gap: 12px;
+	/* расстояние между логотипом и текстом */
+	width: auto;
 }
 
 .footerLogo {
 	width: 140px;
 	height: auto;
-	margin-bottom: 12px;
 }
 
 .footerOrgName {
@@ -43,9 +49,14 @@
 	font-size: 15px;
 	line-height: 1.4;
 	color: #D0D7E1;
-	margin-top: 4px;
+	margin: 0;
+	/* убран верхний отступ */
+	max-width: 220px;
+	/* 2‑3 строки на средних экранах */
+	text-align: left;
 }
 
+/* ─────────── Секции ссылок ─────────── */
 .footerSection {
 	display: flex;
 	flex-direction: column;
@@ -88,7 +99,7 @@
 .footerLinks a {
 	color: #ffffff;
 	text-decoration: none;
-	transition: 0.3s ease;
+	transition: color 0.3s ease;
 }
 
 .footerLinks a:hover {
@@ -96,6 +107,7 @@
 	text-decoration: underline;
 }
 
+/* ─────────── Социальные иконки ─────────── */
 .footerSocialIcons {
 	display: flex;
 	gap: 14px;
@@ -119,6 +131,7 @@
 	text-decoration: underline;
 }
 
+/* ─────────── Кнопка "Наверх" ─────────── */
 .scrollToTop {
 	position: fixed;
 	bottom: 30px;
@@ -147,6 +160,7 @@
 	transform: scale(1.1);
 }
 
+/* ─────────── Адаптив ─────────── */
 @media (max-width: 1024px) {
 	.footerContainer {
 		flex-direction: column;
@@ -175,16 +189,26 @@
 		padding: 30px 20px;
 	}
 
+	.footerLogoSection {
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+	}
+
 	.footerLogo {
 		width: 120px;
 	}
 
 	.footerOrgName {
 		font-size: 14px;
+		text-align: center;
+		margin-top: 4px;
+		max-width: none;
 	}
 
 	.footerSection {
 		font-size: 14px;
+		align-items: center;
 	}
 
 	.footerTitle {

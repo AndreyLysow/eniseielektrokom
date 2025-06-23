@@ -86,7 +86,7 @@ const Footer = () => {
 
       <div className={styles.footerBottom}>
         <p>
-          © 2024&nbsp;
+          © 2025&nbsp;
           <Link href="https://port-443.ru" target="_blank" rel="noopener noreferrer">
             <span>PORT443</span>
           </Link>
