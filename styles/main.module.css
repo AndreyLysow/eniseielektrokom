@@ -1,5 +1,3 @@
-/* ===================== main.module.css ===================== */
-
 .wrapper {
 	position: relative;
 	min-height: 100vh;
@@ -45,41 +43,22 @@
 	z-index: 1;
 }
 
-.cardsContainer {
-	/* Показываем ровно ТРИ карточки целиком */
+.cardsContainerWrapper {
+	position: relative;
 	max-width: 1230px;
-	/* 3×390 + 2×30px gap = 1230 */
 	margin: 0 auto;
+}
+
+.cardsContainer {
 	display: flex;
 	flex-wrap: nowrap;
 	gap: 30px;
 	justify-content: flex-start;
-
-	/* Горизонтальный скроллинг; вертикальный скрыт */
 	overflow-x: auto;
 	overflow-y: hidden;
-
-	/* Небольшие отступы, чтобы скролл был рядом с карточками */
-	padding-bottom: 4px;
-	padding-top: 4px;
-
-	/* Кастомный тонкий скроллбар */
+	padding: 4px 0;
 	scrollbar-width: thin;
 	scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-}
-
-.cardsContainer::-webkit-scrollbar {
-	height: 6px;
-	/* чуть тоньше */
-}
-
-.cardsContainer::-webkit-scrollbar-track {
-	background: transparent;
-}
-
-.cardsContainer::-webkit-scrollbar-thumb {
-	background-color: rgba(255, 255, 255, 0.35);
-	border-radius: 4px;
 }
 
 .cardsContainer::-webkit-scrollbar {
@@ -168,6 +147,36 @@
 	background-color: #316fa1;
 }
 
+.navArrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.3s ease;
+}
+
+.navArrow:hover {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.leftArrow {
+	left: -20px;
+}
+
+.rightArrow {
+	right: -20px;
+}
+
 @media (max-width: 768px) {
 	.cardsContainer {
 		flex-wrap: wrap;
@@ -181,6 +190,10 @@
 	.cardsSection {
 		padding-top: 75vh;
 	}
+
+	.navArrow {
+		display: none;
+	}
 }
 
 @media (max-width: 576px) {
@@ -190,4 +203,5 @@
 
 	.cardsContainer {
 		gap: 25px;
-	} }
+	}
+}
