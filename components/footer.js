@@ -43,7 +43,7 @@ const Footer = () => {
               className={styles.footerLogo}
             />
             <span className={styles.footerOrgName}>
-              Енисейская теплоснабжающая<br />организация
+              Енисейская теплоснабжающая<br />компания
             </span>
           </div>
 

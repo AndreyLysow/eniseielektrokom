@@ -79,8 +79,7 @@ export default function HomePage() {
 
       <Footer />
 
-      {/* Кнопка "Наверх" */}
-      <button onClick={scrollTop} className={`scroll-to-top ${topBtn ? styles.show : ""}`} aria-label="Наверх">↑</button>
+
 
       {/* Модалки (открываешь через setShowLogin(true) и т.д.) */}
       {showLogin    && <LoginModal    onClose={() => setShowLogin(false)}    />}

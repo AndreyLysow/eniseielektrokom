@@ -36,7 +36,7 @@ export default function Header() {
           />
         </Link>
         <span className={styles.orgName}>
-          Енисейская теплоснабжающая организация
+          Енисейская теплоснабжающая компания
         </span>
       </div>
 
