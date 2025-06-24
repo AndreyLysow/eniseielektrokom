@@ -1,0 +1,104 @@
+/* базовый контейнер */
+.wrapper {
+	position: relative;
+	min-height: 100vh;
+	overflow-x: hidden;
+	color: #fff;
+}
+
+/* ────────── ВИДЕО ФОН ────────── */
+.videoWrap {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+}
+
+.videoBg {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+}
+
+.overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.25);
+	pointer-events: none;
+	animation: dayNight 60s linear infinite;
+}
+
+@keyframes dayNight {
+
+	0%,
+	100% {
+		background: rgba(0, 0, 0, 0.15);
+	}
+
+	50% {
+		background: rgba(0, 0, 0, 0.45);
+	}
+}
+
+/* ────────── ОСНОВНОЙ КОНТЕНТ ────────── */
+.content {
+	max-width: 900px;
+	margin: 90px auto 140px;
+	/* сверху отступ, чтобы не накладывалось на хедер */
+	padding: 0 20px;
+	backdrop-filter: blur(10px);
+}
+
+.title {
+	text-align: center;
+	font-size: 28px;
+	margin-bottom: 40px;
+	color: #e0e6f0;
+}
+
+.markdown {
+	background: rgba(0, 0, 0, 0.6);
+	padding: 30px 25px;
+	border-radius: 12px;
+	line-height: 1.6;
+	font-size: 15px;
+}
+
+.markdown h2 {
+	margin: 24px 0 12px;
+	font-size: 22px;
+	color: #9ccdff;
+}
+
+.markdown h3 {
+	margin: 18px 0 10px;
+	font-size: 18px;
+	color: #aee2ff;
+}
+
+.markdown a {
+	color: #4a90d9;
+	text-decoration: underline;
+}
+
+.markdown a:hover {
+	color: #6fb9ff;
+}
+
+.logo {
+	margin-top: 50px;
+	text-align: center;
+}
+
+@media (max-width: 600px) {
+	.content {
+		margin-top: 120px;
+	}
+
+	.title {
+		font-size: 22px;
+	}
+
+	.markdown {
+		font-size: 14px;
+	}
+}
