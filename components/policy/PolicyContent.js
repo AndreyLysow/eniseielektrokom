@@ -45,7 +45,6 @@ export default function PolicyContent() {
 
       {/* СОДЕРЖИМОЕ */}
       <main className={styles.content}>
-        <h1 className={styles.title}>Политика обработки персональных данных</h1>
 
         <article className={styles.markdown}>
           <ReactMarkdown>{md}</ReactMarkdown>
