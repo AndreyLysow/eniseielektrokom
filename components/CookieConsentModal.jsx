@@ -2,7 +2,7 @@
 'use client';               // если вы уже перешли на App Router
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import styles from '../styles/ CookieConsentModal.module.css';
+import styles from '../styles/CookieConsentModal.module.css';
 
 export default function CookieConsentModal({ open, onClose }) {
   const router = useRouter();

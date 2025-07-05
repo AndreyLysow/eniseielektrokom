@@ -2,15 +2,13 @@
 
 import { useEffect, useState, useRef } from "react";
 import ReactMarkdown from "react-markdown";
-import styles from "../../styles/policy.module.css";         // отдельный CSS
-import Image from "next/image";
+import styles from "../../styles/policy.module.css";
 
-/** Читает текст из /public/privacy-policy.md и выводит его в разметке */
 export default function PolicyContent() {
   const [md, setMd] = useState("");
   const videoRef = useRef(null);
 
-  // ── загрузка markdown ──────────────────────────────────────────────
+  // Загрузка markdown
   useEffect(() => {
     fetch("/privacy-policy.md")
       .then(r => r.text())
@@ -18,7 +16,7 @@ export default function PolicyContent() {
       .catch(err => console.error("MD load error:", err));
   }, []);
 
-  // ── устанавливаем скорость видео ──────────────────────────────────
+  // Устанавливаем скорость видео
   useEffect(() => {
     const v = videoRef.current;
     if (v) {
@@ -29,7 +27,6 @@ export default function PolicyContent() {
 
   return (
     <div className={styles.wrapper}>
-      {/* ВИДЕО-ФОН */}
       <div className={styles.videoWrap}>
         <video
           ref={videoRef}
@@ -43,14 +40,10 @@ export default function PolicyContent() {
         <div className={styles.overlay} />
       </div>
 
-      {/* СОДЕРЖИМОЕ */}
       <main className={styles.content}>
-
         <article className={styles.markdown}>
           <ReactMarkdown>{md}</ReactMarkdown>
         </article>
-
-     
       </main>
     </div>
   );

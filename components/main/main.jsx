@@ -34,10 +34,10 @@ export default function HomePage() {
 
   const cards = [
     { img: "/attention.png", title: "Объявления",        text: "Актуальная информация для потребителей коммунальных услуг" },
-    { img: "/pay.png",       title: "Оплата услуг",       text: "Способы подачи показаний и оплаты коммунальных услуг" },
-    { img: "/grafik.png",    title: "График отключения",  text: "Информация об отключениях ГВС в межотопительный период" },
+    { img: "/pay.png",       title: "Оплата услуг",      text: "Способы подачи показаний и оплаты коммунальных услуг" },
+    { img: "/grafik.png",    title: "График отключения", text: "Информация об отключениях ГВС в межотопительный период" },
     { img: "/tehpris.png",   title: "Тех. присоединение", text: "Информация о технологическом присоединении" },
-    { img: "/avaria.png",    title: "Сообщить о аварии",  text: "Сообщить о технологических нарушениях на системах ГВС и теплоснабжения" }
+    { img: "/avaria.png",    title: "Сообщить о аварии", text: "Сообщить о технологических нарушениях на системах ГВС и теплоснабжения" }
   ];
 
   const scrollCards = dir => {
@@ -67,9 +67,11 @@ export default function HomePage() {
               <div key={c.title} className={styles.card}>
                 <Image src={c.img} alt={c.title} fill />
                 <div className={styles.cardOverlay}>
-                  <h3>{c.title}</h3>
-                  <p>{c.text}</p>
-                  <button className={styles.cardButton}>Подробнее</button>
+                  <h3 className={styles.cardTitle}>{c.title}</h3>
+                  <div className={styles.cardHoverContent}>
+                    <p>{c.text}</p>
+                    <button className={styles.cardButton}>Подробнее</button>
+                  </div>
                 </div>
               </div>
             ))}

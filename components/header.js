@@ -36,7 +36,7 @@ export default function Header() {
           />
         </Link>
         <span className={styles.orgName}>
-          Енисейская теплоснабжающая компания
+         ООО Енисейская теплоснабжающая компания
         </span>
       </div>
 
@@ -53,7 +53,7 @@ export default function Header() {
       <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}>
         <ul className={styles.navList}>
           <li><Link href="/"          onClick={closeMenu}>Главная</Link></li>
-          <li><Link href="/consumers" onClick={closeMenu}>Потребителям</Link></li>
+          <li><Link href="/consumers" onClick={closeMenu}>Абонентам</Link></li>
           <li><Link href="/news"      onClick={closeMenu}>Новости</Link></li>
           <li><Link href="/info"      onClick={closeMenu}>Раскрытие информации</Link></li>
         </ul>

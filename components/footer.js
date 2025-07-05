@@ -36,14 +36,14 @@ const Footer = () => {
         <div className={styles.footerContainer}>
           <div className={styles.footerLogoSection}>
             <Image
-              src="/logoetk.png"
+              src="/logoetk_white.png"
               alt="Енисейтеплоком"
               width={140}
               height={60}
               className={styles.footerLogo}
             />
             <span className={styles.footerOrgName}>
-              Енисейская теплоснабжающая<br />компания
+              ООО Енисейская теплоснабжающая<br />компания
             </span>
           </div>
 
