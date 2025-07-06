@@ -1,15 +1,11 @@
 "use client";
 import { useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Header from "../header";
 import Footer from "../footer";
 import styles from "../../styles/main.module.css";
-
-const LoginModal = dynamic(() => import("../LoginModal"), { ssr: false });
-const RegisterModal = dynamic(() => import("../RegisterModal"), { ssr: false });
 
 export default function HomePage() {
   const listRef = useRef(null);
@@ -64,7 +60,7 @@ export default function HomePage() {
           </button>
 
           <div ref={listRef} className={styles.cardsContainer}>
-            {cards.map((c, i) => (
+            {cards.map((c) => (
               <div key={c.title} className={styles.card}>
                 <Image src={c.img} alt={c.title} width={100} height={100} />
                 <h3 className={styles.cardTitle}>{c.title}</h3>
