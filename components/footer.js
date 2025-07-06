@@ -73,11 +73,8 @@ const Footer = () => {
 			  <Link href="https://vk.com/teplokom24" target="_blank" rel="noopener noreferrer">
                 <Image src="/icons/vk.svg" alt="ВКонтакте" width={24} height={24} style={{ objectFit: 'contain' }} />
               </Link>
-              <Link href="https://t.me/+79509976288" target="_blank">
+              <Link href="https://t.me/eniseyenergokom" target="_blank">
                 <Image src="/icons/telegram.svg" alt="Telegram" width={24} height={24} />
-              </Link>
-              <Link href="https://wa.me/79509976288" target="_blank">
-                <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={26} height={26} />
               </Link>
             </div>
           </div>
