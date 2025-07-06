@@ -1,50 +1,43 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Link from "next/link";
 import Header from "../header";
 import Footer from "../footer";
 import styles from "../../styles/main.module.css";
 
-const LoginModal    = dynamic(() => import("../LoginModal"),    { ssr: false });
+const LoginModal = dynamic(() => import("../LoginModal"), { ssr: false });
 const RegisterModal = dynamic(() => import("../RegisterModal"), { ssr: false });
 
 export default function HomePage() {
-  const videoRef   = useRef(null);
-  const listRef    = useRef(null);
-  const [login,    setLogin]    = useState(false);
-  const [register, setRegister] = useState(false);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.25;
-      videoRef.current.play().catch(() => {});
-    }
-  }, []);
-
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add(styles.visible)),
-      { threshold: 0.2 }
-    );
-    document.querySelectorAll(`.${styles.card}`).forEach(el => io.observe(el));
-    return () => io.disconnect();
-  }, []);
+  const listRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const cards = [
-    { img: "/attention.png", title: "Объявления",        text: "Актуальная информация для потребителей коммунальных услуг" },
-    { img: "/pay.png",       title: "Оплата услуг",      text: "Способы подачи показаний и оплаты коммунальных услуг" },
-    { img: "/grafik.png",    title: "График отключения", text: "Информация об отключениях ГВС в межотопительный период" },
-    { img: "/tehpris.png",   title: "Тех. присоединение", text: "Информация о технологическом присоединении" },
-    { img: "/avaria.png",    title: "Сообщить о аварии", text: "Сообщить о технологических нарушениях на системах ГВС и теплоснабжения" }
+    { img: "/rupor.png", title: "Объявления", text: "Актуальная информация для потребителей коммунальных услуг" },
+    { img: "/pay.png", title: "Оплата услуг", text: "Способы подачи показаний и оплаты коммунальных услуг" },
+    { img: "/grafik.png", title: "График отключения", text: "Информация об отключениях ГВС в межотопительный период" },
+    { img: "/tehpris.png", title: "Тех. присоединение", text: "Информация о технологическом присоединении" },
+    { img: "/avaria.png", title: "Сообщить о аварии", text: "Сообщить о технологических нарушениях на системах ГВС и теплоснабжения" }
   ];
 
-  const scrollCards = dir => {
+  const scrollToIndex = (index) => {
     if (!listRef.current) return;
-    const cardWidth = 390 + 30;
-    const scrollBy = dir === "left" ? -cardWidth : cardWidth;
-    listRef.current.scrollBy({ left: scrollBy, behavior: "smooth" });
+    const container = listRef.current;
+    const card = container.children[index];
+    if (card) {
+      card.scrollIntoView({ behavior: "smooth", inline: "center" });
+    }
+    setActiveIndex(index);
+  };
+
+  const handleArrow = (dir) => {
+    let newIndex = dir === "left" ? activeIndex - 1 : activeIndex + 1;
+    if (newIndex < 0) newIndex = cards.length - 1;
+    if (newIndex >= cards.length) newIndex = 0;
+    scrollToIndex(newIndex);
   };
 
   return (
@@ -52,41 +45,50 @@ export default function HomePage() {
       <Header />
 
       <div className={styles.videoWrap}>
-        <video ref={videoRef} src="/eniseysk.mp4" className={styles.videoBg} autoPlay muted loop playsInline />
+        <video src="/eniseysk.mp4" className={styles.videoBg} autoPlay muted loop playsInline />
         <div className={styles.overlay} />
       </div>
 
+      <section className={styles.attentionSection}>
+        <div className={styles.attentionBanner}>
+          <h1>Внимание абонентам!</h1>
+          <p>Актуальная информация для потребителей коммунальных услуг, важные уведомления и объявления.</p>
+          <Link href="/announcements" className={styles.baseButton}>Подробнее</Link>
+        </div>
+      </section>
+
       <section className={styles.cardsSection}>
         <div className={styles.cardsContainerWrapper}>
-          <button className={`${styles.navArrow} ${styles.leftArrow}`} onClick={() => scrollCards("left")} aria-label="Назад">
+          <button className={`${styles.navArrow} ${styles.leftArrow}`} onClick={() => handleArrow("left")}>
             <FaChevronLeft />
           </button>
 
           <div ref={listRef} className={styles.cardsContainer}>
-            {cards.map(c => (
+            {cards.map((c, i) => (
               <div key={c.title} className={styles.card}>
-                <Image src={c.img} alt={c.title} fill />
-                <div className={styles.cardOverlay}>
-                  <h3 className={styles.cardTitle}>{c.title}</h3>
-                  <div className={styles.cardHoverContent}>
-                    <p>{c.text}</p>
-                    <button className={styles.cardButton}>Подробнее</button>
-                  </div>
+                <Image src={c.img} alt={c.title} width={100} height={100} />
+                <h3 className={styles.cardTitle}>{c.title}</h3>
+                <div className={styles.cardHoverContent}>
+                  <p>{c.text}</p>
+                  <button className={styles.baseButton}>Подробнее</button>
                 </div>
               </div>
             ))}
           </div>
 
-          <button className={`${styles.navArrow} ${styles.rightArrow}`} onClick={() => scrollCards("right")} aria-label="Вперёд">
+          <button className={`${styles.navArrow} ${styles.rightArrow}`} onClick={() => handleArrow("right")}>
             <FaChevronRight />
           </button>
         </div>
+
+        <div className={styles.dots}>
+          {cards.map((_, i) => (
+            <span key={i} className={`${styles.dot} ${i === activeIndex ? styles.activeDot : ""}`} />
+          ))}
+        </div>
       </section>
 
-      <Footer />
-
-      {login    && <LoginModal    onClose={() => setLogin(false)} />}
-      {register && <RegisterModal onClose={() => setRegister(false)} />}
+      <Footer className={styles.footer} />
     </main>
   );
 }

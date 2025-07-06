@@ -1,7 +1,10 @@
 .wrapper {
 	position: relative;
 	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 	overflow-x: hidden;
+	padding-top: 70px;
 }
 
 .videoWrap {
@@ -36,11 +39,61 @@
 	}
 }
 
-.cardsSection {
+.attentionSection {
+	padding: 40px 20px 20px;
+	text-align: center;
 	position: relative;
-	padding: 70vh 20px 160px;
-	background: transparent;
 	z-index: 1;
+}
+
+.attentionBanner {
+	display: inline-block;
+	background: rgba(3, 18, 100, 0.6);
+	border-radius: 10px;
+	padding: 20px 30px;
+	box-shadow: 0 4px 8px #D0D7E1;
+	color: white;
+	max-width: 800px;
+}
+
+.attentionBanner h1 {
+	font-size: 27px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.attentionBanner p {
+	font-size: 18px;
+	margin-bottom: 15px;
+}
+
+.baseButton {
+	background-color: rgba(3, 18, 100, 0.6);
+	color: white;
+	padding: 12px 24px;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	box-shadow: 0 2px 4px #D0D7E1;
+	border: none;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.baseButton:hover {
+	background-color: #D0D7E1;
+	color: #151F48;
+	transform: scale(1.05);
+}
+
+.cardsSection {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 10px 20px 0;
 }
 
 .cardsContainerWrapper {
@@ -51,79 +104,42 @@
 
 .cardsContainer {
 	display: flex;
-	flex-wrap: nowrap;
 	gap: 30px;
-	overflow-x: auto;
-	overflow-y: hidden;
-	padding: 4px 0;
-	scrollbar-width: thin;
-	scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-}
-
-.cardsContainer::-webkit-scrollbar {
-	height: 8px;
-}
-
-.cardsContainer::-webkit-scrollbar-thumb {
-	background-color: rgba(255, 255, 255, 0.3);
-	border-radius: 4px;
+	overflow: hidden;
 }
 
 .card {
-	position: relative;
-	flex: 0 0 auto;
-	width: 390px;
+	flex: 0 0 390px;
 	height: 260px;
-	border-radius: 20px;
-	overflow: hidden;
+	border-radius: 10px;
+	background: rgba(3, 18, 100, 0.6);
+	box-shadow: 0 4px 8px #D0D7E1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	cursor: pointer;
-	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-	transform: translateY(60px);
-	opacity: 0.85;
-	transition: transform 0.4s, opacity 0.4s;
-}
-
-.card.visible {
-	transform: translateY(0);
-}
-
-.card:hover {
-	transform: scale(1.05);
+	transition: transform 0.4s;
 }
 
 .card img {
-	object-fit: cover;
-}
-
-.cardOverlay {
-	position: absolute;
-	inset: 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	padding: 20px;
-	text-align: center;
-	background: transparent;
-	transition: background 0.3s ease;
-}
-
-.card:hover .cardOverlay {
-	background: rgba(0, 0, 0, 0.65);
+	max-height: 40%;
+	width: auto;
+	object-fit: contain;
 }
 
 .cardTitle {
 	font-size: 20px;
 	color: #fff;
-	/* белый цвет заголовка */
-	margin-top: 30px;
-	margin-bottom: 10px;
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+	margin: 10px 0;
 }
 
 .cardHoverContent {
 	opacity: 0;
-	transition: opacity 0.3s ease;
+	transition: opacity 0.3s;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .card:hover .cardHoverContent {
@@ -134,45 +150,24 @@
 	font-size: 14px;
 	color: #D0D7E1;
 	max-width: 260px;
+	text-align: center;
 	margin-bottom: 10px;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-}
-
-.cardButton {
-	background-color: #4A90D9;
-	color: #fff;
-	border: none;
-	padding: 8px 16px;
-	border-radius: 6px;
-	font-size: 14px;
-	cursor: pointer;
-	transition: background-color 0.3s;
-}
-
-.cardButton:hover {
-	background-color: #316fa1;
 }
 
 .navArrow {
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	z-index: 2;
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
 	border: none;
-	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: background-color 0.3s ease;
-}
-
-.navArrow:hover {
-	background-color: rgba(0, 0, 0, 0.7);
+	cursor: pointer;
 }
 
 .leftArrow {
@@ -183,45 +178,24 @@
 	right: -20px;
 }
 
-@media (max-width: 768px) {
-	.cardsContainer {
-		flex-wrap: wrap;
-	}
-
-	.card {
-		width: 90%;
-		height: 240px;
-	}
-
-	.cardTitle {
-		margin-top: 20px;
-		font-size: 18px;
-	}
-
-	.cardsSection {
-		padding-top: 75vh;
-	}
-
-	.navArrow {
-		display: none;
-	}
+.dots {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	gap: 6px;
 }
 
-@media (max-width: 576px) {
-	.card {
-		height: 220px;
-	}
+.dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #ccc;
+}
 
-	.cardTitle {
-		margin-top: 15px;
-		font-size: 16px;
-	}
+.activeDot {
+	background: #4A90D9;
+}
 
-	.cardHoverContent p {
-		font-size: 13px;
-	}
-
-	.cardsContainer {
-		gap: 25px;
-	}
+.footer {
+	margin-top: auto;
 }
