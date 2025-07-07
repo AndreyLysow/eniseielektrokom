@@ -13,10 +13,10 @@ export default function HomePage() {
 
   const cards = [
     { img: "/rupor.png", title: "Объявления", text: "Актуальная информация для потребителей коммунальных услуг" },
-    { img: "/pay.png", title: "Оплата услуг", text: "Способы подачи показаний и оплаты коммунальных услуг" },
-    { img: "/grafik.png", title: "График отключения", text: "Информация об отключениях ГВС в межотопительный период" },
-    { img: "/tehpris.png", title: "Тех. присоединение", text: "Информация о технологическом присоединении" },
-    { img: "/avaria.png", title: "Сообщить о аварии", text: "Сообщить о технологических нарушениях на системах ГВС и теплоснабжения" }
+    { img: "/pay2.png", title: "Оплата услуг", text: "Способы подачи показаний и оплаты коммунальных услуг" },
+    { img: "/grafik2.png", title: "График отключения", text: "Информация об отключениях ГВС в межотопительный период" },
+    { img: "/tehpris2.png", title: "Тех. присоединение", text: "Информация о технологическом присоединении" },
+    { img: "/avaria2.png", title: "Сообщить об аварии", text: "Сообщить об аварии на системах ГВС и теплоснабжения" }
   ];
 
   const scrollToIndex = (index) => {
@@ -49,7 +49,7 @@ export default function HomePage() {
         <div className={styles.attentionBanner}>
           <h1>Внимание абонентам!</h1>
           <p>Актуальная информация для потребителей коммунальных услуг, важные уведомления и объявления.</p>
-          <Link href="/announcements" className={styles.baseButton}>Подробнее</Link>
+          <Link href="/announcements" className={`${styles.attentionButton}`}>Подробнее</Link>
         </div>
       </section>
 

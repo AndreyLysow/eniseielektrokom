@@ -48,7 +48,7 @@
 
 .attentionBanner {
 	display: inline-block;
-	background: rgba(3, 18, 100, 0.6);
+	background: rgba(100, 3, 3, 0.6);
 	border-radius: 10px;
 	padding: 20px 30px;
 	box-shadow: 0 4px 8px #D0D7E1;
@@ -67,6 +67,26 @@
 	font-size: 18px;
 	margin-bottom: 15px;
 }
+
+.attentionButton {
+	background-color: rgba(100, 3, 3, 0.6);
+	color: white;
+	padding: 12px 24px;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	box-shadow: 0 2px 4px #D0D7E1;
+	border: none;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.attentionButton:hover {
+	background-color: #D0D7E1;
+	color: #151F48;
+	transform: scale(1.05); }
 
 .baseButton {
 	background-color: rgba(3, 18, 100, 0.6);
