@@ -1,0 +1,31 @@
+.videoWrap {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+}
+
+.videoBg {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+}
+
+.overlay {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: rgba(0, 0, 0, 0.25);
+	animation: dayNight 60s linear infinite;
+}
+
+@keyframes dayNight {
+
+	0%,
+	100% {
+		background: rgba(0, 0, 0, 0.15);
+	}
+
+	50% {
+		background: rgba(0, 0, 0, 0.45);
+	}
+}

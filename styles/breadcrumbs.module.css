@@ -1,0 +1,30 @@
+.breadcrumb {
+	font-size: 20px;
+		margin-bottom: 15px;
+		display: inline-flex;
+		flex-wrap: wrap;
+		gap: 5px;
+		position: relative;
+		z-index: 3;
+}
+
+.breadcrumbLink {
+	color: #04468d;
+	text-decoration: underline;
+	transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+	color: #0282f9;
+}
+
+.separator {
+	margin: 0 8px;
+	color: #071837;
+}
+
+.breadcrumbCurrent {
+	color: #0d023c;
+	font-weight: bold;
+}
+

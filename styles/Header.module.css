@@ -1,6 +1,4 @@
-/* =======================
-   Header.module.css (локальные стили для хедера)
-   ======================= */
+/* Header.module.css: строгая последовательность: логотип → название → меню → телефон → бургер */
 
 .header {
 	position: fixed;
@@ -10,42 +8,48 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: 20px;
 	padding: 8px 60px;
 	background: var(--c-bg-blur);
 	backdrop-filter: blur(4px);
 	z-index: 100;
 	font-family: "Montserrat", sans-serif;
+	flex-wrap: nowrap;
 }
 
 .logo {
 	display: flex;
 	align-items: center;
+	flex-shrink: 0;
+	order: 1;
 }
 
-/* Подпись после логотипа оформлена так же, как пункты меню */
 .orgName {
-	margin-left: 20px;
+	margin-left: 16px;
 	font-size: 16px;
-	/* как меню */
 	font-weight: 600;
-	/* как меню */
 	color: var(--c-primary);
-	/* как меню */
-	white-space: nowrap;
+	line-height: 1.2;
+	max-width: 300px;
+	overflow-wrap: break-word;
+	hyphens: auto;
+	order: 2;
 }
 
 .nav {
+	display: flex;
+	justify-content: center;
 	flex-grow: 1;
-	margin: 0 60px;
+	order: 3;
 }
 
 .navList {
 	display: flex;
-	justify-content: center;
 	gap: 20px;
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	flex-wrap: nowrap;
 }
 
 .navList a {
@@ -65,32 +69,18 @@
 .contacts {
 	display: flex;
 	align-items: center;
-	gap: 16px;
+	order: 4;
+	flex-shrink: 0;
 }
 
 .phone {
 	font-size: 16px;
 	font-weight: 700;
 	color: var(--c-primary);
-	text-decoration: none;
 	white-space: nowrap;
-}
-
-.lockLink {
+	text-decoration: none;
 	display: flex;
 	align-items: center;
-	gap: 6px;
-	font-weight: 600;
-	color: var(--c-primary);
-	text-decoration: none;
-}
-
-.lockLink:hover {
-	text-decoration: underline;
-}
-
-.lockIcon {
-	font-size: 20px;
 }
 
 .burger {
@@ -101,25 +91,87 @@
 	border: none;
 	cursor: pointer;
 	z-index: 101;
+	order: 5;
 }
 
-@media (max-width: 768px) {
+/* ====== Адаптив ====== */
+
+@media (max-width: 1200px) {
+
+	.orgName,
+	.navList a,
+	.phone {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.orgName {
+		max-width: 240px;
+		font-size: 14px;
+	}
+
+	.navList a,
+	.phone {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 860px) {
+	.orgName {
+		max-width: 200px;
+		font-size: 13px;
+	}
+
+	.navList a,
+	.phone {
+		font-size: 13px;
+	}
+}
+
+@media (max-width: 720px) {
+	.orgName {
+		display: none;
+	}
+}
+
+@media (max-width: 576px) {
+	.header {
+		padding: 8px 20px;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+	}
+
+	.logo {
+		order: 1;
+	}
+
 	.burger {
 		display: block;
+		order: 5;
+		align-self: center;
+	}
+
+	.orgName {
+		display: none;
+	}
+
+	.contacts {
+		order: 4;
 	}
 
 	.nav {
 		position: absolute;
-		top: 64px;
+		top: 60px;
 		right: 16px;
-		background: rgba(255, 255, 255, 0.95);
-		border-radius: 8px;
-		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 		width: 200px;
 		padding: 15px;
-		transform: translateY(-15px);
+		border-radius: 8px;
+		background: rgba(255, 255, 255, 0.95);
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 		opacity: 0;
 		pointer-events: none;
+		transform: translateY(-15px);
 		transition: opacity 0.3s, transform 0.3s;
 	}
 
@@ -131,15 +183,24 @@
 
 	.navList {
 		flex-direction: column;
-		gap: 14px;
 		align-items: flex-start;
+		gap: 14px;
+	}
+}
+
+@media (min-width: 577px) {
+	.nav {
+		position: static;
+		opacity: 1;
+		pointer-events: auto;
+		transform: none;
+		width: auto;
+		padding: 0;
+		background: none;
+		box-shadow: none;
 	}
 
-	.contacts {
-		display: none;
-	}
-
-	.orgName {
+	.burger {
 		display: none;
 	}
 }
