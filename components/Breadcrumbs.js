@@ -11,7 +11,7 @@ export default function Breadcrumbs() {
   const labelMap = {
     "privacy-policy": "Политика конфиденциальности",
     "announcements": "Объявления",
-    // добавляй нужные маршруты
+    "about": "О компании", // ← добавили сюда
   };
 
   const last = segments.length - 1;

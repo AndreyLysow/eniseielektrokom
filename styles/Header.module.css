@@ -31,10 +31,22 @@
 	color: var(--c-primary);
 	line-height: 1.2;
 	max-width: 300px;
+
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	/* максимум 3 строки */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+
+	white-space: normal;
+	/* разрешает перенос */
+	word-break: normal;
+	/* не разбивает слова */
 	overflow-wrap: break-word;
-	hyphens: auto;
-	order: 2;
-}
+	/* перенос только по словам */
+	hyphens: none;
+	/* не добавляет переносы по слогам */
+	order: 2; }
 
 .nav {
 	display: flex;

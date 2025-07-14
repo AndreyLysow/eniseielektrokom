@@ -27,15 +27,15 @@ export default function Header() {
           <Image
             src="/logoetk.png"
             alt="Енисейтеплоком"
-            width={isMobile ? 60 : 80}
-            height={isMobile ? 60 : 80}
+            width={isMobile ? 100 : 120}
+            height={isMobile ? 100 : 120}
             priority
           />
         </Link>
       </div>
 
       <span className={styles.orgName}>
-        ООО&nbsp;Енисейская&nbsp;теплоснабжающая&nbsp;компания
+         ООО &laquo;Енисейская теплоснабжающая компания&raquo;
       </span>
 
       <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}>

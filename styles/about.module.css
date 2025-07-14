@@ -1,0 +1,156 @@
+/* Основной контейнер */
+.wrapper {
+	position: relative;
+	min-height: 100vh;
+	overflow-x: hidden;
+	margin-top: 60px;
+	color: #fff;
+}
+
+/* Фоновый блок */
+.videoWrap {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+}
+
+.videoBg {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+}
+
+.overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.25);
+	animation: dayNight 60s linear infinite;
+	pointer-events: none;
+}
+
+@keyframes dayNight {
+
+	0%,
+	100% {
+		background: rgba(0, 0, 0, 0.15);
+	}
+
+	50% {
+		background: rgba(0, 0, 0, 0.45);
+	}
+}
+
+/* Контент */
+.content {
+	max-width: 1000px;
+	margin: 100px auto 140px;
+	padding: 0 20px;
+	backdrop-filter: blur(8px);
+	position: relative;
+	z-index: 1;
+}
+
+/* Заголовок  */
+.title {
+	text-align: center;
+	font-size: 34px;
+	font-weight: 800;
+	margin-bottom: 40px;
+	background: linear-gradient(to right, #aee2ff, #4a90d9);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transform;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+	z-index: 10;
+	position: relative;
+}
+
+/* Карточка паспорта */
+.card {
+	background: rgba(0, 0, 0, 0.6);
+	padding: 40px 30px;
+	border-radius: 16px;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 16px 24px;
+	color: #fff;
+	line-height: 1.6;
+	font-size: 15px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+	grid-column: 1 / -1;
+	font-size: 24px;
+	color: #9ccdff;
+	margin-bottom: 24px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	padding-bottom: 10px;
+}
+
+/* Метки и значения */
+.label {
+	color: #aad4ff;
+	font-weight: 600;
+}
+
+.value {
+	color: #e0e6f0;
+}
+
+/* Блок выписки */
+.extract {
+	margin-top: 60px;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 30px 25px;
+	border-radius: 14px;
+	color: #fff;
+	line-height: 1.7;
+}
+
+.extract h3 {
+	font-size: 20px;
+	margin-bottom: 12px;
+	color: #9ccdff;
+}
+
+.extract p {
+	font-size: 15px;
+	margin-bottom: 18px;
+}
+
+/* Кнопка */
+.button {
+	display: inline-block;
+	background-color: #4a90d9;
+	color: #fff;
+	padding: 10px 18px;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: background 0.3s ease;
+}
+
+.button:hover {
+	background-color: #6fb9ff;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+	.card {
+		grid-template-columns: 1fr;
+		padding: 30px 20px;
+		font-size: 14px;
+	}
+
+	.card h2 {
+		font-size: 20px;
+	}
+
+	.title {
+		font-size: 26px;
+	}
+
+	.extract {
+		font-size: 14px;
+	}
+}
