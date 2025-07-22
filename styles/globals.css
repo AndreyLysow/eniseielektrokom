@@ -13,22 +13,17 @@
 	}
 }
 
-html,
 body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
 	max-width: 100vw;
 	overflow-x: hidden;
-	background: transparent;
-	/* 🔧 убрали белый фон */
+	font-family: 'Montserrat', sans-serif;
+	background-color: #000;
 	color: var(--foreground);
-	font-family: 'Montserrat', 'Roboto', Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-* {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
 }
 
 a {
@@ -36,12 +31,7 @@ a {
 	text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-	html {
-		color-scheme: dark;
-	}
-}
-
+/* Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

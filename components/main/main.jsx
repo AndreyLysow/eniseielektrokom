@@ -1,35 +1,24 @@
-import { useRef, useEffect } from "react";
+"use client";
+
 import Link from "next/link";
+import { useEffect } from "react";
 import Header from "../header";
 import Footer from "../footer";
-import Slider from "./Slider"; 
+import Slider from "./Slider";
+import AnimatedBackground from "./../AnimatedBackground"; // Импорт фона
 import styles from "../../styles/main.module.css";
 
 export default function HomePage() {
-  const videoRef = useRef(null);
-
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.1; // замедление в 5 раз
-    }
+    // Любые другие побочные эффекты, если нужны
   }, []);
 
   return (
     <main className={styles.wrapper}>
       <Header />
 
-      <div className={styles.videoWrap}>
-        <video
-          ref={videoRef}
-          src="/eniseysk.mp4"
-          className={styles.videoBg}
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-        <div className={styles.overlay} />
-      </div>
+      {/* 🔵 Видео-фон */}
+      <AnimatedBackground />
 
       <section className={styles.attentionSection}>
         <div className={styles.attentionBanner}>

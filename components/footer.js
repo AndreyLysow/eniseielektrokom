@@ -52,7 +52,7 @@ const Footer = () => {
             <ul className={styles.footerLinks}>
               <li><Link href="/about">О компании</Link></li>
               <li><Link href="/global-contact">Контакты</Link></li>
-              <li><Link href="/requisites">Реквизиты</Link></li>
+              <li><Link href="/CompanyDetails">Реквизиты</Link></li>
               <li><Link href="/vacancies">Вакансии</Link></li>
             </ul>
           </div>

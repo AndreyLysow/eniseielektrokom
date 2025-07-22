@@ -47,6 +47,7 @@
 	/* сверху отступ, чтобы не накладывалось на хедер */
 	padding: 0 20px;
 	backdrop-filter: blur(10px);
+	z-index: 3;
 }
 
 .title {

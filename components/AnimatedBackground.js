@@ -1,4 +1,5 @@
 "use client";
+
 import { useRef, useEffect } from "react";
 import styles from "../styles/animatedBackground.module.css";
 
@@ -7,7 +8,7 @@ export default function AnimatedBackground() {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.1; // замедление в 10 раз
+      videoRef.current.playbackRate = 0.7; 
     }
   }, []);
 
@@ -15,7 +16,7 @@ export default function AnimatedBackground() {
     <div className={styles.videoWrap}>
       <video
         ref={videoRef}
-        src="/eniseysk.mp4"
+        src="/eniseysk_slow.mp4" // ✅ Путь от public
         className={styles.videoBg}
         autoPlay
         muted

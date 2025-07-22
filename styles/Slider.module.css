@@ -5,12 +5,15 @@
 	justify-content: center;
 	padding: 20px 20px 120px;
 	margin-top: 30px;
+	z-index: 2;
 }
 
 .cardsContainerWrapper {
 	max-width: 1230px;
 	margin: 20px auto;
 	position: relative;
+	overflow: hidden;
+	/* важный фикс */
 }
 
 .cardsContainer {
@@ -88,6 +91,16 @@
 	transform: scale(1.05);
 }
 
+/* ───── Стрелки навигации ───── */
+.cardsContainerWrapper {
+	max-width: 1230px;
+	margin: 20px auto;
+	position: relative;
+	overflow: hidden;
+	padding: 0 40px;
+	/* ← добавляем отступы для стрелок */
+}
+
 .navArrow {
 	position: absolute;
 	top: 50%;
@@ -102,17 +115,18 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	z-index: 2;
+	z-index: 5;
+	/* повыше */
 }
 
 .leftArrow {
-	left: -20px;
+	left: 0;
 }
 
 .rightArrow {
-	right: -20px;
-}
+	right: 0; }
 
+/* ───── Точки навигации ───── */
 .dots {
 	display: flex;
 	justify-content: center;
@@ -131,7 +145,7 @@
 	background: #4A90D9;
 }
 
-/* Планшеты */
+/* ───── Планшеты ───── */
 @media (max-width: 1024px) {
 	.card {
 		flex: 0 0 calc(50% - 30px);
@@ -147,7 +161,7 @@
 	}
 }
 
-/* Мобильные */
+/* ───── Мобильные ───── */
 @media (max-width: 768px) {
 	.cardsContainer {
 		flex-direction: column;
