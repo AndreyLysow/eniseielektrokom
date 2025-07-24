@@ -11,7 +11,11 @@ export default function Breadcrumbs() {
   const labelMap = {
     "privacy-policy": "Политика конфиденциальности",
     "announcements": "Объявления",
-    "about": "О компании", // ← добавили сюда
+    "about": "О компании",
+	"outage-schedule": "График отключений",
+	"CompanyDetails": "Реквизиты",
+	"DispatchCenter": "Сообщить об аварии",
+	"announcement_mine": "Важное объявление",
   };
 
   const last = segments.length - 1;

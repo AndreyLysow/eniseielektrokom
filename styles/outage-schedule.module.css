@@ -1,0 +1,89 @@
+/* ───── ОБЁРТКА ───── */
+.wrapper {
+	position: relative;
+	min-height: 100vh;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	background: none;
+	margin-top: 130px;
+	/* ✅ отступ под фиксированный Header */
+}
+
+/* ───── КОНТЕНТ ───── */
+.content {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 20px;
+	backdrop-filter: blur(8px);
+	z-index: 3;
+}
+
+/* ───── ЗАГОЛОВОК ───── */
+.title {
+	text-align: center;
+	font-size: 24px;
+	font-weight: 800;
+	color: #f4f7fa;
+	margin-bottom: 25px;
+	text-transform: uppercase;
+}
+
+/* ───── ХЛЕБНЫЕ КРОШКИ ───── */
+.breadcrumbsWrapper {
+	margin-top: 40px;
+	margin-bottom: 15px;
+}
+
+/* ───── ТАБЛИЦА ───── */
+.tableWrapper {
+	overflow-x: auto;
+	border-radius: 10px;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.table th,
+.table td {
+	padding: 12px 15px;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.table th {
+	background-color: #1f1f2e;
+	color: #9ccdff;
+	font-weight: 600;
+	font-size: 15px;
+}
+
+.table td {
+	color: #f0f0f0;
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+/* ───── АДАПТИВ ───── */
+@media (max-width: 768px) {
+	.content {
+		margin-top: 120px;
+	}
+
+	.title {
+		font-size: 24px;
+	}
+
+	.table th,
+	.table td {
+		font-size: 14px;
+		padding: 10px;
+	}
+}

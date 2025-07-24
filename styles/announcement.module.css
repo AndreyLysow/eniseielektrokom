@@ -1,0 +1,116 @@
+/* ───── ОБЁРТКА ───── */
+.wrapper {
+	position: relative;
+	min-height: 100vh;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	margin-top: 60px;
+}
+
+/* ───── КОНТЕНТ ───── */
+.content {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 100px 20px 20px;
+	/* ✅ отступ под фиксированный хедер */
+	backdrop-filter: blur(8px);
+	z-index: 3;
+}
+
+/* ───── ХЛЕБНЫЕ КРОШКИ ───── */
+.breadcrumbsWrapper {
+	margin-bottom: 20px;
+}
+
+/* ───── ЗАГОЛОВОК ───── */
+.title {
+	text-align: center;
+	font-size: 32px;
+	margin-bottom: 30px;
+	color: #e0e6f0;
+	text-transform: uppercase;
+}
+
+/* ───── БЛОКИ ───── */
+.announcementBlock,
+.hotlineBlock {
+	background: rgba(0, 0, 0, 0.7);
+	padding: 25px 30px;
+	border-radius: 12px;
+	border: 2px solid #007bff;
+	box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+	margin-bottom: 30px;
+}
+
+.icon {
+	font-size: 28px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.subtitle {
+	font-size: 22px;
+	font-weight: bold;
+	color: #9ccdff;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.links {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.links li {
+	margin-bottom: 12px;
+	text-align: center;
+}
+
+.links li a {
+	color: #00e5ff;
+	font-size: 18px;
+	text-decoration: none;
+	font-weight: bold;
+	transition: color 0.3s ease;
+}
+
+.links li a:hover {
+	color: #04b3d9;
+}
+
+.hotlineList {
+	margin-top: 15px;
+	padding-left: 20px;
+}
+
+.hotlineList li {
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #f0f0f0;
+}
+
+.text {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+/* ───── АДАПТИВ ───── */
+@media (max-width: 768px) {
+	.title {
+		font-size: 24px;
+	}
+
+	.subtitle {
+		font-size: 18px;
+	}
+
+	.links li a {
+		font-size: 16px;
+	}
+
+	.hotlineList li {
+		font-size: 16px;
+	} }

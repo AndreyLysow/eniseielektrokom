@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styles from "../../styles/Slider.module.css";
 
@@ -9,11 +10,36 @@ export default function Slider() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const cards = [
-    { img: "/rupor.png", title: "Объявления", text: "Актуальная информация для потребителей коммунальных услуг" },
-    { img: "/pay2.png", title: "Оплата услуг", text: "Способы подачи показаний и оплаты коммунальных услуг" },
-    { img: "/grafik2.png", title: "График отключения", text: "Информация об отключениях ГВС в межотопительный период" },
-    { img: "/tehpris2.png", title: "Тех. присоединение", text: "Информация о технологическом присоединении" },
-    { img: "/avaria2.png", title: "Сообщить об аварии", text: "Сообщить об аварии на системах ГВС и теплоснабжения" }
+    {
+      img: "/rupor.png",
+      title: "Объявления",
+      text: "Актуальная информация для потребителей коммунальных услуг",
+      href: "/announcements",
+    },
+    {
+      img: "/pay2.png",
+      title: "Оплата услуг",
+      text: "Способы подачи показаний и оплаты коммунальных услуг",
+      href: "/payment",
+    },
+    {
+      img: "/grafik2.png",
+      title: "График отключения",
+      text: "Информация об отключениях ГВС в межотопительный период",
+      href: "/outage-schedule",
+    },
+    {
+      img: "/tehpris2.png",
+      title: "Тех. присоединение",
+      text: "Информация о технологическом присоединении",
+      href: "/connection",
+    },
+    {
+      img: "/avaria2.png",
+      title: "Сообщить об аварии",
+      text: "Сообщить об аварии на системах ГВС и теплоснабжения",
+      href: "/DispatchCenter",
+    },
   ];
 
   const scrollToIndex = (index) => {
@@ -47,7 +73,9 @@ export default function Slider() {
               <h3 className={styles.cardTitle}>{c.title}</h3>
               <div className={styles.cardHoverContent}>
                 <p>{c.text}</p>
-                <button className={styles.baseButton}>Подробнее</button>
+                <Link href={c.href}>
+                  <button className={styles.baseButton}>Подробнее</button>
+                </Link>
               </div>
             </div>
           ))}

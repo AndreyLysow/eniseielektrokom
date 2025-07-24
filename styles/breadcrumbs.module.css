@@ -9,22 +9,22 @@
 }
 
 .breadcrumbLink {
-	color: #04468d;
+	color: #dde5ec;
 	text-decoration: underline;
 	transition: color 0.2s ease;
 }
 
 .breadcrumbLink:hover {
-	color: #0282f9;
+	color: #d8e7f6;
 }
 
 .separator {
 	margin: 0 8px;
-	color: #071837;
+	color: #b9c5dc;
 }
 
 .breadcrumbCurrent {
-	color: #0d023c;
-	font-weight: bold;
+	color: #f6f6f7;
+	font-weight: regular;
 }
 

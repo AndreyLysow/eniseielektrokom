@@ -1,0 +1,172 @@
+/* ───── ОБЁРТКА ───── */
+.wrapper {
+	position: relative;
+	min-height: 100vh;
+	color: #fff;
+	background: none;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+/* ───── КОНТЕНТ ───── */
+.content {
+	max-width: 1100px;
+	margin: 90px auto;
+	padding: 20px;
+	backdrop-filter: blur(8px);
+	z-index: 3;
+}
+
+/* ───── ХЛЕБНЫЕ КРОШКИ ───── */
+.breadcrumbsWrapper {
+	margin-top: 40px;
+	/* ✅ Добавлен отступ */
+	margin-bottom: 15px;
+}
+
+/* ───── ЗАГОЛОВОК ───── */
+.title {
+	text-align: center;
+	font-size: 32px;
+	margin-bottom: 30px;
+	color: #e0e6f0;
+}
+
+/* ───── БЛОК ОБЪЯВЛЕНИЯ ───── */
+.announcementBlock {
+	background: rgba(0, 0, 0, 0.7);
+	padding: 25px 30px;
+	border-radius: 12px;
+	border: 2px solid #ff4444;
+	box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+	margin-bottom: 30px;
+}
+
+.alertIcon {
+	font-size: 28px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.announcementTitle {
+	font-size: 22px;
+	font-weight: bold;
+	color: #ffdfdf;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.address {
+	font-size: 20px;
+	font-weight: 600;
+	color: #ffd700;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.text {
+	font-size: 18px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.dates {
+	font-size: 20px;
+	font-weight: bold;
+	color: #00e5ff;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.additional {
+	font-size: 16px;
+	color: #ccc;
+	font-style: italic;
+	text-align: center;
+}
+
+/* ───── ССЫЛКА НА ГРАФИК ───── */
+.linkBlock {
+	text-align: center;
+	font-size: 18px;
+	margin-top: 20px;
+}
+
+.link {
+	display: inline-block;
+	margin-top: 15px;
+	padding: 12px 24px;
+	background-color: #064469;
+	color: #fff;
+	border-radius: 6px;
+	text-decoration: none;
+	font-weight: bold;
+	transition: background 0.3s ease;
+}
+
+.link:hover {
+	background-color: #046ba5;
+}
+
+/* ───── ТАБЛИЦА ───── */
+.tableWrapper {
+	overflow-x: auto;
+	border-radius: 10px;
+	margin-top: 30px;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.table th,
+.table td {
+	padding: 12px 15px;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.table th {
+	background-color: #1f1f2e;
+	color: #9ccdff;
+	font-weight: 600;
+	font-size: 15px;
+}
+
+.table td {
+	color: #f0f0f0;
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+/* ───── АДАПТИВ ───── */
+@media (max-width: 768px) {
+	.content {
+		margin-top: 120px;
+	}
+
+	.title {
+		font-size: 24px;
+	}
+
+	.announcementTitle {
+		font-size: 20px;
+	}
+
+	.address,
+	.dates {
+		font-size: 18px;
+	}
+
+	.table th,
+	.table td {
+		font-size: 14px;
+		padding: 10px;
+	}
+}

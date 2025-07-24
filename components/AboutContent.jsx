@@ -18,7 +18,8 @@ const About = () => {
     if (swiperRef.current?.swiper) swiperRef.current.swiper.slideTo(4, 0);
   }, []);
 
-  const slides = Array.from({ length: 21 }, (_, i) => `/pictures_about_us/about-slide${i + 1}.jpg`).filter(src => !src.includes("14"));
+  const existingSlideNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const slides = existingSlideNumbers.map(num => `/pictures_about_us/about-slide${num}.jpg`);
 
   return (
     <div className={styles.servicesPage}>

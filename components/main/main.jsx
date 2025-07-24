@@ -24,7 +24,7 @@ export default function HomePage() {
         <div className={styles.attentionBanner}>
           <h1>Внимание абонентам!</h1>
           <p>Актуальная информация для потребителей коммунальных услуг, важные уведомления и объявления.</p>
-          <Link href="/announcements" className={styles.attentionButton}>
+          <Link href="/announcement_mine" className={styles.attentionButton}>
             Подробнее
           </Link>
         </div>
