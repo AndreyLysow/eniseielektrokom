@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaBars, FaTimes, FaChevronDown, FaChevronRight } from "react-icons/fa";
@@ -12,6 +12,9 @@ export default function Header() {
   const [nestedOpen, setNestedOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Таймер для задержки скрытия подменю
+  const closeTimer = useRef(null);
+
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize();
@@ -20,18 +23,37 @@ export default function Header() {
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
   const closeMenu = () => {
     setMenuOpen(false);
     setSubmenuOpen(false);
     setNestedOpen(false);
   };
 
+  // ✅ Логика для задержки закрытия подменю
+  const handleMouseEnterSubmenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setSubmenuOpen(true);
+  };
+
+  const handleMouseLeaveSubmenu = () => {
+    closeTimer.current = setTimeout(() => setSubmenuOpen(false), 500);
+  };
+
+  const handleMouseEnterNested = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setNestedOpen(true);
+  };
+
+  const handleMouseLeaveNested = () => {
+    closeTimer.current = setTimeout(() => setNestedOpen(false), 500);
+  };
+
   return (
     <header className={styles.header}>
-      {/* Логотип + название */}
       <div className={styles.brand}>
         <Link href="/" onClick={closeMenu}>
-          <Image src="/logoetk.png" alt="Енисейтеплоком" width={70} height={70} priority />
+          <Image src="/logoetk.png" alt="Енисейтеплоком" width={100} height={100} priority />
         </Link>
         {!isMobile && (
           <span className={styles.orgName}>
@@ -40,37 +62,41 @@ export default function Header() {
         )}
       </div>
 
-      {/* Десктопное меню */}
       {!isMobile && (
         <nav className={styles.nav}>
           <ul className={styles.navList}>
             <li><Link href="/" onClick={closeMenu}>Главная</Link></li>
-            
+
             {/* Абонентам */}
             <li
               className={styles.dropdown}
-              onMouseEnter={() => setSubmenuOpen(true)}
-              onMouseLeave={() => {
-                setSubmenuOpen(false);
-                setNestedOpen(false);
-              }}
+              onMouseEnter={handleMouseEnterSubmenu}
+              onMouseLeave={handleMouseLeaveSubmenu}
             >
               <button className={styles.dropdownBtn}>
                 Абонентам <FaChevronDown />
               </button>
               {submenuOpen && (
-                <ul className={styles.dropdownMenu}>
+                <ul
+                  className={styles.dropdownMenu}
+                  onMouseEnter={handleMouseEnterSubmenu}
+                  onMouseLeave={handleMouseLeaveSubmenu}
+                >
                   <li
                     className={styles.hasSubmenu}
-                    onMouseEnter={() => setNestedOpen(true)}
-                    onMouseLeave={() => setNestedOpen(false)}
+                    onMouseEnter={handleMouseEnterNested}
+                    onMouseLeave={handleMouseLeaveNested}
                   >
                     <span>
                       Объявления <FaChevronRight />
                     </span>
                     {nestedOpen && (
-                      <ul className={styles.nestedMenu}>
-                        <li><Link href="/important-announcement" onClick={closeMenu}>Важное объявление</Link></li>
+                      <ul
+                        className={styles.nestedMenu}
+                        onMouseEnter={handleMouseEnterNested}
+                        onMouseLeave={handleMouseLeaveNested}
+                      >
+                        <li><Link href="/announcement_mine" onClick={closeMenu}>Важное объявление</Link></li>
                         <li><Link href="/announcements" onClick={closeMenu}>Другие объявления</Link></li>
                         <li><Link href="/outage-schedule" onClick={closeMenu}>График отключения</Link></li>
                       </ul>
@@ -92,19 +118,16 @@ export default function Header() {
         </nav>
       )}
 
-      {/* Телефон */}
       <div className={styles.contacts}>
         <a href="tel:+73919524957" className={styles.phone}>
           +7 (39195) 2-49-57
         </a>
       </div>
 
-      {/* Бургер */}
       <button className={styles.burger} aria-label="Открыть меню" onClick={toggleMenu}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Мобильное меню */}
       {isMobile && menuOpen && (
         <div className={styles.mobileMenu}>
           <ul>
@@ -117,7 +140,7 @@ export default function Header() {
                     <button onClick={() => setNestedOpen(!nestedOpen)}>Объявления ▸</button>
                     {nestedOpen && (
                       <ul>
-                        <li><Link href="/important-announcement" onClick={closeMenu}>Важное объявление</Link></li>
+                        <li><Link href="/announcement_mine" onClick={closeMenu}>Важное объявление</Link></li>
                         <li><Link href="/announcements" onClick={closeMenu}>Другие объявления</Link></li>
                         <li><Link href="/outage-schedule" onClick={closeMenu}>График отключения</Link></li>
                       </ul>

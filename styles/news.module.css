@@ -1,0 +1,90 @@
+/* ===== ОБЁРТКА ===== */
+.wrapper {
+	position: relative;
+	min-height: 100vh;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	margin-top: 60px;
+}
+
+.content {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 100px 20px 20px;
+	backdrop-filter: blur(8px);
+	z-index: 3;
+}
+
+.breadcrumbsWrapper {
+	margin-bottom: 20px;
+}
+
+.title {
+	text-align: center;
+	font-size: 32px;
+	margin-bottom: 30px;
+	color: #e0e6f0;
+	text-transform: uppercase;
+}
+
+/* ===== СПИСОК НОВОСТЕЙ ===== */
+.newsList {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	gap: 20px;
+}
+
+.card {
+	background: rgba(0, 0, 0, 0.7);
+	padding: 20px;
+	border-radius: 12px;
+	border: 2px solid #007bff;
+	box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+	transition: transform 0.3s ease;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+}
+
+.cardTitle {
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+	margin-bottom: 10px;
+}
+
+.date,
+.views {
+	font-size: 14px;
+	color: #ccc;
+	margin-bottom: 5px;
+}
+
+.readMore {
+	display: inline-block;
+	margin-top: 10px;
+	padding: 8px 14px;
+	background: rgba(0, 123, 255, 0.8);
+	color: #fff;
+	border-radius: 6px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: background 0.3s;
+}
+
+.readMore:hover {
+	background: rgba(0, 123, 255, 1);
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+	.title {
+		font-size: 24px;
+	}
+
+	.cardTitle {
+		font-size: 18px;
+	} }

@@ -1,0 +1,135 @@
+/* ===== ОБЁРТКА ===== */
+.wrapper {
+	position: relative;
+	min-height: 100vh;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	margin-top: 60px;
+}
+
+.content {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 100px 20px 20px;
+	backdrop-filter: blur(8px);
+	z-index: 3;
+}
+
+.breadcrumbsWrapper {
+	margin-bottom: 20px;
+}
+
+.title {
+	text-align: center;
+	font-size: 32px;
+	margin-bottom: 30px;
+	color: #e0e6f0;
+	text-transform: uppercase;
+}
+
+/* ===== ТАБЛИЦА ===== */
+.tableWrapper {
+	overflow-x: auto;
+	border-radius: 12px;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	background: rgba(0, 0, 0, 0.6);
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.table th {
+	background: #1f1f2e;
+	color: #9ccdff;
+	font-weight: 700;
+	text-align: left;
+	font-size: 16px;
+	padding: 16px;
+}
+
+.row td {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	padding: 14px;
+}
+
+.docRow {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+}
+
+.docName {
+	flex: 1;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #fff;
+	text-align: left;
+}
+
+.actions {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 8px 14px;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+	transform: scale(1.05);
+}
+
+.viewBtn {
+	background: rgba(0, 123, 255, 0.9);
+	color: #fff;
+}
+
+.viewBtn:hover {
+	background: rgba(0, 123, 255, 1);
+}
+
+.downloadBtn {
+	background: rgba(40, 167, 69, 0.9);
+	color: #fff;
+}
+
+.downloadBtn:hover {
+	background: rgba(40, 167, 69, 1);
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+	.docRow {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.actions {
+		justify-content: flex-start;
+		margin-top: 8px;
+	}
+
+	.title {
+		font-size: 24px;
+	}
+
+	.btn {
+		font-size: 13px;
+		padding: 6px 10px;
+	} }

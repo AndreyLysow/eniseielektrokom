@@ -60,7 +60,7 @@ const Footer = () => {
           <div className={styles.footerSection}>
             <span className={styles.footerTitle}>Информация</span>
             <ul className={styles.footerLinks}>
-              <li><Link href="/products">Раскрытие информации</Link></li>
+              <li><Link href="/info">Раскрытие информации</Link></li>
               <li><Link href="/privacy-policy">Политика конфиденциальности</Link></li>
               <li><Link href="/sitemap">Карта сайта</Link></li>
             </ul>

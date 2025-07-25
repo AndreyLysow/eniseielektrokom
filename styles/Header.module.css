@@ -83,24 +83,33 @@
 
 .dropdownMenu {
 	position: absolute;
-	top: 100%;
+	top: calc(100% - 4px);
+	/* ближе к пункту меню */
 	left: 0;
-	margin-top: 8px;
-	background: #fff;
+	background: rgba(255, 255, 255, 0.95);
 	border-radius: 8px;
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 	padding: 8px 0;
 	min-width: 220px;
-	display: none;
+	display: flex;
 	flex-direction: column;
 	z-index: 200;
-	transition: opacity 0.3s ease, visibility 0.3s ease;
+
+	/* Скрытие по умолчанию */
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(6px);
+	transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+	pointer-events: none;
 }
 
-.dropdown:hover .dropdownMenu {
-	display: flex;
+/* ✅ Активируем плавное появление */
+.dropdown:hover .dropdownMenu,
+.dropdownMenu:hover {
 	opacity: 1;
 	visibility: visible;
+	transform: translateY(0);
+	pointer-events: auto;
 }
 
 .dropdownMenu li {
@@ -118,11 +127,12 @@
 	font-weight: 600;
 	text-decoration: none;
 	cursor: pointer;
+	transition: background 0.3s ease, color 0.3s ease;
 }
 
 .dropdownMenu li a:hover,
 .dropdownMenu li span:hover {
-	background: #f0f0f0;
+	background: rgba(0, 0, 0, 0.05);
 	color: var(--c-primary-dark);
 	border-radius: 4px;
 }
@@ -135,19 +145,30 @@
 .nestedMenu {
 	position: absolute;
 	top: 0;
-	left: 100%;
-	margin-left: 4px;
-	background: #fff;
+	left: calc(100% - 4px);
+	background: rgba(255, 255, 255, 0.95);
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-	display: none;
-	flex-direction: column;
-	padding: 8px 0;
 	border-radius: 8px;
+	padding: 8px 0;
 	min-width: 220px;
+	display: flex;
+	flex-direction: column;
+
+	/* Скрытие по умолчанию */
+	opacity: 0;
+	visibility: hidden;
+	transform: translateX(6px);
+	transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+	pointer-events: none;
 }
 
-.hasSubmenu:hover .nestedMenu {
-	display: flex;
+/* ✅ Держим открытым при наведении */
+.hasSubmenu:hover .nestedMenu,
+.nestedMenu:hover {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0);
+	pointer-events: auto;
 }
 
 .nestedMenu li a {
@@ -158,7 +179,7 @@
 }
 
 .nestedMenu li a:hover {
-	background: #f0f0f0;
+	background: rgba(0, 0, 0, 0.05);
 	color: var(--c-primary-dark);
 	border-radius: 4px;
 }
@@ -193,7 +214,7 @@
 	position: absolute;
 	top: 70px;
 	right: 20px;
-	width: 220px;
+	width: 240px;
 	background: rgba(255, 255, 255, 0.95);
 	border-radius: 8px;
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -211,20 +232,17 @@
 	margin-bottom: 12px;
 }
 
-.mobileMenu ul li a {
+.mobileMenu ul li a,
+.mobileMenu ul li button {
 	color: var(--c-primary);
 	font-size: 15px;
 	font-weight: 600;
 	text-decoration: none;
-}
-
-.mobileMenu ul li button {
 	background: none;
 	border: none;
-	font-size: 15px;
-	font-weight: 600;
-	color: var(--c-primary);
 	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
 }
 
 /* ===================== RESPONSIVE ===================== */

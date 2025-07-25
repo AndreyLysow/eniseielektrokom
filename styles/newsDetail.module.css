@@ -1,0 +1,74 @@
+/* ===== ОБЁРТКА ===== */
+.wrapper {
+	position: relative;
+	min-height: 100vh;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	margin-top: 60px;
+}
+
+/* ===== КОНТЕНТ ===== */
+.content {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 100px 20px 40px;
+	backdrop-filter: blur(8px);
+	z-index: 3;
+}
+
+.breadcrumbsWrapper {
+	margin-bottom: 20px;
+}
+
+.title {
+	text-align: center;
+	font-size: 32px;
+	margin-bottom: 15px;
+	color: #e0e6f0;
+	text-transform: uppercase;
+}
+
+.date,
+.views {
+	text-align: center;
+	color: #ccc;
+	margin-bottom: 8px;
+}
+
+.article {
+	font-size: 18px;
+	color: #fff;
+	line-height: 1.6;
+	margin-top: 20px;
+}
+
+.article h2 {
+	font-size: 24px;
+	margin: 20px 0 10px;
+	color: #9ccdff;
+}
+
+.article p {
+	margin-bottom: 15px;
+}
+
+.article ul {
+	padding-left: 20px;
+	margin-bottom: 15px;
+}
+
+.article li {
+	margin-bottom: 8px;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+	.title {
+		font-size: 24px;
+	}
+
+	.article {
+		font-size: 16px;
+	} }

@@ -22,7 +22,13 @@ export default function Slider() {
       text: "Способы подачи показаний и оплаты коммунальных услуг",
       href: "/payment",
     },
-    {
+     {
+      img: "/avaria2.png",
+      title: "Сообщить об аварии",
+      text: "Сообщить об аварии на системах ГВС и теплоснабжения",
+      href: "/DispatchCenter",
+    },
+	{
       img: "/grafik2.png",
       title: "График отключения",
       text: "Информация об отключениях ГВС в межотопительный период",
@@ -34,12 +40,7 @@ export default function Slider() {
       text: "Информация о технологическом присоединении",
       href: "/connection",
     },
-    {
-      img: "/avaria2.png",
-      title: "Сообщить об аварии",
-      text: "Сообщить об аварии на системах ГВС и теплоснабжения",
-      href: "/DispatchCenter",
-    },
+   
   ];
 
   const scrollToIndex = (index) => {

@@ -16,6 +16,9 @@ export default function Breadcrumbs() {
 	"CompanyDetails": "Реквизиты",
 	"DispatchCenter": "Сообщить об аварии",
 	"announcement_mine": "Важное объявление",
+	"info": "Рскрытие информации",
+	"payment": "Передача показаний и оплата услуг",
+	"news": "Новости",
   };
 
   const last = segments.length - 1;
