@@ -19,7 +19,7 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => {
     setMenuOpen(false);
     setSubmenuOpen(false);
@@ -28,24 +28,25 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      {/* Логотип + Название */}
+      {/* Логотип + название */}
       <div className={styles.brand}>
         <Link href="/" onClick={closeMenu}>
           <Image src="/logoetk.png" alt="Енисейтеплоком" width={70} height={70} priority />
         </Link>
         {!isMobile && (
           <span className={styles.orgName}>
-            ООО «Енисейская<br />теплоснабжающая компания»
+            ООО &laquo;Енисейская<br />теплоснабжающая компания&raquo;
           </span>
         )}
       </div>
 
       {/* Десктопное меню */}
       {!isMobile && (
-        <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}>
+        <nav className={styles.nav}>
           <ul className={styles.navList}>
             <li><Link href="/" onClick={closeMenu}>Главная</Link></li>
-
+            
+            {/* Абонентам */}
             <li
               className={styles.dropdown}
               onMouseEnter={() => setSubmenuOpen(true)}
@@ -60,11 +61,13 @@ export default function Header() {
               {submenuOpen && (
                 <ul className={styles.dropdownMenu}>
                   <li
+                    className={styles.hasSubmenu}
                     onMouseEnter={() => setNestedOpen(true)}
                     onMouseLeave={() => setNestedOpen(false)}
-                    className={styles.hasSubmenu}
                   >
-                    <span>Объявления <FaChevronRight /></span>
+                    <span>
+                      Объявления <FaChevronRight />
+                    </span>
                     {nestedOpen && (
                       <ul className={styles.nestedMenu}>
                         <li><Link href="/important-announcement" onClick={closeMenu}>Важное объявление</Link></li>
@@ -89,7 +92,7 @@ export default function Header() {
         </nav>
       )}
 
-      {/* Контакты */}
+      {/* Телефон */}
       <div className={styles.contacts}>
         <a href="tel:+73919524957" className={styles.phone}>
           +7 (39195) 2-49-57
