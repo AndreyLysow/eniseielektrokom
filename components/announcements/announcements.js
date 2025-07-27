@@ -14,18 +14,18 @@ export default function GisAnnouncement() {
           <Breadcrumbs />
         </div>
 
-        <h1 className={styles.title}>Пользователям ГИС ЖКХ</h1>
+        <h1 className={styles.title}>Официальные сообщения</h1>
 
         <div className={styles.announcementBlock}>
           <p className={styles.icon}>ℹ️</p>
           <h2 className={styles.subtitle}>
-            Важная информация и полезные ссылки
+            Важная информация и полезные ссылки для пользователей ГИС ЖКХ
           </h2>
 
           <ul className={styles.links}>
             <li>
               <Link href="https://giszhkh.ru/" target="_blank" rel="noopener noreferrer">
-                Пользователям ГИС ЖКХ →
+			  Официальный сайт ГИС ЖКХ →
               </Link>
             </li>
             <li>

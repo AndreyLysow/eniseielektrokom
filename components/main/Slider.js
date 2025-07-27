@@ -38,7 +38,7 @@ export default function Slider() {
       img: "/tehpris2.png",
       title: "Тех. присоединение",
       text: "Информация о технологическом присоединении",
-      href: "/connection",
+      href: "/articles/tech-connection",
     },
    
   ];

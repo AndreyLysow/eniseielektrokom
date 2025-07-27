@@ -51,7 +51,7 @@ const Footer = () => {
             <span className={styles.footerTitle}>Компания</span>
             <ul className={styles.footerLinks}>
               <li><Link href="/about">О компании</Link></li>
-              <li><Link href="/global-contact">Контакты</Link></li>
+              <li><Link href="/contact">Контакты</Link></li>
               <li><Link href="/CompanyDetails">Реквизиты</Link></li>
               <li><Link href="/vacancies">Вакансии</Link></li>
             </ul>

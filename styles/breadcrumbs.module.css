@@ -1,30 +1,51 @@
-.breadcrumb {
-	font-size: 20px;
-		margin-bottom: 15px;
-		display: inline-flex;
-		flex-wrap: wrap;
-		gap: 5px;
-		position: relative;
-		z-index: 3;
+/* ===== БЛОК КРОШЕК ===== */
+.breadcrumbsWrapper {
+	margin-bottom: 20px;
+	width: 100%;
+	overflow: hidden;
 }
 
+.breadcrumb {
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	white-space: nowrap;
+	overflow: hidden;
+	gap: 6px;
+	font-size: clamp(14px, 1.1vw, 18px);
+}
+
+.breadcrumb span {
+	display: inline-flex;
+	align-items: center;
+}
+
+.separator {
+	color: #ccc;
+	margin: 0 4px;
+}
+
+/* ✅ Ссылки */
 .breadcrumbLink {
-	color: #dde5ec;
+	color: #9ccdff;
 	text-decoration: underline;
-	transition: color 0.2s ease;
+	flex-shrink: 0;
+	/* запрещаем сжатие */
 }
 
 .breadcrumbLink:hover {
 	color: #d8e7f6;
 }
 
-.separator {
-	margin: 0 8px;
-	color: #b9c5dc;
-}
-
+/* ✅ Последний элемент (адаптивная обрезка) */
 .breadcrumbCurrent {
-	color: #f6f6f7;
-	font-weight: regular;
+	color: #fff;
+	font-weight: bold;
+	flex: 1;
+	/* ✅ занимает всё оставшееся пространство */
+	min-width: 0;
+	/* ✅ разрешаем сжатие до нуля */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-

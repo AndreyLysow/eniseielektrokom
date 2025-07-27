@@ -23,7 +23,7 @@ export default function HomePage() {
       <section className={styles.attentionSection}>
         <div className={styles.attentionBanner}>
           <h1>Внимание абонентам!</h1>
-          <p>Актуальная информация для потребителей коммунальных услуг, важные уведомления и объявления.</p>
+          <p>Новости, объявления и актуальная информация о работе теплоснабжения и горячего водоснабжения</p>
           <Link href="/announcement_mine" className={styles.attentionButton}>
             Подробнее
           </Link>

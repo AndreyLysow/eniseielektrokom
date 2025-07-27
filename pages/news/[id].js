@@ -11,6 +11,7 @@ import AnimatedBackground from "../../components/AnimatedBackground";
 
 import styles from "../../styles/newsDetail.module.css";
 
+// ✅ Генерация всех путей для статических страниц
 export async function getStaticPaths() {
   const news = getAllNews();
   const paths = news.map((item) => ({ params: { id: item.id } }));
@@ -20,6 +21,7 @@ export async function getStaticPaths() {
   };
 }
 
+// ✅ Получение данных конкретной новости по ID
 export async function getStaticProps({ params }) {
   const newsItem = getNewsById(params.id);
   return {
@@ -29,11 +31,13 @@ export async function getStaticProps({ params }) {
   };
 }
 
+// ✅ Компонент детальной страницы новости
 export default function NewsDetail({ newsItem }) {
   if (!newsItem) return <p>Новость не найдена</p>;
 
   return (
     <>
+      {/* SEO + OpenGraph */}
       <CustomHead
         title={`${newsItem.title} — Енисейтеплоком`}
         description={`Читайте подробности: ${newsItem.title}`}
@@ -50,16 +54,19 @@ export default function NewsDetail({ newsItem }) {
         <AnimatedBackground />
 
         <main className={styles.content}>
+          {/* ✅ Хлебные крошки с названием новости */}
           <div className={styles.breadcrumbsWrapper}>
-            <Breadcrumbs />
+            <Breadcrumbs lastLabel={newsItem.title} />
           </div>
 
+          {/* Заголовок и мета */}
           <h1 className={styles.title}>{newsItem.title}</h1>
           <p className={styles.date}>
             📅 {new Date(newsItem.date).toLocaleDateString("ru-RU")}
           </p>
           <p className={styles.views}>👁 {newsItem.views} просмотров</p>
 
+          {/* Контент из Markdown */}
           <article
             className={styles.article}
             dangerouslySetInnerHTML={{ __html: marked(newsItem.content) }}

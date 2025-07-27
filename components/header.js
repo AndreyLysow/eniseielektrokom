@@ -10,9 +10,8 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [nestedOpen, setNestedOpen] = useState(false);
+  const [articlesOpen, setArticlesOpen] = useState(false); // ✅ Новый стейт для вложенного меню
   const [isMobile, setIsMobile] = useState(false);
-
-  // Таймер для задержки скрытия подменю
   const closeTimer = useRef(null);
 
   useEffect(() => {
@@ -23,30 +22,20 @@ export default function Header() {
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-
   const closeMenu = () => {
     setMenuOpen(false);
     setSubmenuOpen(false);
     setNestedOpen(false);
+    setArticlesOpen(false);
   };
 
-  // ✅ Логика для задержки закрытия подменю
-  const handleMouseEnterSubmenu = () => {
+  const handleMouseEnter = (setter) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    setSubmenuOpen(true);
+    setter(true);
   };
 
-  const handleMouseLeaveSubmenu = () => {
-    closeTimer.current = setTimeout(() => setSubmenuOpen(false), 500);
-  };
-
-  const handleMouseEnterNested = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setNestedOpen(true);
-  };
-
-  const handleMouseLeaveNested = () => {
-    closeTimer.current = setTimeout(() => setNestedOpen(false), 500);
+  const handleMouseLeave = (setter) => {
+    closeTimer.current = setTimeout(() => setter(false), 500);
   };
 
   return (
@@ -70,38 +59,56 @@ export default function Header() {
             {/* Абонентам */}
             <li
               className={styles.dropdown}
-              onMouseEnter={handleMouseEnterSubmenu}
-              onMouseLeave={handleMouseLeaveSubmenu}
+              onMouseEnter={() => handleMouseEnter(setSubmenuOpen)}
+              onMouseLeave={() => handleMouseLeave(setSubmenuOpen)}
             >
               <button className={styles.dropdownBtn}>
                 Абонентам <FaChevronDown />
               </button>
               {submenuOpen && (
-                <ul
-                  className={styles.dropdownMenu}
-                  onMouseEnter={handleMouseEnterSubmenu}
-                  onMouseLeave={handleMouseLeaveSubmenu}
-                >
+                <ul className={styles.dropdownMenu}>
+                  {/* Важная информация */}
                   <li
                     className={styles.hasSubmenu}
-                    onMouseEnter={handleMouseEnterNested}
-                    onMouseLeave={handleMouseLeaveNested}
+                    onMouseEnter={() => handleMouseEnter(setNestedOpen)}
+                    onMouseLeave={() => handleMouseLeave(setNestedOpen)}
                   >
                     <span>
-                      Объявления <FaChevronRight />
+                      Важная информация <FaChevronRight />
                     </span>
                     {nestedOpen && (
-                      <ul
-                        className={styles.nestedMenu}
-                        onMouseEnter={handleMouseEnterNested}
-                        onMouseLeave={handleMouseLeaveNested}
-                      >
+                      <ul className={styles.nestedMenu}>
                         <li><Link href="/announcement_mine" onClick={closeMenu}>Важное объявление</Link></li>
-                        <li><Link href="/announcements" onClick={closeMenu}>Другие объявления</Link></li>
+                        <li><Link href="/announcements" onClick={closeMenu}>Официальные сообщения</Link></li>
                         <li><Link href="/outage-schedule" onClick={closeMenu}>График отключения</Link></li>
                       </ul>
                     )}
                   </li>
+
+                  {/* Новый блок: Статьи */}
+                  <li
+                    className={styles.hasSubmenu}
+                    onMouseEnter={() => handleMouseEnter(setArticlesOpen)}
+                    onMouseLeave={() => handleMouseLeave(setArticlesOpen)}
+                  >
+                    <span>
+                      Статьи, разъяснения, нормативы <FaChevronRight />
+                    </span>
+                    {articlesOpen && (
+                      <ul className={styles.nestedMenu}>
+                        <li><Link href="/articles/plan-ozp" onClick={closeMenu}>План подготовки к отопительному сезону 2025-2026 гг.</Link></li>
+                        <li><Link href="/articles/normatives" onClick={closeMenu}>Нормативы потребления по отоплению</Link></li>
+                        <li><Link href="/articles/service-quality" onClick={closeMenu}>Требования к качеству коммунальных услуг</Link></li>
+                        <li><Link href="/articles/no-meter-data" onClick={closeMenu}>Информация о последствиях непредоставления показаний</Link></li>
+                        <li><Link href="/articles/promivka" onClick={closeMenu}>Основные требования к промывке систем отопления</Link></li>
+						<li><Link href="/articles/tech-connection" onClick={closeMenu}>Технологическое присоединение к системам теплоснабжения</Link></li>
+                      </ul>
+                    )}
+                  </li>
+
+                  <li><Link href="/tariffs" onClick={closeMenu}>Тарифы</Link></li>
+                  <li><Link href="/payment" onClick={closeMenu}>Передача показаний и оплата услуг</Link></li>
+                  <li><Link href="/contracts" onClick={closeMenu}>Типовые договоры</Link></li>
                   <li><Link href="/DispatchCenter" onClick={closeMenu}>Сообщить об аварии</Link></li>
                 </ul>
               )}
@@ -118,12 +125,14 @@ export default function Header() {
         </nav>
       )}
 
+      {/* Контакты */}
       <div className={styles.contacts}>
         <a href="tel:+73919524957" className={styles.phone}>
           +7 (39195) 2-49-57
         </a>
       </div>
 
+      {/* Бургер-меню для мобилок */}
       <button className={styles.burger} aria-label="Открыть меню" onClick={toggleMenu}>
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
@@ -137,15 +146,31 @@ export default function Header() {
               {submenuOpen && (
                 <ul>
                   <li>
-                    <button onClick={() => setNestedOpen(!nestedOpen)}>Объявления ▸</button>
+                    <button onClick={() => setNestedOpen(!nestedOpen)}>Важная информация ▸</button>
                     {nestedOpen && (
                       <ul>
                         <li><Link href="/announcement_mine" onClick={closeMenu}>Важное объявление</Link></li>
-                        <li><Link href="/announcements" onClick={closeMenu}>Другие объявления</Link></li>
+                        <li><Link href="/announcements" onClick={closeMenu}>Официальные сообщения</Link></li>
                         <li><Link href="/outage-schedule" onClick={closeMenu}>График отключения</Link></li>
                       </ul>
                     )}
                   </li>
+                  <li>
+                    <button onClick={() => setArticlesOpen(!articlesOpen)}>Статьи ▸</button>
+                    {articlesOpen && (
+                      <ul>
+                        <li><Link href="/articles/plan-ozp" onClick={closeMenu}>План подготовки к отопительному сезону</Link></li>
+                        <li><Link href="/articles/normatives" onClick={closeMenu}>Нормативы потребления</Link></li>
+                        <li><Link href="/articles/service-quality" onClick={closeMenu}>Требования к качеству</Link></li>
+                        <li><Link href="/articles/no-meter-data" onClick={closeMenu}>Последствия непредоставления</Link></li>
+                        <li><Link href="/articles/promivka" onClick={closeMenu}>Промывка систем отопления</Link></li>
+						<li><Link href="/articles/tech-connection" onClick={closeMenu}>Технологическое присоединение к системам теплоснабжения</Link></li>
+                      </ul>
+                    )}
+                  </li>
+                  <li><Link href="/tariffs" onClick={closeMenu}>Тарифы</Link></li>
+                  <li><Link href="/payment" onClick={closeMenu}>Передача показаний и оплата услуг</Link></li>
+                  <li><Link href="/contracts" onClick={closeMenu}>Типовые договоры</Link></li>
                   <li><Link href="/DispatchCenter" onClick={closeMenu}>Сообщить об аварии</Link></li>
                 </ul>
               )}

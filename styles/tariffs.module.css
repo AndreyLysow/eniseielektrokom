@@ -1,0 +1,168 @@
+/* ===== ОБЁРТКА ===== */
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 60px;
+  background: none;
+}
+
+/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+.content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 100px 20px 40px;
+  backdrop-filter: blur(8px);
+  z-index: 3;
+}
+
+/* ===== ХЛЕБНЫЕ КРОШКИ ===== */
+.breadcrumbsWrapper {
+  margin-bottom: 20px;
+}
+
+/* ===== ЗАГОЛОВОК ===== */
+.title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 35px;
+  color: #e0e6f0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== ТАБЛИЦА ===== */
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table th {
+  background: #1f1f2e;
+  color: #9ccdff;
+  font-weight: 700;
+  text-align: left;
+  font-size: 18px;
+  padding: 16px;
+  text-transform: uppercase;
+}
+
+.row td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px;
+}
+
+.docRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.docName {
+  flex: 1;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #fff;
+  text-align: left;
+}
+
+/* ===== КНОПКИ ===== */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.viewBtn {
+  background: rgba(0, 123, 255, 0.9);
+  color: #fff;
+}
+
+.viewBtn:hover {
+  background: rgba(0, 123, 255, 1);
+}
+
+.downloadBtn {
+  background: rgba(40, 167, 69, 0.9);
+  color: #fff;
+}
+
+.downloadBtn:hover {
+  background: rgba(40, 167, 69, 1);
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 992px) {
+  .docRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .actions {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .table th,
+  .table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .docName {
+    font-size: 15px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}

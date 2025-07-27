@@ -33,7 +33,7 @@ export default function Payment() {
             <li>📲 SMS на номер: <strong>8-950-997-62-88</strong></li>
             <li>💻 Через личный кабинет: <a href="https://lk.eniseiteplokom.ru/" target="_blank" rel="noopener noreferrer">https://eniseiteplokom.ru</a></li>
             <li>📧 Email: <strong>eniseyteplokom@mail.ru</strong></li>
-            <li>📧 Email (дополнительно): <strong>abonentam@eniseielektrokom.ru</strong></li>
+            <li>📧 Email (дополнительно): <strong>abonentam@eniseiteplokom.ru</strong></li>
             <li>🌐 ЛК ГИС ЖКХ: <a href="https://dom.gosuslugi.ru" target="_blank" rel="noopener noreferrer">https://dom.gosuslugi.ru</a></li>
             <li>📱 Сообщения ВКонтакте: <a href="https://vk.com/teplokom24" target="_blank" rel="noopener noreferrer">vk.com/teplokom24</a></li>
             <li>📝 На бумажном носителе:
