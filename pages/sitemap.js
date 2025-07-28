@@ -3,7 +3,7 @@ import path from "path";
 import CustomHead from "../components/customHead";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import SiteMap from "../components/SiteMap";
+import SiteMap from "../components/Sitemap";
 
 export async function getStaticProps() {
   const newsDir = path.join(process.cwd(), "news-content");
