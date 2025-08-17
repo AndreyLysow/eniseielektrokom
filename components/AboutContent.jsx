@@ -18,7 +18,7 @@ const About = () => {
     if (swiperRef.current?.swiper) swiperRef.current.swiper.slideTo(4, 0);
   }, []);
 
-  const existingSlideNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const existingSlideNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
   const slides = existingSlideNumbers.map(num => `/pictures_about_us/about-slide${num}.jpg`);
 
   return (
@@ -95,7 +95,7 @@ const About = () => {
                   ref={swiperRef}
                   spaceBetween={30}
                   slidesPerView={1}
-                  breakpoints={{ 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } }}
+                  breakpoints={{ 1000: { slidesPerView: 2 }, 1500: { slidesPerView: 3 } }}
                   centeredSlides
                   loop
                   loopAdditionalSlides={3}

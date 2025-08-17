@@ -156,7 +156,7 @@
 
 .subsectionText {
 	font-family: 'Montserrat', sans-serif;
-	font-size: calc(14px + (7 * ((100vw - 480px) / 800)));
+	font-size: calc(12px + (7 * ((100vw - 480px) / 800)));
 	line-height: 1.6;
 	margin-bottom: 10px;
 	text-align: justify;
