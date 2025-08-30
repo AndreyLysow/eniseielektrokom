@@ -10,10 +10,11 @@
 	padding: 10px 40px;
 	background: var(--c-bg-blur);
 	backdrop-filter: blur(4px);
-	z-index: 100;
-	font-family: "Montserrat", sans-serif;
+	z-index: 1000;
 	gap: 30px;
 	box-sizing: border-box;
+	overflow: visible;
+	font-family: "Montserrat", sans-serif;
 }
 
 /* ===================== LOGO + NAME ===================== */
@@ -26,13 +27,11 @@
 .orgName {
 	font-size: clamp(16px, 1.2vw, 18px);
 	font-weight: 600;
-	color: var(--c-primary);
 	line-height: 1.3;
-	white-space: normal;
-	display: inline-block;
-	text-align: left;
+	color: var(--c-primary);
 	max-width: 300px;
-	word-break: break-word;
+	white-space: normal;
+	text-align: left;
 }
 
 /* ===================== NAVIGATION ===================== */
@@ -44,11 +43,11 @@
 
 .navList {
 	display: flex;
+	align-items: center;
 	gap: 25px;
 	list-style: none;
-	padding: 0;
 	margin: 0;
-	align-items: center;
+	padding: 0;
 }
 
 .navList li {
@@ -64,7 +63,7 @@
 	font-size: clamp(14px, 1vw, 16px);
 	text-decoration: none;
 	background: none;
-	border: none;
+	border: 0;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
@@ -79,31 +78,30 @@
 /* ===================== DROPDOWN ===================== */
 .dropdown {
 	position: relative;
+	isolation: isolate;
 }
 
 .dropdownMenu {
 	position: absolute;
 	top: calc(100% - 4px);
-	/* ближе к пункту меню */
 	left: 0;
-	background: rgba(255, 255, 255, 0.95);
-	border-radius: 8px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+	min-width: 260px;
+	/* чуть шире для длинных заголовков */
 	padding: 8px 0;
-	min-width: 220px;
 	display: flex;
 	flex-direction: column;
-	z-index: 200;
+	background: rgba(255, 255, 255, .97);
+	border-radius: 8px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
+	z-index: 2000;
 
-	/* Скрытие по умолчанию */
 	opacity: 0;
 	visibility: hidden;
 	transform: translateY(6px);
-	transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+	transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
 	pointer-events: none;
 }
 
-/* ✅ Активируем плавное появление */
 .dropdown:hover .dropdownMenu,
 .dropdownMenu:hover {
 	opacity: 1;
@@ -119,20 +117,21 @@
 .dropdownMenu li a,
 .dropdownMenu li span {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	padding: 10px 15px;
-	color: var(--c-primary);
+	justify-content: space-between;
+	padding: 10px 16px;
+	min-height: 44px;
 	font-size: 15px;
 	font-weight: 600;
+	color: var(--c-primary);
 	text-decoration: none;
 	cursor: pointer;
-	transition: background 0.3s ease, color 0.3s ease;
+	transition: background .2s ease, color .2s ease;
 }
 
 .dropdownMenu li a:hover,
 .dropdownMenu li span:hover {
-	background: rgba(0, 0, 0, 0.05);
+	background: rgba(0, 0, 0, .05);
 	color: var(--c-primary-dark);
 	border-radius: 4px;
 }
@@ -142,28 +141,49 @@
 	position: relative;
 }
 
+.submenuTitle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 10px 16px;
+	min-height: 44px;
+}
+
+.submenuLabel {
+	flex: 1 1 auto;
+	line-height: 1.25;
+	overflow-wrap: anywhere;
+	hyphens: auto;
+}
+
+.submenuChevron {
+	flex: 0 0 auto;
+	opacity: .65;
+}
+
 .nestedMenu {
 	position: absolute;
-	top: 0;
-	left: calc(100% - 4px);
-	background: rgba(255, 255, 255, 0.95);
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+	top: -6px;
+	left: 100%;
+	margin-left: -10px;
+	background: rgba(255, 255, 255, .97);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
 	border-radius: 8px;
 	padding: 8px 0;
-	min-width: 220px;
+	min-width: 260px;
 	display: flex;
 	flex-direction: column;
+	z-index: 2100;
 
-	/* Скрытие по умолчанию */
 	opacity: 0;
 	visibility: hidden;
-	transform: translateX(6px);
-	transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+	transform: translateX(8px);
+	transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
 	pointer-events: none;
 }
 
-/* ✅ Держим открытым при наведении */
-.hasSubmenu:hover .nestedMenu,
+.hasSubmenu:hover>.nestedMenu,
 .nestedMenu:hover {
 	opacity: 1;
 	visibility: visible;
@@ -172,14 +192,14 @@
 }
 
 .nestedMenu li a {
-	padding: 10px 15px;
+	padding: 10px 16px;
 	font-size: 15px;
 	font-weight: 600;
 	color: var(--c-primary);
 }
 
 .nestedMenu li a:hover {
-	background: rgba(0, 0, 0, 0.05);
+	background: rgba(0, 0, 0, .05);
 	color: var(--c-primary-dark);
 	border-radius: 4px;
 }
@@ -199,33 +219,32 @@
 	white-space: nowrap;
 }
 
-/* ===================== BURGER ===================== */
+/* ===================== BURGER / MOBILE ===================== */
 .burger {
 	display: none;
 	font-size: 28px;
 	color: var(--c-primary);
 	background: none;
-	border: none;
+	border: 0;
 	cursor: pointer;
 }
 
-/* ===================== MOBILE MENU ===================== */
 .mobileMenu {
 	position: absolute;
 	top: 70px;
 	right: 20px;
-	width: 240px;
-	background: rgba(255, 255, 255, 0.95);
-	border-radius: 8px;
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	width: 260px;
 	padding: 15px;
-	z-index: 300;
+	background: rgba(255, 255, 255, .97);
+	border-radius: 8px;
+	box-shadow: 0 10px 24px rgba(0, 0, 0, .22);
+	z-index: 2200;
 }
 
 .mobileMenu ul {
 	list-style: none;
-	padding: 0;
 	margin: 0;
+	padding: 0;
 }
 
 .mobileMenu ul li {
@@ -239,24 +258,44 @@
 	font-weight: 600;
 	text-decoration: none;
 	background: none;
-	border: none;
+	border: 0;
 	cursor: pointer;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+}
+
+.mobileParent {
+	width: 100%;
+	text-align: left;
+}
+
+.mobileChild {
+	width: 100%;
+	text-align: left;
+}
+
+.mobileChildLabel {
+	display: block;
+	padding: 6px 0;
+	font-weight: 700;
 }
 
 /* ===================== RESPONSIVE ===================== */
-@media (max-width: 1400px) {
+@media (max-width:1400px) {
 	.orgName {
 		max-width: 280px;
 	}
 }
 
-/* 🔥 Уменьшаем шрифт, чтобы не было краха при 1058px */
-@media (max-width: 1058px) {
+@media (max-width:1058px) {
 	.orgName {
 		font-size: 13px;
 		max-width: 200px;
+	}
+
+	.navList {
+		gap: 18px;
 	}
 
 	.navList a,
@@ -264,21 +303,15 @@
 	.phone {
 		font-size: 13px;
 	}
-
-	.navList {
-		gap: 18px;
-	}
 }
 
-/* Когда ширина меньше 908px — скрываем название */
-@media (max-width: 908px) {
+@media (max-width:908px) {
 	.orgName {
 		display: none;
 	}
 }
 
-/* ===================== MOBILE MODE ===================== */
-@media (max-width: 768px) {
+@media (max-width:768px) {
 	.header {
 		padding: 10px 20px;
 		justify-content: space-between;
@@ -298,7 +331,7 @@
 	}
 }
 
-@media (max-width: 576px) {
+@media (max-width:576px) {
 	.phone {
 		font-size: 14px;
 	}

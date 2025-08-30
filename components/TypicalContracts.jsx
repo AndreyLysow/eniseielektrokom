@@ -8,8 +8,8 @@ export default function TypicalContracts() {
   const contracts = [
     {
       name: "Типовой договор на отопление",
-      pdf: "/documents/dogovor-otoplenie.pdf", // ✅ PDF для просмотра
-      docx: "/documents/dogovor-otoplenie.docx", // ✅ DOCX для скачивания
+      pdf: "/documents/dogovor-otoplenie.pdf",
+      docx: "/documents/dogovor-otoplenie.docx",
     },
     {
       name: "Типовой договор на горячее водоснабжение",
@@ -36,13 +36,12 @@ export default function TypicalContracts() {
               </tr>
             </thead>
             <tbody>
-              {contracts.map((doc, index) => (
-                <tr key={index} className={styles.row}>
+              {contracts.map((doc, i) => (
+                <tr key={i} className={styles.row}>
                   <td>
                     <div className={styles.docRow}>
                       <div className={styles.docName}>{doc.name}</div>
                       <div className={styles.actions}>
-                        {/* ✅ Кнопка открывает PDF */}
                         <a
                           href={doc.pdf}
                           target="_blank"
@@ -51,8 +50,6 @@ export default function TypicalContracts() {
                         >
                           👁 Открыть PDF
                         </a>
-
-                        {/* ✅ Кнопка скачивает DOCX */}
                         <a
                           href={doc.docx}
                           download

@@ -1,18 +1,29 @@
-import { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Подключаем Bootstrap
-import '@/styles/globals.css'; // Ваши стили
+// pages/_app.js
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 
-import CookieConsentModal from '../components/CookieConsentModal'; // Убедись в правильном пути
+import "bootstrap/dist/css/bootstrap.min.css";
+import "@/styles/globals.css";
 
-export default function App({ Component, pageProps }) {
+// грузим модалку только на клиенте
+const CookieConsentModal = dynamic(
+  () => import("../components/CookieConsentModal"),
+  { ssr: false }
+);
+
+export default function App(props = {}) {
+  const { Component, pageProps = {} } = props;
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const accepted = localStorage.getItem('cookiesAccepted');
-      setShowModal(accepted !== 'true');
-    }
+    // защита от SSR
+    if (typeof window === "undefined") return;
+    const accepted = localStorage.getItem("cookiesAccepted");
+    setShowModal(accepted !== "true");
   }, []);
+
+  // на всякий
+  if (!Component) return null;
 
   return (
     <>
