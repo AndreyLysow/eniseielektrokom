@@ -8,7 +8,7 @@ import styles from "../styles/Header.module.css";
 
 /* helpers */
 const isBranch = (item) => Array.isArray(item?.submenu);
-const hasHref = (item) => typeof item?.link === "string" && item.link.trim().length > 0;
+const hasHref  = (item) => typeof item?.link === "string" && item.link.trim().length > 0;
 
 /* меню-данные */
 const menuData = {
@@ -20,31 +20,31 @@ const menuData = {
         {
           title: "Информация для абонентов",
           submenu: [
-            { title: "Объявления", link: "/announcement_mine" },
+            { title: "Объявления",            link: "/announcement_mine" },
             { title: "Официальные сообщения", link: "/announcements" },
-            { title: "Тарифы", link: "/tariffs" },
-            { title: "Типовые договоры", link: "/contracts" },
-            { title: "График отключений", link: "/outage-schedule" },
+            { title: "Тарифы",                link: "/tariffs" },
+            { title: "Типовые договоры",      link: "/contracts" },
+            { title: "График отключений",     link: "/outage-schedule" },
           ],
         },
         {
           title: "Статьи и нормативы",
           submenu: [
-            { title: "План подготовки к ОЗП 2025–2026 гг.", link: "/articles/plan-ozp" },
-            { title: "Нормативы потребления отопления", link: "/articles/normatives" },
-            { title: "Требования к качеству коммунальных услуг", link: "/articles/service-quality" },
-            { title: "Последствия непредоставления показаний", link: "/articles/no-meter-data" },
-            { title: "Промывка систем отопления (требования)", link: "/articles/promivka" },
+            { title: "План подготовки к ОЗП 2025–2026 гг.",        link: "/articles/plan-ozp" },
+            { title: "Нормативы потребления отопления",            link: "/articles/normatives" },
+            { title: "Требования к качеству коммунальных услуг",   link: "/articles/service-quality" },
+            { title: "Последствия непредоставления показаний",     link: "/articles/no-meter-data" },
+            { title: "Промывка систем отопления (требования)",     link: "/articles/promivka" },
             { title: "Технологическое присоединение к теплосетям", link: "/articles/tech-connection" },
           ],
         },
         { title: "Передача показаний и оплата услуг", link: "/payment" },
-        { title: "Сообщить об аварии", link: "/DispatchCenter" },
+        { title: "Сообщить об аварии",                link: "/DispatchCenter" },
       ],
     },
-    { title: "Новости", link: "/news" },
+    { title: "Новости",              link: "/news" },
     { title: "Раскрытие информации", link: "/info" },
-    { title: "Личный кабинет", link: "https://lk.eniseiteplokom.ru", external: true },
+    { title: "Личный кабинет",       link: "https://lk.eniseiteplokom.ru", external: true },
   ],
 };
 
@@ -52,12 +52,12 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // desktop hover: какой корневой пункт открыт
+  // desktop: какой корневой открыт
   const [openDropdown, setOpenDropdown] = useState(null);
 
-  // mobile: открыт ли раздел первого уровня и конкретная ветка внутри
+  // mobile: открыт раздел 1-го уровня и конкретная вложенная ветка
   const [openMobileLevel1, setOpenMobileLevel1] = useState(null);
-  const [openMobileNested, setOpenMobileNested] = useState({}); // key "i-j" -> bool
+  const [openMobileNested, setOpenMobileNested] = useState({}); // key "i-j" → bool
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -77,21 +77,10 @@ export default function Header() {
   const toggleMobileLevel1 = (i) =>
     setOpenMobileLevel1((curr) => (curr === i ? null : i));
 
-  const toggleMobileNested = (i, j) =>
-    setOpenMobileNested((m) => {
-      const key = `${i}-${j}`;
-      return { ...m, [key]: !m[key] };
-    });
-
-  // dev-подсказка на случай пустых ссылок
-  if (process.env.NODE_ENV !== "production") {
-    const flat = [];
-    const walk = (n) => (n ? (isBranch(n) ? n.submenu.forEach(walk) : flat.push(n)) : null);
-    menuData.main.forEach(walk);
-    flat.forEach((n) => {
-      if (!hasHref(n)) console.warn("Menu item without link:", n);
-    });
-  }
+  const toggleMobileNested = (i, j) => {
+    const key = `${i}-${j}`;
+    setOpenMobileNested((m) => ({ ...m, [key]: !m[key] }));
+  };
 
   return (
     <header className={styles.header}>
@@ -107,12 +96,12 @@ export default function Header() {
         )}
       </div>
 
-      {/* desktop навигация */}
+      {/* десктопное меню */}
       {!isMobile && (
         <nav className={styles.nav} aria-label="Главное меню">
           <ul className={styles.navList}>
             {menuData.main.map((item, i) => {
-              const key = `${item?.title || "i"}-${i}`;
+              const key = `${item?.title || "root"}-${i}`;
 
               if (!isBranch(item)) {
                 return (
@@ -151,44 +140,58 @@ export default function Header() {
                   </button>
 
                   {openDropdown === i && (
-                    <ul className={styles.dropdownMenu}>
+                    <ul className={styles.dropdownMenu} role="menu">
                       {item.submenu.filter(Boolean).map((sub, j) => {
                         const subKey = `${sub?.title || "sub"}-${i}-${j}`;
 
-                        // лист 2-го уровня
                         if (!isBranch(sub)) {
                           return (
-                            <li key={subKey}>
+                            <li key={subKey} role="none">
                               {hasHref(sub) ? (
-                                <Link href={sub.link} prefetch={false} onClick={closeAll}>
+                                <Link
+                                  href={sub.link}
+                                  prefetch={false}
+                                  onClick={closeAll}
+                                  role="menuitem"
+                                  className={styles.itemBase}
+                                >
                                   {sub.title}
                                 </Link>
                               ) : (
-                                <span>{sub?.title || "—"}</span>
+                                <span role="menuitem" className={styles.itemBase}>{sub?.title || "—"}</span>
                               )}
                             </li>
                           );
                         }
 
-                        // ветка 2-го уровня с вложенным меню
                         return (
-                          <li key={subKey} className={styles.hasSubmenu}>
-                            <span className={styles.submenuTitle}>
+                          <li key={subKey} className={styles.hasSubmenu} role="none">
+                            <span
+                              className={`${styles.itemBase} ${styles.submenuTitle}`}
+                              role="menuitem"
+                              aria-haspopup="true"
+                            >
                               <span className={styles.submenuLabel}>{sub.title}</span>
                               <FaChevronRight className={styles.submenuChevron} aria-hidden />
                             </span>
 
-                            <ul className={styles.nestedMenu}>
+                            <ul className={styles.nestedMenu} role="menu">
                               {sub.submenu.filter(Boolean).map((leaf, k) => {
                                 const leafKey = `${leaf?.title || "leaf"}-${i}-${j}-${k}`;
                                 return (
-                                  <li key={leafKey}>
+                                  <li key={leafKey} role="none">
                                     {hasHref(leaf) ? (
-                                      <Link href={leaf.link} prefetch={false} onClick={closeAll}>
+                                      <Link
+                                        href={leaf.link}
+                                        prefetch={false}
+                                        onClick={closeAll}
+                                        role="menuitem"
+                                        className={styles.itemBase}
+                                      >
                                         {leaf.title}
                                       </Link>
                                     ) : (
-                                      <span>{leaf?.title || "—"}</span>
+                                      <span role="menuitem" className={styles.itemBase}>{leaf?.title || "—"}</span>
                                     )}
                                   </li>
                                 );
@@ -208,9 +211,7 @@ export default function Header() {
 
       {/* контакты */}
       <div className={styles.contacts}>
-        <a href="tel:+73919524957" className={styles.phone}>
-          +7 (39195) 2-49-57
-        </a>
+        <a href="tel:+73919524957" className={styles.phone}>+7 (39195) 2-49-57</a>
       </div>
 
       {/* бургер */}
@@ -223,7 +224,7 @@ export default function Header() {
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* mobile меню */}
+      {/* мобильное меню */}
       {isMobile && menuOpen && (
         <div className={styles.mobileMenu}>
           <ul>
@@ -240,11 +241,12 @@ export default function Header() {
                         target={item.external ? "_blank" : "_self"}
                         rel={item.external ? "noopener noreferrer" : undefined}
                         onClick={closeAll}
+                        className={styles.mobileLinkLikeItem}
                       >
                         {item.title}
                       </Link>
                     ) : (
-                      <span>{item.title}</span>
+                      <span className={styles.mobileLinkLikeItem}>{item.title}</span>
                     )}
                   </li>
                 );
@@ -255,7 +257,7 @@ export default function Header() {
                   <button
                     type="button"
                     onClick={() => toggleMobileLevel1(i)}
-                    className={styles.mobileParent}
+                    className={`${styles.mobileParent} ${styles.mobileLinkLikeItem}`}
                     aria-expanded={openMobileLevel1 === i}
                   >
                     {item.title} ▾
@@ -270,43 +272,52 @@ export default function Header() {
                           return (
                             <li key={subKey}>
                               {hasHref(sub) ? (
-                                <Link href={sub.link} prefetch={false} onClick={closeAll}>
+                                <Link
+                                  href={sub.link}
+                                  prefetch={false}
+                                  onClick={closeAll}
+                                  className={styles.mobileLinkLikeItem}
+                                >
                                   {sub.title}
                                 </Link>
                               ) : (
-                                <span>{sub?.title || "—"}</span>
+                                <span className={styles.mobileLinkLikeItem}>{sub?.title || "—"}</span>
                               )}
                             </li>
                           );
                         }
 
-                        const k = `${i}-${j}`;
-                        const isOpen = !!openMobileNested[k];
+                        const mapKey = `${i}-${j}`;
+                        const isOpen = !!openMobileNested[mapKey];
 
                         return (
                           <li key={subKey}>
                             <button
                               type="button"
                               onClick={() => toggleMobileNested(i, j)}
-                              className={`${styles.mobileChild} ${styles.submenuTitle}`}
+                              className={`${styles.mobileChild} ${styles.mobileLinkLikeItem}`}
                               aria-expanded={isOpen}
                             >
-                              <span className={styles.submenuLabel}>{sub.title}</span>
-                              <FaChevronRight className={styles.submenuChevron} aria-hidden />
+                              {sub.title} ▸
                             </button>
 
                             {isOpen && (
                               <ul>
-                                {sub.submenu.filter(Boolean).map((leaf, t) => {
-                                  const leafKey = `${leaf?.title || "mn"}-${i}-${j}-${t}`;
+                                {sub.submenu.filter(Boolean).map((leaf, k) => {
+                                  const leafKey = `${leaf?.title || "mn"}-${i}-${j}-${k}`;
                                   return (
                                     <li key={leafKey}>
                                       {hasHref(leaf) ? (
-                                        <Link href={leaf.link} prefetch={false} onClick={closeAll}>
+                                        <Link
+                                          href={leaf.link}
+                                          prefetch={false}
+                                          onClick={closeAll}
+                                          className={styles.mobileLinkLikeItem}
+                                        >
                                           {leaf.title}
                                         </Link>
                                       ) : (
-                                        <span>{leaf?.title || "—"}</span>
+                                        <span className={styles.mobileLinkLikeItem}>{leaf?.title || "—"}</span>
                                       )}
                                     </li>
                                   );
