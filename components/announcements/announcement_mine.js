@@ -53,9 +53,9 @@ export default function SpecialAnnouncement() {
         </div>
 
         <div className={styles.linkBlock}>
-          <p>✅ Ознакомьтесь с другими важными объявлениями:</p>
+          <p>✅ Ознакомьтесь со всеми сообщениями компании:</p>
           <Link href="/announcements" className={styles.link}>
-            Перейти к объявлениям →
+            	Перейти в раздел «Официальные сообщения»  →
           </Link>
         </div>
       </main>

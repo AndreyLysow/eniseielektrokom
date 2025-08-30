@@ -1,0 +1,241 @@
+/* ===== ОБЁРТКА ===== */
+.careers-page {
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Пульсирующая сетка/схема */
+.fixed-schema {
+	position: fixed;
+	inset: 0;
+	background: url("/shema.svg") no-repeat center/cover;
+	opacity: 0.2;
+	z-index: 0;
+	animation: gridpulse 10s ease-in-out infinite;
+}
+
+@keyframes gridpulse {
+
+	0%,
+	100% {
+		opacity: .2;
+	}
+
+	50% {
+		opacity: .05;
+	}
+}
+
+/* Хедер/футер поверх */
+.header,
+.footer {
+	position: relative;
+	z-index: 3;
+}
+
+/* ===== КРОШКИ ===== */
+.breadcrumbsWrapper {
+	margin-top: 60px;
+	/* гарантированный отступ от фикс-хедера */
+}
+
+/* ===== КОНТЕНТ ===== */
+.content-wrapper {
+	z-index: 2;
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 100px 20px 40px;
+	backdrop-filter: blur(8px);
+}
+
+/* ===== ЗАГОЛОВОК ===== */
+.page-main-title {
+	text-align: center;
+	font-size: 32px;
+	margin-bottom: 30px;
+	color: #e0e6f0;
+	text-transform: uppercase;
+	text-shadow: 0 0 12px rgba(0, 123, 255, 0.8);
+}
+
+.careers-title {
+	text-align: center;
+	font-size: 32px;
+	margin-bottom: 30px;
+	color: #e0e6f0;
+	text-transform: uppercase;
+	text-shadow: 0 0 12px rgba(0, 123, 255, .8);
+	font-weight: 800;
+}
+
+/* ===== КАРТОЧКА ===== */
+.careers-section {
+	background: rgba(0, 0, 0, 0.7);
+	border: 2px solid #007bff;
+	box-shadow: 0 0 20px rgba(0, 123, 255, .3);
+	border-radius: 12px;
+	padding: 25px 30px;
+	transition: box-shadow .3s ease, border-color .3s ease;
+}
+
+.careers-section:hover {
+	box-shadow: 0 0 35px rgba(0, 174, 255, .8);
+	border-color: #05a1f4;
+}
+
+/* ===== СЕКЦИИ ===== */
+.text-image-section {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	margin-bottom: 32px;
+}
+
+.text-content {
+	flex: 1 1 60%;
+	text-align: justify;
+}
+
+.text-content h2 {
+	margin: 0 0 12px;
+	font-size: 22px;
+	color: #9ccdff;
+	text-transform: uppercase;
+	text-align: left;
+}
+
+.text-content p {
+	margin: 0 0 12px;
+	font-size: 18px;
+	line-height: 1.7;
+	color: #e0e6f0;
+}
+
+.text-centered {
+	text-align: left;
+}
+
+/* ===== КАРТИНКА ===== */
+.image-content {
+	flex: 1 1 40%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.career-image {
+	display: block;
+	width: 100%;
+	max-width: 420px;
+	height: auto;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+	opacity: .95;
+}
+
+/* ===== КАСТОМНЫЕ СПИСКИ ===== */
+.featureList {
+	list-style: none;
+	/* убираем стандартные маркеры */
+	margin: 0;
+	padding: 0;
+}
+
+.featureItem {
+	display: grid;
+	grid-template-columns: 32px 1fr;
+	align-items: start;
+	gap: 12px;
+	margin: 14px 0;
+	color: #dfe7f5;
+}
+
+.featureIcon {
+	width: 28px;
+	height: 28px;
+}
+
+.featureTitle {
+	font-weight: 700;
+	color: #9ccdff;
+	margin-bottom: 4px;
+}
+
+.featureText {
+	font-size: 16px;
+	line-height: 1.6;
+	color: #e0e6f0;
+}
+
+/* ===== БЛОК "ВАКАНСИЙ НЕТ" ===== */
+.no-openings {
+	margin-top: 10px;
+	padding: 12px 14px;
+	border-radius: 10px;
+	background: rgba(0, 123, 255, 0.12);
+	border: 1px solid rgba(0, 123, 255, 0.35);
+	color: #bcd9ff;
+}
+
+/* ===== КНОПКА ===== */
+.resume-button-container {
+	text-align: center;
+	margin-top: 24px;
+}
+
+.resume-button {
+	display: inline-block;
+	padding: 12px 18px;
+	background: rgba(0, 123, 255, .9);
+	color: #fff;
+	text-decoration: none;
+	border-radius: 8px;
+	font-weight: 700;
+	box-shadow: 0 10px 28px rgba(0, 123, 255, .35);
+	transition: background .25s ease, transform .15s ease, box-shadow .25s ease;
+}
+
+.resume-button:hover {
+	background: #007bff;
+	transform: translateY(-1px);
+	box-shadow: 0 14px 36px rgba(0, 174, 255, .45);
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 1024px) {
+	.text-image-section {
+		flex-direction: column;
+	}
+
+	.image-content {
+		order: 2;
+	}
+
+	.text-content {
+		order: 1;
+		width: 100%;
+	}
+}
+
+@media (max-width: 640px) {
+	.content-wrapper {
+		padding: 120px 16px 32px;
+	}
+
+	.careers-title {
+		font-size: 26px;
+	}
+
+	.featureItem {
+		grid-template-columns: 28px 1fr;
+	}
+
+	.featureText {
+		font-size: 15px;
+	}
+}

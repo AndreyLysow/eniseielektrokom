@@ -30,6 +30,7 @@ export default function Breadcrumbs({ lastLabel }) {
 	"no-meter-data": "Непредоставление показаний ИПУ и ОДПУ",
 	"promivka": "Промывка систем теплоснабжения",
 	"tech-connection": "Технологическое присоединение",
+	"vacancies": "Вакансии",
   };
 
   // ✅ Сегменты, у которых нет страницы

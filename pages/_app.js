@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/globals.css";
+import "@/styles/careersPage.css"; 
 
 // грузим модалку только на клиенте
 const CookieConsentModal = dynamic(

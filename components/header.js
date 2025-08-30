@@ -20,7 +20,7 @@ const menuData = {
         {
           title: "Информация для абонентов",
           submenu: [
-            { title: "Объявления",            link: "/announcement_mine" },
+            { title: "Важное объявление",            link: "/announcement_mine" },
             { title: "Официальные сообщения", link: "/announcements" },
             { title: "Тарифы",                link: "/tariffs" },
             { title: "Типовые договоры",      link: "/contracts" },
