@@ -8,7 +8,8 @@ import styles from "../styles/Header.module.css";
 
 /* helpers */
 const isBranch = (item) => Array.isArray(item?.submenu);
-const hasHref  = (item) => typeof item?.link === "string" && item.link.trim().length > 0;
+const hasHref = (item) =>
+  typeof item?.link === "string" && item.link.trim().length > 0;
 
 /* меню-данные */
 const menuData = {
@@ -20,32 +21,32 @@ const menuData = {
         {
           title: "Информация для абонентов",
           submenu: [
-            { title: "Важное объявление",       link: "/announcement_mine" },
-            { title: "Официальные сообщения",   link: "/announcements" },
-            { title: "Тарифы",                  link: "/tariffs" },
-            { title: "Охрана труда",            link: "/ohs" },
-            { title: "Типовые договоры",        link: "/contracts" },
-            { title: "График отключений",       link: "/outage-schedule" },
+            { title: "Важное объявление", link: "/announcement_mine" },
+            { title: "Официальные сообщения", link: "/announcements" },
+            { title: "Тарифы", link: "/tariffs" },
+            { title: "Охрана труда", link: "/ohs" },
+            { title: "Типовые договоры", link: "/contracts" },
+            { title: "График отключений", link: "/outage-schedule" },
           ],
         },
         {
           title: "Статьи и нормативы",
           submenu: [
             { title: "План подготовки к ОЗП 2025–2026 гг.", link: "/articles/plan-ozp" },
-            { title: "Нормативы потребления отопления",     link: "/articles/normatives" },
-            { title: "Требования к качеству услуг",         link: "/articles/service-quality" },
+            { title: "Нормативы потребления отопления", link: "/articles/normatives" },
+            { title: "Требования к качеству услуг", link: "/articles/service-quality" },
             { title: "Последствия непредоставления показаний", link: "/articles/no-meter-data" },
             { title: "Промывка систем отопления (требования)", link: "/articles/promivka" },
-            { title: "Технологическое присоединение",       link: "/articles/tech-connection" },
+            { title: "Технологическое присоединение", link: "/articles/tech-connection" },
           ],
         },
         { title: "Передача показаний и оплата услуг", link: "/payment" },
-        { title: "Сообщить об аварии",                link: "/DispatchCenter" },
+        { title: "Сообщить об аварии", link: "/DispatchCenter" },
       ],
     },
-    { title: "Новости",              link: "/news" },
+    { title: "Новости", link: "/news" },
     { title: "Раскрытие информации", link: "/info" },
-    { title: "Личный кабинет",       link: "https://lk.eniseiteplokom.ru", external: true },
+    { title: "Личный кабинет", link: "https://lk.eniseiteplokom.ru", external: true },
   ],
 };
 
@@ -53,10 +54,14 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  // desktop
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [openMobileLevel1, setOpenMobileLevel1] = useState(null);
-  const [openMobileNested, setOpenMobileNested] = useState({});
 
+  // mobile
+  const [openMobileLevel1, setOpenMobileLevel1] = useState(null);
+  const [openMobileNested, setOpenMobileNested] = useState({}); // "i-j" -> bool
+
+  // задержка скрытия, чтобы успевать переносить курсор
   const hideTimerRef = useRef(null);
 
   useEffect(() => {
@@ -67,6 +72,7 @@ export default function Header() {
   }, []);
 
   const toggleMenu = useCallback(() => setMenuOpen((v) => !v), []);
+
   const closeAll = useCallback(() => {
     setMenuOpen(false);
     setOpenDropdown(null);
@@ -90,21 +96,27 @@ export default function Header() {
 
   const handleLeaveDropdown = () => {
     if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-    hideTimerRef.current = setTimeout(() => {
-      setOpenDropdown(null);
-    }, 220);
+    hideTimerRef.current = setTimeout(() => setOpenDropdown(null), 220);
   };
 
   return (
     <header className={styles.header}>
       {/* Логотип + название */}
       <div className={styles.brand}>
-        <Link href="/" prefetch={false} onClick={closeAll}>
-          <Image src="/logoetk.png" alt="Енисейтеплоком" width={100} height={100} priority />
+        <Link href="/" prefetch={false} onClick={closeAll} aria-label="На главную">
+          <Image
+            src="/logoetk.png"
+            alt="Енисейтеплоком"
+            width={100}
+            height={100}
+            priority
+          />
         </Link>
         {!isMobile && (
           <span className={styles.orgName}>
-            ООО &laquo;Енисейская<br />теплоснабжающая компания&raquo;
+            ООО &laquo;Енисейская
+            <br />
+            теплоснабжающая компания&raquo;
           </span>
         )}
       </div>
@@ -149,7 +161,7 @@ export default function Header() {
                     aria-haspopup="true"
                     aria-expanded={openDropdown === i}
                   >
-                    {item.title} <FaChevronDown />
+                    {item.title} <FaChevronDown aria-hidden />
                   </button>
 
                   {openDropdown === i && (
@@ -226,9 +238,16 @@ export default function Header() {
         </nav>
       )}
 
-      {/* Контакты */}
+      {/* Контакты: НАТИВНЫЙ tel без JS */}
       <div className={styles.contacts}>
-        <a href="tel:+73919524957" className={styles.phone}>+7 (39195) 2-49-57</a>
+        <a
+          href="tel:+73919524957"
+          className={styles.phone}
+          aria-label="Позвонить по номеру +7 (39195) 2-49-57"
+          rel="nofollow"
+        >
+          +7 (39195) 2-49-57
+        </a>
       </div>
 
       {/* Бургер */}
@@ -236,14 +255,14 @@ export default function Header() {
         className={styles.burger}
         onClick={toggleMenu}
         aria-expanded={menuOpen}
-        aria-label="Меню"
+        aria-label="Открыть меню"
       >
-        {menuOpen ? <FaTimes /> : <FaBars />}
+        {menuOpen ? <FaTimes aria-hidden /> : <FaBars aria-hidden />}
       </button>
 
       {/* Мобильное меню */}
       {isMobile && menuOpen && (
-        <div className={styles.mobileMenu}>
+        <div className={styles.mobileMenu} role="dialog" aria-label="Мобильное меню">
           <ul>
             {menuData.main.map((item, i) => {
               const key = `${item?.title || "m"}-${i}`;
@@ -298,7 +317,9 @@ export default function Header() {
                                   {sub.title}
                                 </Link>
                               ) : (
-                                <span className={styles.mobileLinkLikeItem}>{sub?.title || "—"}</span>
+                                <span className={styles.mobileLinkLikeItem}>
+                                  {sub?.title || "—"}
+                                </span>
                               )}
                             </li>
                           );
@@ -334,7 +355,9 @@ export default function Header() {
                                           {leaf.title}
                                         </Link>
                                       ) : (
-                                        <span className={styles.mobileLinkLikeItem}>{leaf?.title || "—"}</span>
+                                        <span className={styles.mobileLinkLikeItem}>
+                                          {leaf?.title || "—"}
+                                        </span>
                                       )}
                                     </li>
                                   );
