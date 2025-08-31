@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaBars, FaTimes, FaChevronDown, FaChevronRight } from "react-icons/fa";
@@ -20,22 +20,23 @@ const menuData = {
         {
           title: "Информация для абонентов",
           submenu: [
-            { title: "Важное объявление",            link: "/announcement_mine" },
-            { title: "Официальные сообщения", link: "/announcements" },
-            { title: "Тарифы",                link: "/tariffs" },
-            { title: "Типовые договоры",      link: "/contracts" },
-            { title: "График отключений",     link: "/outage-schedule" },
+            { title: "Важное объявление",       link: "/announcement_mine" },
+            { title: "Официальные сообщения",   link: "/announcements" },
+            { title: "Тарифы",                  link: "/tariffs" },
+            { title: "Охрана труда",            link: "/ohs" },
+            { title: "Типовые договоры",        link: "/contracts" },
+            { title: "График отключений",       link: "/outage-schedule" },
           ],
         },
         {
           title: "Статьи и нормативы",
           submenu: [
-            { title: "План подготовки к ОЗП 2025–2026 гг.",        link: "/articles/plan-ozp" },
-            { title: "Нормативы потребления отопления",            link: "/articles/normatives" },
-            { title: "Требования к качеству коммунальных услуг",   link: "/articles/service-quality" },
-            { title: "Последствия непредоставления показаний",     link: "/articles/no-meter-data" },
-            { title: "Промывка систем отопления (требования)",     link: "/articles/promivka" },
-            { title: "Технологическое присоединение к теплосетям", link: "/articles/tech-connection" },
+            { title: "План подготовки к ОЗП 2025–2026 гг.", link: "/articles/plan-ozp" },
+            { title: "Нормативы потребления отопления",     link: "/articles/normatives" },
+            { title: "Требования к качеству услуг",         link: "/articles/service-quality" },
+            { title: "Последствия непредоставления показаний", link: "/articles/no-meter-data" },
+            { title: "Промывка систем отопления (требования)", link: "/articles/promivka" },
+            { title: "Технологическое присоединение",       link: "/articles/tech-connection" },
           ],
         },
         { title: "Передача показаний и оплата услуг", link: "/payment" },
@@ -52,12 +53,11 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // desktop: какой корневой открыт
   const [openDropdown, setOpenDropdown] = useState(null);
-
-  // mobile: открыт раздел 1-го уровня и конкретная вложенная ветка
   const [openMobileLevel1, setOpenMobileLevel1] = useState(null);
-  const [openMobileNested, setOpenMobileNested] = useState({}); // key "i-j" → bool
+  const [openMobileNested, setOpenMobileNested] = useState({});
+
+  const hideTimerRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -72,6 +72,7 @@ export default function Header() {
     setOpenDropdown(null);
     setOpenMobileLevel1(null);
     setOpenMobileNested({});
+    if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
   }, []);
 
   const toggleMobileLevel1 = (i) =>
@@ -82,9 +83,21 @@ export default function Header() {
     setOpenMobileNested((m) => ({ ...m, [key]: !m[key] }));
   };
 
+  const handleOpenDropdown = (i) => {
+    if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+    setOpenDropdown(i);
+  };
+
+  const handleLeaveDropdown = () => {
+    if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+    hideTimerRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 220);
+  };
+
   return (
     <header className={styles.header}>
-      {/* логотип + название */}
+      {/* Логотип + название */}
       <div className={styles.brand}>
         <Link href="/" prefetch={false} onClick={closeAll}>
           <Image src="/logoetk.png" alt="Енисейтеплоком" width={100} height={100} priority />
@@ -96,7 +109,7 @@ export default function Header() {
         )}
       </div>
 
-      {/* десктопное меню */}
+      {/* Десктопное меню */}
       {!isMobile && (
         <nav className={styles.nav} aria-label="Главное меню">
           <ul className={styles.navList}>
@@ -127,8 +140,8 @@ export default function Header() {
                 <li
                   key={key}
                   className={styles.dropdown}
-                  onMouseEnter={() => setOpenDropdown(i)}
-                  onMouseLeave={() => setOpenDropdown(null)}
+                  onMouseEnter={() => handleOpenDropdown(i)}
+                  onMouseLeave={handleLeaveDropdown}
                 >
                   <button
                     className={styles.dropdownBtn}
@@ -158,7 +171,9 @@ export default function Header() {
                                   {sub.title}
                                 </Link>
                               ) : (
-                                <span role="menuitem" className={styles.itemBase}>{sub?.title || "—"}</span>
+                                <span role="menuitem" className={styles.itemBase}>
+                                  {sub?.title || "—"}
+                                </span>
                               )}
                             </li>
                           );
@@ -191,7 +206,9 @@ export default function Header() {
                                         {leaf.title}
                                       </Link>
                                     ) : (
-                                      <span role="menuitem" className={styles.itemBase}>{leaf?.title || "—"}</span>
+                                      <span role="menuitem" className={styles.itemBase}>
+                                        {leaf?.title || "—"}
+                                      </span>
                                     )}
                                   </li>
                                 );
@@ -209,12 +226,12 @@ export default function Header() {
         </nav>
       )}
 
-      {/* контакты */}
+      {/* Контакты */}
       <div className={styles.contacts}>
         <a href="tel:+73919524957" className={styles.phone}>+7 (39195) 2-49-57</a>
       </div>
 
-      {/* бургер */}
+      {/* Бургер */}
       <button
         className={styles.burger}
         onClick={toggleMenu}
@@ -224,7 +241,7 @@ export default function Header() {
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* мобильное меню */}
+      {/* Мобильное меню */}
       {isMobile && menuOpen && (
         <div className={styles.mobileMenu}>
           <ul>

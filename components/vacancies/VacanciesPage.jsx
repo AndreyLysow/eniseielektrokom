@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Breadcrumbs from "../Breadcrumbs";
+import AnimatedBackground from "../AnimatedBackground"; 
 
 const CareersEtkom = () => {
   useEffect(() => {
@@ -17,6 +18,7 @@ const CareersEtkom = () => {
 
   return (
     <div className="careers-page">
+		 <AnimatedBackground />
       <div className="fixed-schema" />
 
       <main className="content-wrapper">

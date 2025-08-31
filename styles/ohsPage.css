@@ -1,0 +1,193 @@
+/* ===== ОБЁРТКА ===== */
+.ohs-page {
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Пульсирующая сетка */
+.ohs-fixed-schema {
+	position: fixed;
+	inset: 0;
+	background: url("/shema.svg") no-repeat center/cover;
+	opacity: .2;
+	z-index: 0;
+	animation: ohsPulse 10s ease-in-out infinite;
+}
+
+@keyframes ohsPulse {
+
+	0%,
+	100% {
+		opacity: .2
+	}
+
+	50% {
+		opacity: .05
+	}
+}
+
+.header,
+.footer {
+	position: relative;
+	z-index: 3;
+}
+
+/* ===== КОНТЕНТ ===== */
+.ohs-content {
+	z-index: 2;
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 100px 20px 40px;
+	backdrop-filter: blur(8px);
+}
+
+/* Крошки + заголовок */
+.ohs-breadcrumbsWrapper {
+	margin-top: 60px;
+}
+
+.ohs-title {
+	text-align: center;
+	font-size: 32px;
+	margin: 12px 0 24px;
+	color: #e0e6f0;
+	text-transform: uppercase;
+	text-shadow: 0 0 12px rgba(0, 123, 255, .8);
+}
+
+/* Карточка */
+.ohs-card {
+	background: rgba(0, 0, 0, .7);
+	border: 2px solid #007bff;
+	box-shadow: 0 0 20px rgba(0, 123, 255, .3);
+	border-radius: 12px;
+	padding: 26px 28px;
+	transition: box-shadow .3s ease, border-color .3s ease;
+}
+
+.ohs-card:hover {
+	box-shadow: 0 0 35px rgba(0, 174, 255, .8);
+	border-color: #05a1f4;
+}
+
+/* Ряды */
+.ohs-row {
+	display: flex;
+	gap: 20px;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin-bottom: 24px;
+}
+
+.ohs-col {
+	flex: 1 1 60%;
+}
+
+.ohs-subtitle {
+	margin: 0 0 12px;
+	font-size: 22px;
+	color: #9ccdff;
+	text-transform: uppercase;
+}
+
+.ohs-text {
+	margin: 0 0 12px;
+	font-size: 18px;
+	line-height: 1.7;
+	color: #e0e6f0;
+	text-align: justify;
+}
+
+/* Фото */
+.ohs-media {
+	flex: 1 1 40%;
+	display: flex;
+	justify-content: center;
+}
+
+.ohs-imageWrap {
+	position: relative;
+	max-width: 900px;
+	/* ограничение по ширине */
+	margin: 0 auto;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+}
+
+.ohs-image {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	display: block;
+}
+
+/* Списки с иконками */
+.ohs-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ohs-item {
+	display: grid;
+	grid-template-columns: 28px 1fr;
+	align-items: start;
+	gap: 10px;
+	margin: 10px 0;
+	font-size: 17px;
+	color: #dfe7f5;
+}
+
+/* Цитата */
+.ohs-quote {
+	background: rgba(0, 123, 255, .12);
+	border: 1px solid rgba(0, 123, 255, .35);
+	color: #bcd9ff;
+	border-radius: 10px;
+	padding: 14px 16px;
+	margin: 8px 0 24px;
+}
+
+.ohs-quote p {
+	margin: 0 0 6px;
+	line-height: 1.6;
+}
+
+.ohs-quoteAuthor {
+	font-size: 14px;
+	color: #9ccdff;
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+	.ohs-row {
+		flex-direction: column;
+	}
+
+	.ohs-media {
+		order: 2;
+	}
+
+	.ohs-col {
+		order: 1;
+		width: 100%;
+	}
+}
+
+@media (max-width: 640px) {
+	.ohs-content {
+		padding: 120px 16px 32px;
+	}
+
+	.ohs-title {
+		font-size: 26px;
+	}
+
+	.ohs-item {
+		grid-template-columns: 26px 1fr;
+	}
+}

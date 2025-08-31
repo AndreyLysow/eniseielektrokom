@@ -1,19 +1,17 @@
 /* ===================== HEADER ===================== */
 .header {
-	/* локальные переменные — валидно в CSS-modules */
 	--menu-bg: rgba(255, 255, 255, .97);
 	--menu-hover: rgba(0, 0, 0, .06);
 	--menu-shadow: 0 8px 20px rgba(0, 0, 0, .18);
 
 	position: fixed;
-	top: 0;
-	left: 0;
+	inset: 0 auto auto 0;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 10px 40px;
 	gap: 30px;
+	padding: 10px 40px;
 	box-sizing: border-box;
 	background: var(--c-bg-blur);
 	backdrop-filter: blur(4px);
@@ -49,7 +47,7 @@
 .navList {
 	display: flex;
 	align-items: center;
-	gap: 25px;
+	gap: 14px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -61,10 +59,11 @@
 	align-items: center;
 }
 
-.navList a,
-.dropdownBtn {
+/* верхний уровень – вернули отступы и фон на hover */
+.navList>li>a,
+.navList>li>.dropdownBtn {
 	color: var(--c-primary);
-	font-weight: 600;
+	font-weight: 700;
 	font-size: clamp(14px, 1vw, 16px);
 	text-decoration: none;
 	background: none;
@@ -73,11 +72,15 @@
 	display: flex;
 	align-items: center;
 	gap: 6px;
+	padding: 10px 14px;
+	border-radius: 8px;
+	text-align: center;
 }
 
-.navList a:hover,
-.dropdownBtn:hover {
+.navList>li>a:hover,
+.navList>li>.dropdownBtn:hover {
 	color: var(--c-primary-dark);
+	background: var(--menu-hover);
 }
 
 /* ===================== DROPDOWN (2-й уровень) ===================== */
@@ -86,19 +89,29 @@
 	isolation: isolate;
 }
 
+/* «мостик» внимания — не даём меню закрыться при переходе мыши вниз */
+.dropdown::after {
+	content: "";
+	position: absolute;
+	left: -10px;
+	right: -10px;
+	top: 100%;
+	height: 14px;
+	pointer-events: auto;
+}
+
 .dropdownMenu {
 	position: absolute;
 	top: calc(100% - 4px);
 	left: 0;
 	z-index: 2000;
-	min-width: 260px;
-	padding: 8px 0;
+	min-width: 300px;
+	padding: 6px;
 	display: flex;
 	flex-direction: column;
 	background: var(--menu-bg);
 	border-radius: 12px;
 	box-shadow: var(--menu-shadow);
-
 	opacity: 0;
 	visibility: hidden;
 	transform: translateY(6px);
@@ -114,52 +127,53 @@
 	pointer-events: auto;
 }
 
+.dropdownMenu ul,
 .dropdownMenu li {
+	list-style: none;
+	margin: 0;
 	padding: 0;
-	/* чтобы вертикальные интервалы задавались самим пунктом */
 }
 
-/* единый базовый стиль пункта (любой уровень, ссылка/спан/кнопка) */
+/* базовый пункт (любой уровень) — единая высота и запрет переноса */
 .itemBase {
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	/* текст слева, стрелка справа */
 	width: 100%;
-	text-align: left;
 	box-sizing: border-box;
+	text-align: left;
 
-	padding: 12px 16px;
-	/* одинаковые отступы */
-	min-height: 48px;
-	/* одинаковая высота */
-
-	font-size: 15px;
-	font-weight: 600;
-	line-height: 1.4;
+	padding: 14px 18px;
+	min-height: 52px;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.35;
 	color: var(--c-primary);
 	text-decoration: none;
-	border-radius: 8px;
+	border-radius: 10px;
 	cursor: pointer;
+
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	/* 👈 не даём ломать вертикаль */
 }
 
-.itemBase:hover {
+.itemBase:hover,
+.itemBase:focus-visible {
 	background: var(--menu-hover);
 	color: var(--c-primary-dark);
+	outline: none;
 }
 
-/* подписи и стрелка у веток */
-.submenuTitle {
-	/* применяем .itemBase через разметку */
-	position: relative;
-}
+/* заголовок ветки + стрелка */
+.submenuTitle {}
 
 .submenuLabel {
 	flex: 1 1 auto;
-	line-height: 1.25;
 	margin-right: 28px;
-	/* чтобы текст не упирался в стрелку */
+	line-height: 1.2;
 }
 
 .submenuChevron {
@@ -176,20 +190,30 @@
 	position: relative;
 }
 
+/* мостик вправо между колонками */
+.hasSubmenu::after {
+	content: "";
+	position: absolute;
+	top: -8px;
+	bottom: -8px;
+	left: 100%;
+	width: 12px;
+	pointer-events: auto;
+}
+
 .nestedMenu {
 	position: absolute;
 	top: 0;
 	left: 100%;
 	margin-left: 8px;
 	z-index: 2100;
-	min-width: 260px;
-	padding: 8px 0;
+	min-width: 300px;
+	padding: 6px;
 	display: flex;
 	flex-direction: column;
 	background: var(--menu-bg);
 	border-radius: 12px;
 	box-shadow: var(--menu-shadow);
-
 	opacity: 0;
 	visibility: hidden;
 	transform: translateX(6px);
@@ -205,7 +229,10 @@
 	pointer-events: auto;
 }
 
+.nestedMenu ul,
 .nestedMenu li {
+	list-style: none;
+	margin: 0;
 	padding: 0;
 }
 
@@ -222,6 +249,13 @@
 	color: var(--c-primary);
 	text-decoration: none;
 	white-space: nowrap;
+	padding: 10px 0;
+}
+
+.phone:hover,
+.phone:focus-visible {
+	color: var(--c-primary-dark);
+	outline: none;
 }
 
 /* ===================== BURGER / MOBILE ===================== */
@@ -262,12 +296,11 @@
 	text-align: left;
 }
 
-/* чтобы мобильные пункты визуально совпадали с десктопными */
 .mobileLinkLikeItem {
 	display: block;
 	width: 100%;
-	text-align: left;
 	box-sizing: border-box;
+	text-align: left;
 	padding: 12px 16px;
 	min-height: 48px;
 	border-radius: 8px;
@@ -280,6 +313,15 @@
 .mobileLinkLikeItem:hover {
 	background: var(--menu-hover);
 	color: var(--c-primary-dark);
+}
+
+/* ===================== ACCESSIBILITY ===================== */
+@media (prefers-reduced-motion:reduce) {
+
+	.dropdownMenu,
+	.nestedMenu {
+		transition: none;
+	}
 }
 
 /* ===================== RESPONSIVE ===================== */
@@ -296,11 +338,11 @@
 	}
 
 	.navList {
-		gap: 18px;
+		gap: 12px;
 	}
 
-	.navList a,
-	.dropdownBtn,
+	.navList>li>a,
+	.navList>li>.dropdownBtn,
 	.phone {
 		font-size: 13px;
 	}

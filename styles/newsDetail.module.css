@@ -1,153 +1,240 @@
-/* ===== ОБЁРТКА ===== */
-.wrapper {
+/* ===================== ОБЁРТКА СТРАНИЦЫ ===================== */
+.page {
 	position: relative;
 	min-height: 100vh;
-	color: #fff;
 	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	margin-top: 60px;
+	flex-direction: column;
 }
 
-/* ===== ТЁМНАЯ ПОДЛОЖКА ===== */
-.wrapper::before {
-	content: "";
-	position: absolute;
+/* Затемняющий слой поверх фонового видео/картинки */
+.dim {
+	position: fixed;
 	inset: 0;
-	background: rgba(0, 0, 0, 0.6);
-	/* ✅ Подложка 60% */
+	background: rgba(0, 0, 0, 0.52);
 	z-index: 1;
 }
 
-/* ===== КОНТЕНТ ===== */
+/* ===================== КОНТЕНТ ===================== */
 .content {
 	position: relative;
-	z-index: 3;
-	max-width: 900px;
+	z-index: 2;
+	width: 100%;
+	max-width: 980px;
+	/* чуть шире для комфортного чтения */
 	margin: 0 auto;
-	padding: 100px 20px 40px;
-	background: rgba(0, 0, 0, 0.7);
-	/* ✅ Тёмная подложка */
-	border-radius: 12px;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(8px);
+	padding: 100px 24px 44px;
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+	box-sizing: border-box;
 }
 
-/* ===== КРОШКИ ===== */
+/* ===================== ХЛЕБНЫЕ КРОШКИ ===================== */
 .breadcrumbsWrapper {
-	margin-bottom: 20px;
-	width: 100%;
+	margin-top: 68px;
+	/* гарантированный отступ от хедера */
+	margin-bottom: 18px;
 	overflow: hidden;
 }
 
-.breadcrumb {
+.breadcrumbsWrapper :is(nav, ol, ul) {
 	display: flex;
-	align-items: center;
-	flex-wrap: nowrap;
-	/* ✅ Запрещаем перенос */
-	overflow-x: auto;
-	/* ✅ Горизонтальная прокрутка */
-	white-space: nowrap;
-	/* ✅ Одна строка */
 	gap: 8px;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	/* длинные крошки не ломают вёрстку */
 	scrollbar-width: thin;
 	scrollbar-color: #9ccdff transparent;
 }
 
-.breadcrumb span {
-	display: inline-flex;
-	align-items: center;
-}
-
-.breadcrumbLink,
-.breadcrumbCurrent {
-	display: inline-block;
-	max-width: 180px;
-	/* ✅ Ограничиваем длину */
-	overflow: hidden;
-	text-overflow: ellipsis;
-	/* ✅ Троеточие */
-	white-space: nowrap;
-	color: #9ccdff;
-	text-decoration: none;
-	font-size: 16px;
-}
-
-.breadcrumbCurrent {
-	font-weight: bold;
-	color: #fff;
-}
-
-.separator {
-	color: #ccc;
-}
-
-/* Скрываем скролл для красоты */
-.breadcrumb::-webkit-scrollbar {
+.breadcrumbsWrapper :is(nav, ol, ul)::-webkit-scrollbar {
 	height: 6px;
 }
 
-.breadcrumb::-webkit-scrollbar-thumb {
-	background: #555;
-	border-radius: 3px;
+.breadcrumbsWrapper :is(nav, ol, ul)::-webkit-scrollbar-thumb {
+	background: rgba(156, 205, 255, .5);
+	border-radius: 4px;
 }
 
-/* ===== ЗАГОЛОВОК ===== */
+/* ===================== ЗАГОЛОВОК ===================== */
 .title {
 	text-align: center;
-	font-size: 32px;
-	margin-bottom: 15px;
+	font-size: clamp(24px, 3.2vw, 34px);
+	margin: 10px 0 16px;
+	color: #e7edf7;
+	text-transform: uppercase;
+	letter-spacing: .02em;
+	text-shadow: 0 0 12px rgba(0, 123, 255, .7);
+}
+
+/* ===================== МЕТА (дата + просмотры) ===================== */
+.meta {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	color: #c7cfde;
+	font-weight: 600;
+	font-size: 14.5px;
+	margin-bottom: 22px;
+	user-select: none;
+}
+
+.meta span {
+	display: inline-block;
+}
+
+.pipe {
+	color: #7c87a3;
+}
+
+/* ===================== КАРТОЧКА С ТЕКСТОМ ===================== */
+.card {
+	background: rgba(0, 0, 0, .7);
+	border: 2px solid #0a7fff;
+	border-radius: 12px;
+	box-shadow: 0 0 20px rgba(0, 123, 255, .28);
+	padding: 26px 28px;
 	color: #e0e6f0;
+	font-size: 18px;
+	line-height: 1.7;
+	transition: box-shadow .25s ease, border-color .25s ease;
+}
+
+.card:hover {
+	box-shadow: 0 0 34px rgba(0, 174, 255, .75);
+	border-color: #05a1f4;
+}
+
+/* Типографика внутри Markdown */
+.card h2,
+.card h3 {
+	margin: 20px 0 12px;
+	font-size: clamp(18px, 2.1vw, 22px);
+	color: #9ccdff;
 	text-transform: uppercase;
 }
 
-.date,
-.views {
-	text-align: center;
-	color: #ccc;
+.card h3 {
+	opacity: .95;
+}
+
+.card p {
+	margin: 0 0 14px;
+}
+
+.card ul,
+.card ol {
+	margin: 12px 0 16px 22px;
+	padding: 0;
+}
+
+.card li {
 	margin-bottom: 8px;
 }
 
-/* ===== ТЕКСТ ===== */
-.article {
-	font-size: 18px;
-	color: #fff;
-	line-height: 1.6;
-	margin-top: 20px;
+/* Вставки/цитаты */
+.card blockquote {
+	margin: 14px 0;
+	padding: 12px 14px;
+	border-left: 4px solid #0a7fff;
+	background: rgba(10, 127, 255, .08);
+	border-radius: 6px;
+	color: #d6e6ff;
 }
 
-.article h2 {
-	font-size: 24px;
-	margin: 20px 0 10px;
-	color: #9ccdff;
+/* Картинки из Markdown */
+.card img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	border-radius: 10px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+	margin: 14px auto;
 }
 
-.article p {
-	margin-bottom: 15px;
+/* Ссылки */
+.card a {
+	color: #00e5ff;
+	font-weight: 700;
+	text-decoration: none;
+	border-bottom: 1px dashed rgba(0, 229, 255, .5);
+	transition: color .2s ease, border-color .2s ease, text-shadow .2s ease;
 }
 
-.article ul {
-	padding-left: 20px;
-	margin-bottom: 15px;
+.card a:hover {
+	color: #04b3d9;
+	border-color: rgba(4, 179, 217, .8);
+	text-shadow: 0 0 8px #00e5ff;
 }
 
-.article li {
-	margin-bottom: 8px;
+/* Код/преформат */
+.card pre,
+.card code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	background: rgba(255, 255, 255, .06);
+	border: 1px solid rgba(255, 255, 255, .12);
+	border-radius: 8px;
 }
 
-/* ===== АДАПТИВ ===== */
+.card pre {
+	padding: 12px 14px;
+	overflow: auto;
+	margin: 12px 0;
+}
+
+.card code {
+	padding: 2px 6px;
+	border-radius: 6px;
+}
+
+/* Таблицы */
+.card table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 14px 0;
+	background: rgba(0, 0, 0, .5);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.card th,
+.card td {
+	border: 1px solid rgba(255, 255, 255, .18);
+	padding: 10px 12px;
+	text-align: left;
+}
+
+.card th {
+	background: #1f2636;
+	color: #a9d2ff;
+	font-weight: 700;
+}
+
+/* ===================== АДАПТИВ ===================== */
+@media (max-width: 920px) {
+	.content {
+		max-width: 860px;
+	}
+}
+
 @media (max-width: 768px) {
-	.title {
-		font-size: 24px;
+	.content {
+		padding: 120px 16px 32px;
 	}
 
-	.article {
+	.card {
 		font-size: 16px;
+		padding: 20px 18px;
+	}
+}
+
+@media (max-width: 520px) {
+	.meta {
+		font-size: 13.5px;
+		gap: 8px;
 	}
 
-	.breadcrumbLink,
-	.breadcrumbCurrent {
-		max-width: 120px;
-		/* ✅ Уменьшаем на мобилках */
+	.card {
+		padding: 18px 14px;
 	}
 }
