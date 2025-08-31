@@ -100,3 +100,38 @@
 		font-size: 16px;
 	}
 }
+
+/* … твои существующие стили остаются … */
+
+.listItemTight {
+	margin-bottom: 8px;
+}
+
+/* единый стиль для кликабельных ссылок (тел/смс/почта/сайты) */
+.cta {
+	color: #00e5ff;
+	font-weight: 700;
+	text-decoration: none;
+	white-space: nowrap;
+	/* чтобы номера не переносились странно */
+	border-bottom: 1px dashed rgba(0, 229, 255, .45);
+	transition: color .2s ease, border-color .2s ease, text-shadow .2s ease;
+}
+
+.cta:hover {
+	color: #04b3d9;
+	border-color: rgba(4, 179, 217, .8);
+	text-shadow: 0 0 8px #00e5ff;
+}
+
+/* мелкая серая подсказка рядом с SMS */
+.hint {
+	color: #c7cfde;
+	font-size: 0.95em;
+}
+
+/* если где-то понадобится выводить телефоны столбиком — пригодится */
+.phoneColumn a.cta {
+	display: block;
+	margin: 6px 0;
+}
