@@ -379,3 +379,90 @@
 		font-size: 14px;
 	}
 }
+
+/* ====== MOBILE MENU: карточки с рамкой ====== */
+@media (max-width: 768px) {
+	.mobileMenu {
+		top: 76px;
+		/* чтобы не прилипало к хедеру */
+		right: 16px;
+		width: min(92vw, 340px);
+		/* немного шире и дружелюбнее */
+		padding: 16px;
+		border-radius: 16px;
+		background: var(--menu-bg);
+		box-shadow: 0 10px 26px rgba(0, 0, 0, .20);
+		border: 1px solid rgba(0, 0, 0, .06);
+	}
+
+	/* общий вид «карточек» */
+	.mobileLinkLikeItem,
+	.mobileParent,
+	.mobileChild {
+		display: block;
+		width: 100%;
+		box-sizing: border-box;
+		text-align: left;
+
+		padding: 14px 18px;
+		min-height: 54px;
+		border-radius: 12px;
+
+		background: #fff;
+		color: var(--c-primary);
+		font-size: 16px;
+		font-weight: 700;
+		text-decoration: none;
+
+		border: 2px solid rgba(0, 0, 0, .12);
+		/* рамка */
+		box-shadow: 0 2px 0 rgba(0, 0, 0, .05);
+		/* лёгкий объём */
+	}
+
+	/* промежутки между карточками */
+	.mobileMenu ul li {
+		margin: 12px 0;
+	}
+
+	/* наведение/фокус — подчёркиваем рамку и фон */
+	.mobileLinkLikeItem:hover,
+	.mobileParent:hover,
+	.mobileChild:hover,
+	.mobileLinkLikeItem:focus-visible,
+	.mobileParent:focus-visible,
+	.mobileChild:focus-visible {
+		background: #f7fafc;
+		border-color: #0a7fff;
+		color: var(--c-primary-dark);
+		outline: none;
+		box-shadow:
+			0 2px 0 rgba(0, 0, 0, .06),
+			0 0 0 4px rgba(10, 127, 255, .10);
+		/* мягкое свечение */
+	}
+
+	/* активное нажатие */
+	.mobileLinkLikeItem:active,
+	.mobileParent:active,
+	.mobileChild:active {
+		transform: translateY(1px);
+		box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+	}
+
+	/* стрелочки справа у пунктов-раскрывашек (если они кнопки) */
+	.mobileParent::after,
+	.mobileChild::after {
+		content: "▸";
+		float: right;
+		opacity: .6;
+		transition: transform .18s ease;
+	}
+
+	/* если у тебя добавляется класс .is-open при раскрытии — повернём стрелку */
+	.mobileParent.is-open::after,
+	.mobileChild.is-open::after {
+		transform: rotate(90deg);
+		opacity: .9;
+	}
+}
