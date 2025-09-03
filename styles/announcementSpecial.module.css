@@ -1,172 +1,328 @@
-/* ───── ОБЁРТКА ───── */
+/* ===== ОБЁРТКА / КОНТЕНТ ===== */
 .wrapper {
 	position: relative;
 	min-height: 100vh;
 	color: #fff;
-	background: none;
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
+	margin-top: 60px
 }
 
-/* ───── КОНТЕНТ ───── */
 .content {
-	max-width: 1100px;
-	margin: 90px auto;
-	padding: 20px;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 100px 20px 40px;
 	backdrop-filter: blur(8px);
-	z-index: 3;
+	z-index: 3
 }
 
-/* ───── ХЛЕБНЫЕ КРОШКИ ───── */
 .breadcrumbsWrapper {
-	margin-top: 40px;
-	/* ✅ Добавлен отступ */
-	margin-bottom: 15px;
+	margin-bottom: 30px
 }
 
-/* ───── ЗАГОЛОВОК ───── */
+/* ===== ЗАГОЛОВОК ===== */
 .title {
 	text-align: center;
 	font-size: 32px;
-	margin-bottom: 30px;
-	color: #e0e6f0;
+	margin-bottom: 24px;
+	color: #ffeaea;
+	text-transform: uppercase;
+	font-weight: 800;
+	text-shadow: 0 0 6px rgba(255, 0, 0, .7), 0 0 18px rgba(255, 40, 40, .6), 0 0 36px rgba(255, 70, 70, .45)
 }
 
-/* ───── БЛОК ОБЪЯВЛЕНИЯ ───── */
-.announcementBlock {
-	background: rgba(0, 0, 0, 0.7);
-	padding: 25px 30px;
-	border-radius: 12px;
-	border: 2px solid #ff4444;
-	box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
-	margin-bottom: 30px;
+/* ===== ЕДИНАЯ ПАНЕЛЬ ===== */
+.panel {
+	border: 2px solid rgba(255, 60, 60, .95);
+	border-radius: 16px;
+	background:
+		radial-gradient(1200px 400px at -10% -20%, rgba(255, 0, 0, .08), transparent 40%),
+		linear-gradient(145deg, rgba(10, 10, 10, .92), rgba(28, 10, 12, .9));
+	box-shadow: 0 0 14px rgba(255, 50, 50, .45), inset 0 0 0 1px rgba(255, 60, 60, .15);
+	padding: 20px 20px 24px;
 }
 
-.alertIcon {
+/* верх панели: иконка + лид */
+.panelHead {
+	display: flex;
+	gap: 14px;
+	align-items: flex-start;
+	margin-bottom: 16px
+}
+
+.panelIcon {
 	font-size: 28px;
-	margin-bottom: 10px;
-	text-align: center;
+	filter: drop-shadow(0 0 10px rgba(255, 60, 60, .8))
 }
 
-.announcementTitle {
+.panelTitle {
+	margin: 0 0 6px;
 	font-size: 22px;
-	font-weight: bold;
-	color: #ffdfdf;
-	margin-bottom: 15px;
-	text-align: center;
+	font-weight: 800;
+	color: #ffe3e3
 }
 
-.address {
-	font-size: 20px;
-	font-weight: 600;
-	color: #ffd700;
-	margin-bottom: 15px;
-	text-align: center;
+.panelLead {
+	margin: 0;
+	color: #f5dcdc;
+	line-height: 1.6;
+	font-size: 17px
 }
 
-.text {
-	font-size: 18px;
-	margin-bottom: 10px;
-	text-align: center;
-}
-
-.dates {
-	font-size: 20px;
-	font-weight: bold;
-	color: #00e5ff;
-	margin-bottom: 15px;
-	text-align: center;
-}
-
-.additional {
-	font-size: 16px;
-	color: #ccc;
-	font-style: italic;
-	text-align: center;
-}
-
-/* ───── ССЫЛКА НА ГРАФИК ───── */
-.linkBlock {
+/* ===== ТАБЛИЦА ===== */
+.tableTitle {
+	margin: 6px 0 12px;
 	text-align: center;
 	font-size: 18px;
-	margin-top: 20px;
+	font-weight: 800;
+	color: #ffb3b3;
+	text-shadow: 0 0 8px rgba(255, 60, 60, .7)
 }
 
-.link {
-	display: inline-block;
-	margin-top: 15px;
-	padding: 12px 24px;
-	background-color: #064469;
-	color: #fff;
-	border-radius: 6px;
-	text-decoration: none;
-	font-weight: bold;
-	transition: background 0.3s ease;
-}
-
-.link:hover {
-	background-color: #046ba5;
-}
-
-/* ───── ТАБЛИЦА ───── */
-.tableWrapper {
+.tableWrap {
+	border-radius: 12px;
 	overflow-x: auto;
-	border-radius: 10px;
-	margin-top: 30px;
+	overflow-y: auto;
+	max-height: 70vh;
+	padding: 10px;
+	background: rgba(20, 8, 12, .85);
+	box-shadow: inset 0 0 0 1px rgba(255, 50, 50, .25), 0 0 12px rgba(255, 50, 50, .25)
 }
 
 .table {
 	width: 100%;
 	border-collapse: collapse;
-	background-color: rgba(0, 0, 0, 0.6);
-	border-radius: 12px;
-	overflow: hidden;
-}
-
-.table th,
-.table td {
-	padding: 12px 15px;
-	text-align: center;
-	vertical-align: middle;
-	border: 1px solid rgba(255, 255, 255, 0.3);
+	min-width: 800px
 }
 
 .table th {
-	background-color: #1f1f2e;
-	color: #9ccdff;
-	font-weight: 600;
-	font-size: 15px;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	background: rgba(60, 0, 0, .95);
+	color: #ffcccc;
+	font-weight: 800;
+	text-align: center;
+	padding: 12px 14px;
+	border-bottom: 2px solid rgba(255, 80, 80, .85);
+	text-shadow: 0 0 8px rgba(255, 60, 60, .6)
 }
 
 .table td {
-	color: #f0f0f0;
-	font-size: 15px;
-	line-height: 1.5;
+	padding: 10px 14px;
+	border-bottom: 1px solid rgba(255, 255, 255, .1);
+	text-align: center;
+	vertical-align: middle;
+	background: rgba(0, 0, 0, .25);
+	color: #ffeaea
 }
 
-/* ───── АДАПТИВ ───── */
-@media (max-width: 768px) {
-	.content {
-		margin-top: 120px;
-	}
+.table tbody tr:nth-child(even) td {
+	background: rgba(255, 255, 255, .05)
+}
 
+.colNum {
+	width: 64px;
+	text-align: center
+}
+
+.colAddress {
+	text-align: left
+}
+
+.colDate {
+	white-space: nowrap
+}
+
+/* примечание */
+.note {
+	margin-top: 10px;
+	text-align: center;
+	font-size: 14px;
+	color: #ffaaaa;
+	font-style: italic;
+	text-shadow: 0 0 6px rgba(255, 40, 40, .45)
+}
+
+/* ===== ССЫЛКА ===== */
+.linkBlock {
+	text-align: center;
+	margin-top: 22px
+}
+
+.link {
+	display: inline-block;
+	padding: 12px 22px;
+	border-radius: 10px;
+	border: 2px solid rgba(255, 70, 70, .95);
+	background: rgba(255, 40, 40, .16);
+	color: #ffe8e8;
+	text-decoration: none;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: .3px;
+	box-shadow: 0 0 12px rgba(255, 60, 60, .55), 0 0 28px rgba(255, 40, 40, .35);
+	transition: all .25s ease
+}
+
+.link:hover,
+.link:focus-visible {
+	background: rgba(255, 60, 60, .28);
+	border-color: #ff2a2a;
+	color: #fff;
+	transform: translateY(-2px);
+	box-shadow: 0 0 18px rgba(255, 70, 70, .95), 0 0 40px rgba(255, 40, 40, .7);
+	outline: none
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width:768px) {
 	.title {
-		font-size: 24px;
+		font-size: 26px
 	}
 
-	.announcementTitle {
-		font-size: 20px;
+	.panelTitle {
+		font-size: 20px
 	}
 
-	.address,
-	.dates {
-		font-size: 18px;
+	.panelLead {
+		font-size: 16px
+	}
+
+	.table {
+		font-size: 14px
 	}
 
 	.table th,
 	.table td {
-		font-size: 14px;
-		padding: 10px;
+		padding: 10px
+	}
+}
+
+/* ===== MAX promo (баннер + текст + кнопки) ===== */
+.promoMax {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+	align-items: stretch;
+	margin-top: 28px;
+	padding: 20px;
+	border-radius: 16px;
+	border: 2px solid rgba(255, 60, 60, .9);
+	background:
+		radial-gradient(1000px 400px at -10% -30%, rgba(255, 0, 0, .08), transparent 45%),
+		linear-gradient(145deg, rgba(10, 10, 10, .88), rgba(20, 8, 12, .88));
+	box-shadow: 0 0 14px rgba(255, 60, 60, .35), inset 0 0 0 1px rgba(255, 60, 60, .15);
+}
+
+.promoMedia {
+	position: relative;
+	border-radius: 12px;
+	overflow: hidden;
+	background: #180a0c;
+	box-shadow: 0 0 16px rgba(255, 40, 40, .25) inset;
+
+	/* фиксируем адекватную высоту блока и центрируем его в сетке */
+	max-height: min(48vh, 420px);
+	align-self: center;
+
+	/* вариант 1: жесткая пропорция, чтобы высота считалась от ширины */
+	aspect-ratio: 16 / 9;
+}
+
+.promoMedia img {
+	display: block;
+	width: 100%;
+	height: 100%;
+
+	/* картинка целиком внутри блока, без обрезки */
+	object-fit: contain;
+
+	/* если есть прозрачные поля — немного “воздуха” вокруг */
+	padding: 8px;
+}
+
+.promoText {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	justify-content: center;
+}
+
+.promoTitle {
+	margin: 0;
+	font-size: 24px;
+	font-weight: 900;
+	color: #ffe8e8;
+	text-transform: uppercase;
+	text-shadow:
+		0 0 6px rgba(255, 0, 0, .7),
+		0 0 18px rgba(255, 40, 40, .6);
+}
+
+.promoLead {
+	margin: 0;
+	color: #ffcccc;
+	line-height: 1.55;
+	text-shadow: 0 0 6px rgba(255, 40, 40, .35);
+}
+
+.promoBtns {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 8px;
+}
+
+.promoBtn,
+.promoBtnOutline {
+	display: inline-block;
+	padding: 10px 16px;
+	border-radius: 10px;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: .3px;
+	text-decoration: none;
+	transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.promoBtn {
+	background: #ff2a2a;
+	color: #fff;
+	border: 1px solid rgba(255, 120, 120, .6);
+	box-shadow: 0 0 10px rgba(255, 42, 42, .75), 0 0 24px rgba(255, 80, 80, .45);
+}
+
+.promoBtn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 0 16px rgba(255, 50, 50, 1), 0 0 36px rgba(255, 90, 90, .75);
+}
+
+.promoBtnOutline {
+	background: transparent;
+	color: #ffe8e8;
+	border: 2px solid rgba(255, 70, 70, .95);
+	box-shadow: 0 0 12px rgba(255, 60, 60, .35);
+}
+
+.promoBtnOutline:hover {
+	background: rgba(255, 60, 60, .18);
+	transform: translateY(-2px);
+}
+
+.promoQR {
+	margin-top: 10px;
+	width: 120px;
+	height: auto;
+	border-radius: 8px;
+	box-shadow: 0 8px 22px rgba(0, 0, 0, .45), 0 0 12px rgba(255, 60, 60, .6);
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+	.promoMax {
+		grid-template-columns: 1fr;
 	}
 }

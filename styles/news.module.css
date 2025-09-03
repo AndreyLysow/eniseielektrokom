@@ -1,4 +1,4 @@
-/* ================== ОБЁРТКА СТРАНИЦЫ ================== */
+/* ========= ОБЁРТКА СТРАНИЦЫ ========= */
 .wrapper {
 	position: relative;
 	min-height: 100vh;
@@ -9,7 +9,7 @@
 	margin-top: 60px;
 }
 
-/* ================== КОНТЕНТ ================== */
+/* ========= КОНТЕНТ ========= */
 .content {
 	width: 100%;
 	max-width: 1100px;
@@ -19,12 +19,12 @@
 	z-index: 3;
 }
 
-/* ================== КРОШКИ ================== */
+/* ========= КРОШКИ ========= */
 .breadcrumbsWrapper {
 	margin-bottom: 30px;
 }
 
-/* ================== ЗАГОЛОВОК ================== */
+/* ========= ЗАГОЛОВОК ========= */
 .title {
 	text-align: center;
 	font-size: 32px;
@@ -35,28 +35,35 @@
 	text-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
 }
 
-/* ================== СПИСОК НОВОСТЕЙ (2 КОЛОНКИ) ================== */
+/* ========= СПИСОК НОВОСТЕЙ ========= */
+/* По умолчанию: одна колонка + центрирование карточки */
 .newsList {
 	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-columns: 1fr;
 	gap: 26px;
+	justify-content: center;
 }
 
-/* ================== КАРТОЧКА ================== */
+/* С 900px и шире: две колонки ровно */
+@media (min-width: 900px) {
+	.newsList {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+/* ========= КАРТОЧКА ========= */
 .card {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	/* чтобы кнопка была у низа */
 	overflow: hidden;
 	padding: 24px 20px;
 	border-radius: 12px;
 	border: 2px solid #007bff;
-	background: linear-gradient(145deg, rgba(0, 0, 0, 0.82), rgba(10, 25, 50, 0.82));
-	box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+	background: linear-gradient(145deg, rgba(0, 0, 0, .82), rgba(10, 25, 50, .82));
+	box-shadow: 0 0 15px rgba(0, 123, 255, .3);
 	transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 	min-height: 220px;
-	/* одинаковая «база» по высоте */
 }
 
 .card:hover {
@@ -65,7 +72,38 @@
 	border-color: #00bfff;
 }
 
-/* заголовок */
+/* ========= МЕДИАБЛОК (обложка + наклейка) ========= */
+.media {
+	position: relative;
+	border-radius: 12px;
+	overflow: hidden;
+	margin-bottom: 14px;
+	background: #0b1220;
+}
+
+.media>img:first-child {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	/* единая высота карточек */
+	object-fit: cover;
+}
+
+/* Наклейка-баннер поверх */
+.bannerSticker {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	width: clamp(80px, 24%, 140px);
+	height: auto;
+	border-radius: 10px;
+	box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+	opacity: .95;
+	pointer-events: none;
+}
+
+/* ========= ТЕКСТ И МЕТА ========= */
 .cardTitle {
 	margin: 0 0 12px;
 	text-align: center;
@@ -81,7 +119,6 @@
 	text-shadow: 0 0 10px rgba(0, 174, 255, .85);
 }
 
-/* мета */
 .metaRow {
 	display: flex;
 	justify-content: center;
@@ -101,24 +138,23 @@
 	color: #6f7a86;
 }
 
-/* заполнитель пространства, чтобы кнопки выровнялись снизу */
+/* Заполнитель, чтобы кнопка была у низа карточки */
 .cardSpacer {
 	flex: 1 1 auto;
 }
 
-/* зона с кнопкой */
+/* ========= КНОПКА «ЧИТАТЬ» ========= */
 .cardActions {
 	display: flex;
 	justify-content: center;
 }
 
-/* кнопка «Читать» */
 .readMore {
 	display: inline-block;
 	margin-top: 14px;
 	padding: 10px 18px;
 	border-radius: 8px;
-	background: rgba(0, 123, 255, 0.88);
+	background: rgba(0, 123, 255, .88);
 	color: #fff;
 	text-decoration: none;
 	font-weight: 700;
@@ -136,7 +172,7 @@
 	outline: none;
 }
 
-/* ================== КНОПКА "ПОКАЗАТЬ ЕЩЁ" ================== */
+/* ========= КНОПКА «ПОКАЗАТЬ ЕЩЁ» ========= */
 .loadMoreWrap {
 	display: flex;
 	justify-content: center;
@@ -148,7 +184,7 @@
 	padding: 12px 22px;
 	border-radius: 10px;
 	border: 2px solid #007bff;
-	background: rgba(0, 123, 255, 0.15);
+	background: rgba(0, 123, 255, .15);
 	color: #e0e6f0;
 	font-size: 15px;
 	font-weight: 700;
@@ -156,20 +192,20 @@
 	cursor: pointer;
 	transition: background .25s ease, box-shadow .25s ease, transform .2s ease, border-color .25s ease;
 	text-transform: uppercase;
-	box-shadow: 0 0 12px rgba(0, 123, 255, 0.4);
+	box-shadow: 0 0 12px rgba(0, 123, 255, .4);
 }
 
 .loadMoreBtn:hover,
 .loadMoreBtn:focus-visible {
-	background: rgba(0, 174, 255, 0.25);
+	background: rgba(0, 174, 255, .25);
 	border-color: #05a1f4;
 	color: #fff;
-	box-shadow: 0 0 24px rgba(0, 174, 255, 0.7);
+	box-shadow: 0 0 24px rgba(0, 174, 255, .7);
 	transform: translateY(-2px);
 	outline: none;
 }
 
-/* ================== REDUCED MOTION ================== */
+/* ========= REDUCED MOTION ========= */
 @media (prefers-reduced-motion: reduce) {
 
 	.card,
@@ -179,13 +215,7 @@
 	}
 }
 
-/* ================== АДАПТИВ ================== */
-@media (max-width: 900px) {
-	.newsList {
-		grid-template-columns: 1fr;
-	}
-}
-
+/* ========= АДАПТИВНЫЕ ПРАВКИ ========= */
 @media (max-width: 768px) {
 	.title {
 		font-size: 26px;

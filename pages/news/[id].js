@@ -29,49 +29,26 @@ export async function getStaticProps({ params }) {
 const LS_KEY = (id) => `news:views:${id}`;
 const SEEN_KEY = (id) => `news:seen:${id}`;
 
-/** детерминированная «база» просмотров 3..40, зависящая только от id */
-function seededBase(id) {
-  let h = 0;
-  const s = String(id);
-  for (let i = 0; i < s.length; i += 1) h = (h * 31 + s.charCodeAt(i)) | 0;
-  return Math.abs(h % 38) + 3;
-}
-
-const canUseDOM = typeof window !== "undefined";
-
-/* ---------------- Page ---------------- */
 export default function NewsDetail({ newsItem }) {
   if (!newsItem) return <p>Новость не найдена</p>;
 
-  // базовые просмотры (без доступа к DOM)
+  // базовые просмотры берём только из файла (или 0)
   const baseViews = useMemo(() => {
-    return typeof newsItem.views === "number" && newsItem.views > 0
-      ? newsItem.views
-      : seededBase(newsItem.id);
+    return typeof newsItem.views === "number" && newsItem.views > 0 ? newsItem.views : 0;
   }, [newsItem.id, newsItem.views]);
 
-  // форматированная дата (чтобы не дергать Date в рендере)
   const formattedDate = useMemo(
     () => new Date(newsItem.date).toLocaleDateString("ru-RU"),
     [newsItem.date]
   );
 
-  // html из markdown (стабильно по контенту)
-  const html = useMemo(
-    () => marked.parse(newsItem.content ?? ""),
-    [newsItem.content]
-  );
+  const html = useMemo(() => marked.parse(newsItem.content ?? ""), [newsItem.content]);
 
-  // UI-счетчик
+  // текущее значение для UI
   const [viewsUI, setViewsUI] = useState(baseViews);
 
-  // инкремент ровно 1 раз за сессию и синхронизация с list-страницей
+  // инкремент ровно 1 раз за сессию и синхронизация со списком
   useEffect(() => {
-    if (!canUseDOM) {
-      setViewsUI(baseViews);
-      return;
-    }
-
     try {
       const k = LS_KEY(newsItem.id);
       const seenK = SEEN_KEY(newsItem.id);
@@ -82,8 +59,8 @@ export default function NewsDetail({ newsItem }) {
       const nextStored = seen ? stored : stored + 1;
 
       if (!seen) {
-        localStorage.setItem(k, String(nextStored));
-        sessionStorage.setItem(seenK, "1");
+        localStorage.setItem(k, String(nextStored)); // persist
+        sessionStorage.setItem(seenK, "1");          // no more increments this session
       }
 
       setViewsUI(baseViews + nextStored);
@@ -123,7 +100,6 @@ export default function NewsDetail({ newsItem }) {
           <p className={styles.meta}>
             <span className={styles.date}>📅 {formattedDate}</span>
             <span className={styles.pipe}>•</span>
-            {/* базовое значение приходит с сервера, апдейтится после монтирования */}
             <span className={styles.views} suppressHydrationWarning>
               👁 {viewsUI} просмотров
             </span>

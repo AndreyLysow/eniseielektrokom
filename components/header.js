@@ -21,10 +21,9 @@ const menuData = {
         {
           title: "Информация для абонентов",
           submenu: [
-            { title: "Важное объявление", link: "/announcement_mine" },
+            { title: "Объявления", link: "/announcement_mine" },
             { title: "Официальные сообщения", link: "/announcements" },
             { title: "Тарифы", link: "/tariffs" },
-            { title: "Охрана труда", link: "/ohs" },
             { title: "Типовые договоры", link: "/contracts" },
             { title: "График отключений", link: "/outage-schedule" },
           ],

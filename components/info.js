@@ -23,8 +23,12 @@ export default function InfoDisclosure() {
       file: "/documents/poyasneniya-2023.pdf",
     },
     {
-      name: "Специальная оценка условий труда: Сводная ведомость результатов проведения СОУТ от 13.05.2025 г.",
-      file: "/documents/SOUT-Eniseiteplokom.pdf",
+      name: "Специальная оценка условий труда: Сводная ведомость результатов проведения СОУТ от 14.04.2025 г.",
+      file: "/documents/SOUT-Eniseiteplokom_14_04_2025.pdf",
+    },
+	 {
+      name: "Специальная оценка условий труда: Сводная ведомость результатов проведения СОУТ от 31.07.2025 г.",
+      file: "/documents/SOUT-Eniseiteplokom_31_07_2025.pdf",
     },
   ];
 

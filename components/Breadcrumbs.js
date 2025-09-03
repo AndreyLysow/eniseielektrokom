@@ -15,7 +15,7 @@ export default function Breadcrumbs({ lastLabel }) {
     "outage-schedule": "График отключений",
     "CompanyDetails": "Реквизиты",
     "DispatchCenter": "Сообщить об аварии",
-    "announcement_mine": "Важное объявление",
+    "announcement_mine": "Объявления",
     "info": "Раскрытие информации",
     "payment": "Передача показаний и оплата услуг",
     "news": "Новости",

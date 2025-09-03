@@ -1,33 +1,41 @@
 "use client";
 
 import Breadcrumbs from "./Breadcrumbs";
-import styles from "../styles/tariffs.module.css";
+import styles from "../styles/announcementSpecial.module.css";
+import tariffStyles from "../styles/tariffs.module.css";
 import AnimatedBackground from "./AnimatedBackground";
+import Link from "next/link";
 
-export default function TariffsPage() {
+export default function SpecialAnnouncement() {
   const documents = [
     {
-      name: "Приказ МТП КК №154-п от 12.12.2024 — Тариф на техприсоединение к сетям теплоснабжения в г.Енисейске на 2025 год",
+      name:
+        "Приказ МТП КК №154-п от 12.12.2024 — Тариф на техприсоединение к сетям теплоснабжения в г.Енисейске на 2025 год",
       file: "/documents/tariff-154p-2024.pdf",
     },
     {
-      name: "Приказ МТП КК №12-п от 20.02.2025 — Тариф на техприсоединение к сетям теплоснабжения в Енисейском районе на 2025 год",
+      name:
+        "Приказ МТП КК №12-п от 20.02.2025 — Тариф на техприсоединение к сетям теплоснабжения в Енисейском районе на 2025 год",
       file: "/documents/tariff-12p-2025.pdf",
     },
     {
-      name: "Приказ МТП КК №305-п от 19.12.2024 — Тариф на тепловую энергию 2025–2027 гг.",
+      name:
+        "Приказ МТП КК №305-п от 19.12.2024 — Тариф на тепловую энергию 2025–2027 гг.",
       file: "/documents/tariff-305p-2024.pdf",
     },
     {
-      name: "Приказ МТП КК №410-п от 19.12.2024 — Тариф на теплоноситель 2025–2027 гг.",
+      name:
+        "Приказ МТП КК №410-п от 19.12.2024 — Тариф на теплоноситель 2025–2027 гг.",
       file: "/documents/tariff-410p-2024.pdf",
     },
     {
-      name: "Приказ МТП КК №411-п от 19.12.2024 — Тариф на ГВС в открытых системах 2025–2027 гг.",
+      name:
+        "Приказ МТП КК №411-п от 19.12.2024 — Тариф на ГВС в открытых системах 2025–2027 гг.",
       file: "/documents/tariff-411p-2024.pdf",
     },
     {
-      name: "Приказ МТП КК №412-п от 19.12.2024 — Тариф на ГВС в закрытых системах 2025–2027 гг.",
+      name:
+        "Приказ МТП КК №412-п от 19.12.2024 — Тариф на ГВС в закрытых системах 2025–2027 гг.",
       file: "/documents/tariff-412p-2024.pdf",
     },
     {
@@ -47,7 +55,8 @@ export default function TariffsPage() {
       file: "/documents/tariff-56p-2024.pdf",
     },
     {
-      name: "Приказ МТП КК №38-п от 19.09.2024 — Плата за подключение к централизованным сетям теплоснабжения",
+      name:
+        "Приказ МТП КК №38-п от 19.09.2024 — Плата за подключение к централизованным сетям теплоснабжения",
       file: "/documents/tariff-38p-2024.pdf",
     },
     {
@@ -59,7 +68,8 @@ export default function TariffsPage() {
       file: "/documents/tariff-34p-2024.pdf",
     },
     {
-      name: "Приказ ООО «Енисейтеплоком» №9/1-ОД от 01.07.2024 — О применении тарифов",
+      name:
+        "Приказ ООО «Енисейтеплоком» №9/1-ОД от 01.07.2024 — О применении тарифов",
       file: "/documents/order-9-1od-2024.pdf",
     },
     {
@@ -80,48 +90,104 @@ export default function TariffsPage() {
     <div className={styles.wrapper}>
       <AnimatedBackground />
       <main className={styles.content}>
+        {/* Обёртка для отступов хлебных крошек */}
         <div className={styles.breadcrumbsWrapper}>
           <Breadcrumbs />
         </div>
 
-        <h1 className={styles.title}>Информация по тарифам ООО «Енисейтеплоком»</h1>
+        <h1 className={styles.title}>Важное объявление</h1>
 
-        <div className={styles.tableWrapper}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Наименование документа</th>
-              </tr>
-            </thead>
-            <tbody>
-              {documents.map((doc, index) => (
-                <tr key={index} className={styles.row}>
-                  <td>
-                    <div className={styles.docRow}>
-                      <div className={styles.docName}>{doc.name}</div>
-                      <div className={styles.actions}>
-                        <a
-                          href={doc.file}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`${styles.btn} ${styles.viewBtn}`}
-                        >
-                          👁 Посмотреть
-                        </a>
-                        <a
-                          href={doc.file}
-                          download
-                          className={`${styles.btn} ${styles.downloadBtn}`}
-                        >
-                          ⬇ Скачать
-                        </a>
-                      </div>
-                    </div>
-                  </td>
+        <div className={styles.announcementBlock}>
+          <p className={styles.alertIcon}>📢</p>
+          <h2 className={styles.announcementTitle}>Уважаемые потребители!</h2>
+
+          <p className={styles.text}>
+            ООО «Енисейтеплоком» информирует вас о применении тарифов в
+            соответствии с приказами Министерства тарифной политики Красноярского
+            края:
+          </p>
+
+          <div className={styles.tariffSection}>
+            <h3>📌 Приказ № 305-п от 19.12.2024 (действует с 01.07.2025)</h3>
+            <p>
+              <strong>Тариф на тепловую энергию (без НДС) для потребителей:</strong>
+              <br />— г. Енисейск: <strong>7 527,53 руб. за 1 Гкал</strong>
+              <br />— Енисейский район: <strong>10 735,13 руб. за 1 Гкал</strong>
+            </p>
+          </div>
+
+          <div className={styles.tariffSection}>
+            <h3>📌 Приказ № 412-п от 19.12.2024 (действует с 01.07.2025)</h3>
+            <p>
+              <strong>Тарифы на горячую воду (без НДС):</strong>
+              <br />— г. Енисейск:
+              <br />
+              компонент на тепловую энергию: <strong>7 527,53 руб./Гкал</strong>
+              <br />
+              компонент на теплоноситель: <strong>160,54 руб./м³</strong>
+              <br />— Енисейский район:
+              <br />
+              компонент на тепловую энергию: <strong>10 735,13 руб./Гкал</strong>
+              <br />
+              компонент на теплоноситель: <strong>220,16 руб./м³</strong>
+            </p>
+          </div>
+
+          <p className={styles.additional}>
+            Учитывайте данную информацию при планировании деятельности.
+          </p>
+        </div>
+
+        {/* Блок «Информация по тарифам» из TariffsPage */}
+        <section className={tariffStyles.tableWrapper}>
+          <h2 className={styles.subtitle}>
+            Информация по тарифам ООО «Енисейтеплоком»
+          </h2>
+
+          <div className={tariffStyles.tableContainer}>
+            <table className={tariffStyles.table}>
+              <thead>
+                <tr>
+                  <th>Наименование документа</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {documents.map((doc, index) => (
+                  <tr key={index} className={tariffStyles.row}>
+                    <td>
+                      <div className={tariffStyles.docRow}>
+                        <div className={tariffStyles.docName}>{doc.name}</div>
+                        <div className={tariffStyles.actions}>
+                          <a
+                            href={doc.file}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`${tariffStyles.btn} ${tariffStyles.viewBtn}`}
+                          >
+                            👁 Посмотреть
+                          </a>
+                          <a
+                            href={doc.file}
+                            download
+                            className={`${tariffStyles.btn} ${tariffStyles.downloadBtn}`}
+                          >
+                            ⬇ Скачать
+                          </a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <div className={styles.linkBlock}>
+          <p>✅ Ознакомьтесь со всеми сообщениями компании:</p>
+          <Link href="/announcements" className={styles.link}>
+            Перейти в раздел «Официальные сообщения» →
+          </Link>
         </div>
       </main>
     </div>
