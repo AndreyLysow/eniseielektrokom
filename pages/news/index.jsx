@@ -1,4 +1,3 @@
-// pages/news/index.jsx
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
@@ -11,8 +10,8 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import styles from "../../styles/news.module.css";
 
 const PAGE_SIZE = 4;
-const LS_KEY = (id) => `news:views:${id}`; // 👈 тот же ключ, что и на детальной
 
+/** SSG: список новостей из файловой системы */
 export async function getStaticProps() {
   const { getAllNews } = await import("../../utils/news");
   const news = getAllNews();
@@ -30,40 +29,51 @@ export default function NewsPage({ news }) {
   const [visible, setVisible] = useState(PAGE_SIZE);
   const hasMore = visible < sorted.length;
 
-  // актуальные просмотры { id: number }
-  const [counts, setCounts] = useState({});
+  // просмотры с бэкенда (totals) + base из фронтматтера
+  const [counts, setCounts] = useState({}); // { [id]: number }
 
-  // подтягиваем просмотры = (views из md или 0) + инкремент из localStorage
   useEffect(() => {
-    const map = {};
-    try {
-      for (const n of sorted) {
-        const base = typeof n.views === "number" && n.views > 0 ? n.views : 0;
-        const inc = parseInt(localStorage.getItem(LS_KEY(n.id)) || "0", 10) || 0;
-        map[n.id] = base + inc;
-      }
-    } catch {
-      // SSR/приватные режимы — просто показываем base
-      for (const n of sorted) {
-        map[n.id] = typeof n.views === "number" && n.views > 0 ? n.views : 0;
-      }
-    }
-    setCounts(map);
+    let cancelled = false;
+    const ids = sorted.map((n) => n.id);
+    if (!ids.length) return;
 
-    // лайв-обновление, если инкремент случился в другой вкладке
-    const onStorage = (e) => {
-      if (!e.key?.startsWith("news:views:")) return;
-      setCounts((prev) => {
-        const id = e.key.replace("news:views:", "");
-        const found = sorted.find((x) => String(x.id) === id);
-        if (!found) return prev;
-        const base = typeof found.views === "number" && found.views > 0 ? found.views : 0;
-        const inc = parseInt(localStorage.getItem(LS_KEY(found.id)) || "0", 10) || 0;
-        return { ...prev, [found.id]: base + inc };
-      });
+    (async () => {
+      try {
+        const res = await fetch("/api/views/bulk", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ids }),
+        });
+        const data = await res.json();
+        if (!cancelled && data?.ok) {
+          const combined = {};
+          for (const n of sorted) {
+            const base = typeof n.views === "number" ? n.views : 0;
+            combined[n.id] = base + (data.counts?.[n.id] || 0);
+          }
+          setCounts(combined);
+        } else if (!cancelled) {
+          // fallback: только base из md
+          const combined = {};
+          for (const n of sorted) {
+            combined[n.id] = typeof n.views === "number" ? n.views : 0;
+          }
+          setCounts(combined);
+        }
+      } catch {
+        if (!cancelled) {
+          const combined = {};
+          for (const n of sorted) {
+            combined[n.id] = typeof n.views === "number" ? n.views : 0;
+          }
+          setCounts(combined);
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
     };
-    window.addEventListener("storage", onStorage);
-    return () => window.removeEventListener("storage", onStorage);
   }, [sorted]);
 
   return (
@@ -91,12 +101,12 @@ export default function NewsPage({ news }) {
 
           <div className={styles.newsList}>
             {sorted.slice(0, visible).map((item) => {
-              // cover: свой → показываем; если нет — только для id1 дефолтная
+              // картинка: если есть cover — берём его; если нет — только для id1 показываем дефолт
               const hasImage = item.cover && item.cover.trim();
               const isFirst = item.id === "id1";
               const imageSrc = hasImage ? item.cover : isFirst ? "/images/id1.jpg" : null;
 
-              const base = typeof item.views === "number" && item.views > 0 ? item.views : 0;
+              const base = typeof item.views === "number" ? item.views : 0;
               const total = counts[item.id] ?? base;
 
               return (
@@ -109,6 +119,7 @@ export default function NewsPage({ news }) {
                         loading="lazy"
                         decoding="async"
                       />
+                      {/* опциональная «наклейка»-баннер */}
                       <img
                         src="/images/ohs-team.jpg"
                         alt=""
@@ -125,7 +136,6 @@ export default function NewsPage({ news }) {
                       📅 {new Date(item.date).toLocaleDateString("ru-RU")}
                     </span>
                     <span className={styles.pipe}>•</span>
-                    {/* численное значение меняется после монтирования */}
                     <span className={styles.views} suppressHydrationWarning>
                       👁 {total} просмотров
                     </span>

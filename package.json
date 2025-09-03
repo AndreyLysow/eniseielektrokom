@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@prisma/client": "^6.3.0",
+    "@upstash/redis": "^1.35.3",
     "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^12.2.0",
     "bootstrap": "^5.3.3",
     "framer-motion": "^12.6.2",
     "gray-matter": "^4.0.3",

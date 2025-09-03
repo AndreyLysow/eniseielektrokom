@@ -1,4 +1,3 @@
-// pages/news/[id].jsx
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -25,49 +24,48 @@ export async function getStaticProps({ params }) {
   return { props: { newsItem: newsItem ?? null } };
 }
 
-/* ---------------- helpers ---------------- */
-const LS_KEY = (id) => `news:views:${id}`;
-const SEEN_KEY = (id) => `news:seen:${id}`;
-
 export default function NewsDetail({ newsItem }) {
   if (!newsItem) return <p>Новость не найдена</p>;
 
-  // базовые просмотры берём только из файла (или 0)
-  const baseViews = useMemo(() => {
-    return typeof newsItem.views === "number" && newsItem.views > 0 ? newsItem.views : 0;
-  }, [newsItem.id, newsItem.views]);
+  // базовые просмотры — из md (или 0)
+  const baseViews = useMemo(
+    () => (typeof newsItem.views === "number" && newsItem.views > 0 ? newsItem.views : 0),
+    [newsItem.id, newsItem.views]
+  );
 
+  // дата/контент
   const formattedDate = useMemo(
     () => new Date(newsItem.date).toLocaleDateString("ru-RU"),
     [newsItem.date]
   );
-
   const html = useMemo(() => marked.parse(newsItem.content ?? ""), [newsItem.content]);
 
-  // текущее значение для UI
+  // UI-счётчик
   const [viewsUI, setViewsUI] = useState(baseViews);
 
-  // инкремент ровно 1 раз за сессию и синхронизация со списком
+  // Инкремент счётчика на бэкенде (по IP, не чаще 1 раза в 24ч)
   useEffect(() => {
-    try {
-      const k = LS_KEY(newsItem.id);
-      const seenK = SEEN_KEY(newsItem.id);
-
-      const stored = Number.parseInt(localStorage.getItem(k) || "0", 10) || 0;
-      const seen = sessionStorage.getItem(seenK) === "1";
-
-      const nextStored = seen ? stored : stored + 1;
-
-      if (!seen) {
-        localStorage.setItem(k, String(nextStored)); // persist
-        sessionStorage.setItem(seenK, "1");          // no more increments this session
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/views/increment", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: newsItem.id }),
+        });
+        const data = await res.json();
+        if (!cancelled && data?.ok) {
+          // total — это «агрегат» из БД; хотим суммарно base + total
+          setViewsUI(baseViews + (data.total || 0));
+        } else if (!cancelled) {
+          setViewsUI(baseViews);
+        }
+      } catch {
+        if (!cancelled) setViewsUI(baseViews);
       }
-
-      setViewsUI(baseViews + nextStored);
-    } catch {
-      setViewsUI(baseViews);
-    }
-  }, [baseViews, newsItem.id]);
+    })();
+    return () => { cancelled = true; };
+  }, [newsItem.id, baseViews]);
 
   const pageTitle = `${newsItem.title} — Енисейтеплоком`;
   const ogUrl = `https://eniseiteplokom.ru/news/${newsItem.id}`;

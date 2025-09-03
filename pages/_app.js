@@ -1,5 +1,6 @@
 // pages/_app.js
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,15 +17,31 @@ const CookieConsentModal = dynamic(
 export default function App(props = {}) {
   const { Component, pageProps = {} } = props;
   const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    // защита от SSR
     if (typeof window === "undefined") return;
+
+    // проверяем куки
     const accepted = localStorage.getItem("cookiesAccepted");
     setShowModal(accepted !== "true");
-  }, []);
 
-  // на всякий
+    // --- Яндекс.Метрика SPA hits ---
+    const handleRouteChange = (url) => {
+      if (typeof window.ym === "function") {
+        window.ym(104008308, "hit", url);
+      }
+    };
+
+    // первый hit
+    handleRouteChange(window.location.pathname + window.location.search);
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   if (!Component) return null;
 
   return (
