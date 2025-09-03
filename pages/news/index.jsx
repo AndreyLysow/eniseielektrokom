@@ -119,13 +119,7 @@ export default function NewsPage({ news }) {
                         loading="lazy"
                         decoding="async"
                       />
-                      {/* опциональная «наклейка»-баннер */}
-                      <img
-                        src="/images/ohs-team.jpg"
-                        alt=""
-                        className={styles.bannerSticker}
-                        aria-hidden="true"
-                      />
+                 
                     </div>
                   )}
 
