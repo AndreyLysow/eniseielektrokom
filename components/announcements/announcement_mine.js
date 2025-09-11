@@ -95,7 +95,7 @@ export default function SpecialAnnouncement() {
 		<div className={styles.noticeDocs}>
 			<a
 			className={styles.docLink}
-			href="/documents/postanovlenie-eniseysk-198p-04-09-2025.pdf"
+			href="/docs/postanovlenie-eniseysk-198p-04-09-2025.pdf"
 			target="_blank"
 			rel="noopener noreferrer"
 			>
