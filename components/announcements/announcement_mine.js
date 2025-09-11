@@ -65,6 +65,48 @@ export default function SpecialAnnouncement() {
 
         <h1 className={styles.title}>Объявления</h1>
 
+				{/* ─── НОВОСТЬ: старт отопительного периода ─── */}
+		<section className={styles.notice}>
+		<h2 className={styles.noticeTitle}>Уважаемые абоненты!</h2>
+
+		<p>
+			В г. Енисейске и Енисейском районе в соответствии с постановлениями:
+			Администрации города Енисейска <strong>№ 198-п от 04.09.2025</strong> и
+			Администрации Енисейского района <strong>№ 633-п от 03.09.2025</strong>,
+			<strong> 15 сентября 2025 года с 00:00</strong> начинается отопительный период
+			2025–2026 годов.
+		</p>
+
+		<p>
+			Обращаем внимание, что температура теплоносителя будет повышаться постепенно.
+			Рекомендуем собственникам и представителям управляющих компаний при
+			необходимости выполнить мероприятия по развоздушиванию внутренних систем
+			отопления.
+		</p>
+
+		<div className={styles.noticePhones}>
+			<span>Телефоны для вопросов по запуску отопления: </span>
+			<ul>
+			<li><a href="tel:+79048982624">8&nbsp;(904)&nbsp;898-26-24</a></li>
+			<li><a href="tel:+79538521876">8&nbsp;(953)&nbsp;852-18-76</a></li>
+			</ul>
+		</div>
+
+		<div className={styles.noticeDocs}>
+			<a
+			className={styles.docLink}
+			href="/documents/postanovlenie-eniseysk-198p-04-09-2025.pdf"
+			target="_blank"
+			rel="noopener noreferrer"
+			>
+			Постановление Администрации г. Енисейска № 198-п от 04.09.2025 (PDF)
+			</a>
+		
+		</div>
+
+
+		</section>
+
         {/* ─── ЕДИНАЯ ПАНЕЛЬ С ТАБЛИЦЕЙ ─── */}
         <section className={styles.panel}>
           <header className={styles.panelHead}>
