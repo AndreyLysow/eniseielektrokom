@@ -101,7 +101,14 @@ export default function SpecialAnnouncement() {
 			>
 			Постановление Администрации г. Енисейска № 198-п от 04.09.2025 (PDF)
 			</a>
-		
+			<a
+			className={styles.docLink}
+			href="/docs/postanovlenie-eniseyskiy-633p-03-09-2025.pdf"
+			target="_blank"
+			rel="noopener noreferrer"
+			>
+			Постановление Администрации Енисейского района № 633-п от 03.09.2025 (PDF)
+			</a>
 		</div>
 
 
