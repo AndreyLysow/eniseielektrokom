@@ -4,15 +4,6 @@
    ========================= */
 
 /* ===== ОБЩЕЕ ===== */
-:root {
-	--brand-blue: #0b73f1;
-	--brand-blue-2: #45a2ff;
-	--text-main: #e0e6f0;
-	--text-soft: #dfeaff;
-	--dom-card: rgba(6, 22, 46, .72);
-	--dom-card-border: rgba(11, 115, 241, .45);
-}
-
 *,
 *::before,
 *::after {
@@ -52,7 +43,7 @@
 	font-size: 32px;
 	line-height: 1.25;
 	margin-bottom: 30px;
-	color: #e0e6f0;
+	color: var(--text-main);
 	text-transform: uppercase;
 	text-shadow: 0 0 12px rgba(11, 115, 241, .6);
 }
@@ -173,7 +164,7 @@
 	outline-offset: 2px;
 }
 
-/* ===== HERO (текст + баннер) ===== */
+/* ===== HERO ===== */
 .heroUnified {
 	display: grid;
 	grid-template-columns: 1.15fr .85fr;
@@ -200,12 +191,10 @@
 	color: var(--text-soft);
 	margin: 8px 0 16px;
 	overflow-wrap: anywhere;
-	/* длинные слова/ссылки не ломают сетку */
 }
 
 .heroColText {
 	min-width: 0;
-	/* корректные переносы в гриде */
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -266,7 +255,7 @@
 	padding-left: 15px;
 }
 
-/* ===== БРЕНД «ГОСУСЛУГИ ДОМ» ===== */
+/* ===== «Бренд Дом» ===== */
 .brandDom .content {
 	background-image:
 		radial-gradient(1200px 800px at 80% -10%, rgba(11, 115, 241, .25), transparent),
@@ -303,11 +292,9 @@
 	text-shadow: 0 0 8px #7cc7ff;
 }
 
-/* =======================================
-   АДАПТИВНЫЕ ТОЧКИ (дробная настройка)
-   ======================================= */
+/* ===== АДАПТИВ ===== */
 
-/* 1400↓ — немного компактнее на ноутбуках */
+/* 1400↓ */
 @media (max-width: 1400px) {
 	.content {
 		padding: 88px 24px 44px;
@@ -318,7 +305,7 @@
 	}
 }
 
-/* 1100↓ — шрифт заголовков поменьше */
+/* 1100↓ */
 @media (max-width: 1100px) {
 	.title {
 		font-size: 28px;
@@ -333,7 +320,7 @@
 	}
 }
 
-/* 992↓ — ужимаем боковые отступы, баннер короче */
+/* 992↓ */
 @media (max-width: 992px) {
 	.content {
 		padding: 76px 22px 40px;
@@ -344,7 +331,7 @@
 	}
 }
 
-/* 900↓ — одна колонка в hero, центрируем */
+/* 900↓ — одна колонка в hero */
 @media (max-width: 900px) {
 	.heroUnified {
 		grid-template-columns: 1fr;
@@ -371,7 +358,7 @@
 	}
 }
 
-/* 768↓ — заметно компактнее карточки/текст */
+/* 768↓ */
 @media (max-width: 768px) {
 	.content {
 		padding: 68px 18px 36px;
@@ -393,7 +380,7 @@
 	}
 }
 
-/* 576↓ — мобильные, уменьшаем свечение и кнопки */
+/* 576↓ — мобильные */
 @media (max-width: 576px) {
 	.title {
 		font-size: 22px;
@@ -431,7 +418,7 @@
 	}
 }
 
-/* 400↓ — «узкие» телефоны */
+/* 400↓ */
 @media (max-width: 400px) {
 	.title {
 		font-size: 20px;
@@ -450,7 +437,7 @@
 	}
 }
 
-/* 360↓ — самые маленькие экраны */
+/* 360↓ */
 @media (max-width: 360px) {
 	.content {
 		padding: 56px 12px 28px;
@@ -466,7 +453,7 @@
 	}
 }
 
-/* ===== Доступность: меньше резких анимаций ===== */
+/* Доступность: меньше резких анимаций */
 @media (prefers-reduced-motion: reduce) {
 
 	.articleBlock,
