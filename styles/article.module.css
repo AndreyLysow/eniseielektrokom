@@ -1,15 +1,8 @@
 /* =========================
-   ARTICLE / ENISEITEPLOKOM
-   Адаптив: 1400 → 320 px
+   ARTICLE PAGE STYLES
    ========================= */
 
 /* ===== ОБЩЕЕ ===== */
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
-
 .wrapper {
 	position: relative;
 	min-height: 100vh;
@@ -18,12 +11,9 @@
 	justify-content: center;
 	align-items: flex-start;
 	margin-top: 60px;
-	/* под фикс-хедер */
 	overflow-x: hidden;
-	/* защита от горизонтального скролла */
 }
 
-/* ===== КОНТЕНТ ===== */
 .content {
 	max-width: 1100px;
 	margin: 0 auto;
@@ -32,7 +22,6 @@
 	z-index: 3;
 }
 
-/* ===== ХЛЕБНЫЕ КРОШКИ ===== */
 .breadcrumbsWrapper {
 	margin-bottom: 20px;
 }
@@ -94,12 +83,12 @@
 	line-height: 1.55;
 }
 
-/* ===== ССЫЛКИ В ТЕКСТЕ ===== */
+/* ===== ССЫЛКИ ===== */
 .textContent a {
 	color: #7cc7ff;
 	text-decoration: none;
 	font-weight: 700;
-	transition: color .2s ease, text-shadow .2s ease, opacity .2s ease;
+	transition: color .2s ease, text-shadow .2s ease;
 }
 
 .textContent a:hover {
@@ -121,9 +110,8 @@
 	white-space: nowrap;
 	width: fit-content;
 	max-width: 100%;
-	text-decoration: none;
 	border: none;
-	transition: transform .12s ease, box-shadow .2s ease, background .2s ease, opacity .2s ease;
+	transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
 }
 
 .downloadLink {
@@ -168,7 +156,6 @@
 .heroUnified {
 	display: grid;
 	grid-template-columns: 1.15fr .85fr;
-	/* текст шире */
 	align-items: center;
 	gap: 28px;
 	padding: 28px;
@@ -200,7 +187,6 @@
 	gap: 10px;
 }
 
-/* ===== БАННЕР ===== */
 .heroColMedia {
 	margin: 0;
 	justify-self: end;
@@ -255,7 +241,7 @@
 	padding-left: 15px;
 }
 
-/* ===== «Бренд Дом» ===== */
+/* ===== BRAND DOM ===== */
 .brandDom .content {
 	background-image:
 		radial-gradient(1200px 800px at 80% -10%, rgba(11, 115, 241, .25), transparent),
@@ -293,19 +279,6 @@
 }
 
 /* ===== АДАПТИВ ===== */
-
-/* 1400↓ */
-@media (max-width: 1400px) {
-	.content {
-		padding: 88px 24px 44px;
-	}
-
-	.heroUnified {
-		gap: 24px;
-	}
-}
-
-/* 1100↓ */
 @media (max-width: 1100px) {
 	.title {
 		font-size: 28px;
@@ -320,18 +293,6 @@
 	}
 }
 
-/* 992↓ */
-@media (max-width: 992px) {
-	.content {
-		padding: 76px 22px 40px;
-	}
-
-	.heroColMedia {
-		max-width: 360px;
-	}
-}
-
-/* 900↓ — одна колонка в hero */
 @media (max-width: 900px) {
 	.heroUnified {
 		grid-template-columns: 1fr;
@@ -358,16 +319,13 @@
 	}
 }
 
-/* 768↓ */
 @media (max-width: 768px) {
 	.content {
 		padding: 68px 18px 36px;
 	}
 
 	.articleBlock {
-		padding: 20px 20px;
-		border-width: 1.5px;
-		box-shadow: 0 0 16px rgba(11, 115, 241, .28);
+		padding: 20px;
 	}
 
 	.textContent p,
@@ -380,13 +338,12 @@
 	}
 }
 
-/* 576↓ — мобильные */
 @media (max-width: 576px) {
 	.title {
 		font-size: 22px;
 		line-height: 1.3;
-		text-shadow: 0 0 8px rgba(11, 115, 241, .45);
 		margin-bottom: 22px;
+		text-shadow: 0 0 8px rgba(11, 115, 241, .45);
 	}
 
 	.content {
@@ -394,16 +351,13 @@
 	}
 
 	.articleBlock {
-		padding: 16px 16px;
+		padding: 16px;
 		margin-bottom: 20px;
-		border-radius: 10px;
-		box-shadow: 0 0 12px rgba(11, 115, 241, .22);
 	}
 
 	.textContent p,
 	.articleList li {
 		font-size: 15.5px;
-		line-height: 1.5;
 	}
 
 	.downloadLink,
@@ -418,7 +372,6 @@
 	}
 }
 
-/* 400↓ */
 @media (max-width: 400px) {
 	.title {
 		font-size: 20px;
@@ -434,33 +387,5 @@
 		font-size: 13px;
 		padding: 7px 10px;
 		gap: 6px;
-	}
-}
-
-/* 360↓ */
-@media (max-width: 360px) {
-	.content {
-		padding: 56px 12px 28px;
-	}
-
-	.articleBlock {
-		padding: 14px 12px;
-	}
-
-	.textContent p,
-	.articleList li {
-		font-size: 15px;
-	}
-}
-
-/* Доступность: меньше резких анимаций */
-@media (prefers-reduced-motion: reduce) {
-
-	.articleBlock,
-	.downloadLink,
-	.downloadPrimary,
-	.downloadSecondary,
-	.textContent a {
-		transition: none !important;
 	}
 }
