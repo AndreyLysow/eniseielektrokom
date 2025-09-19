@@ -95,7 +95,6 @@ export default function SpecialAnnouncement() {
           <Breadcrumbs />
         </div>
 
-        <h1 className={styles.title}>Важное объявление</h1>
 
         <div className={styles.announcementBlock}>
           <p className={styles.alertIcon}>📢</p>
@@ -183,12 +182,6 @@ export default function SpecialAnnouncement() {
           </div>
         </section>
 
-        <div className={styles.linkBlock}>
-          <p>✅ Ознакомьтесь со всеми сообщениями компании:</p>
-          <Link href="/announcements" className={styles.link}>
-            Перейти в раздел «Официальные сообщения» →
-          </Link>
-        </div>
       </main>
     </div>
   );

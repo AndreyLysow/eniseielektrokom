@@ -31,7 +31,8 @@ export default function Breadcrumbs({ lastLabel }) {
 	"promivka": "Промывка систем теплоснабжения",
 	"tech-connection": "Технологическое присоединение",
 	"vacancies": "Вакансии",
-	"ohs": "Охрана труда"
+	"ohs": "Охрана труда",
+	"gosuslugi-dom": "Госуслуги Дом"
   };
 
   // ✅ Сегменты, у которых нет страницы

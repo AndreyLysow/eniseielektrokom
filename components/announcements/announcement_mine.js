@@ -65,6 +65,34 @@ export default function SpecialAnnouncement() {
 
         <h1 className={styles.title}>Объявления</h1>
 
+			{/* ─── ГОСУСЛУГИ ДОМ ─── */}
+		<section className={styles.gosuslugiDom}>
+		<div className={styles.gosuslugiCard}>
+			{/* Баннер сверху */}
+			<div className={styles.gosuslugiBanner}>
+			<img
+				src="/gosuslugi-dom-banner.png"
+				alt="Госуслуги Дом — решайте все вопросы ЖКХ в одном приложении"
+				loading="lazy"
+				decoding="async"
+			/>
+			</div>
+
+			{/* Описание + кнопка ниже */}
+			<div className={styles.gosuslugiBody}>
+			<h2 className={styles.gosuslugiTitle}>Госуслуги Дом</h2>
+			<p className={styles.gosuslugiLead}>
+				Решайте все вопросы ЖКХ в одном приложении: передача показаний, оплата счетов, заявки в УК,
+				электронные собрания собственников, отчеты УК и гостевой доступ родственникам/арендаторам.
+			</p>
+			<Link href="/articles/gosuslugi-dom" className={styles.gosuslugiBtn}>
+				Подробнее →
+			</Link>
+			</div>
+		</div>
+		</section>
+
+
 				{/* ─── НОВОСТЬ: старт отопительного периода ─── */}
 		<section className={styles.notice}>
 		<h2 className={styles.noticeTitle}>Уважаемые абоненты!</h2>

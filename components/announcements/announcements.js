@@ -18,27 +18,41 @@ export default function GisAnnouncement() {
 
         <div className={styles.announcementBlock}>
           <p className={styles.icon}>ℹ️</p>
-          <h2 className={styles.subtitle}>
-            Важная информация и полезные ссылки для пользователей ГИС ЖКХ
-          </h2>
+			<h2 className={styles.subtitle}>
+			Важная информация и полезные ссылки для пользователей ГИС ЖКХ
+			</h2>
 
-          <ul className={styles.links}>
-            <li>
-              <Link href="https://giszhkh.ru/" target="_blank" rel="noopener noreferrer">
-			  Официальный сайт ГИС ЖКХ →
-              </Link>
-            </li>
-            <li>
-              <Link href="https://www.minstroyrf.gov.ru/press/bolee-10-millionov-rossiyan-stali-polzovatelyami-gis-zhkkh/" target="_blank">
-                Более 10 млн россиян стали пользователями ГИС ЖКХ →
-              </Link>
-            </li>
-            <li>
-              <Link href="https://minstroyrf.gov.ru/press/v-prilozhenii-gosuslugi-dom-poyavilsya-gostevoy-dostup/" target="_blank">
-                В «Госуслуги Дом» появился гостевой доступ →
-              </Link>
-            </li>
-          </ul>
+			<ul className={styles.links}>
+			<li>
+				<Link href="https://giszhkh.ru/" target="_blank" rel="noopener noreferrer">
+				Официальный сайт ГИС ЖКХ →
+				</Link>
+			</li>
+			
+			<li>
+				<Link href="/articles/gosuslugi-dom">
+				«Госуслуги Дом» — что умеет и как настроить гостевой доступ →
+				</Link>
+			</li>
+			<li>
+				<Link
+				href="https://www.minstroyrf.gov.ru/press/bolee-10-millionov-rossiyan-stali-polzovatelyami-gis-zhkkh/"
+				target="_blank"
+				rel="noopener noreferrer"
+				>
+				Более 10 млн россиян стали пользователями ГИС ЖКХ →
+				</Link>
+			</li>
+			<li>
+				<Link
+				href="https://minstroyrf.gov.ru/press/v-prilozhenii-gosuslugi-dom-poyavilsya-gostevoy-dostup/"
+				target="_blank"
+				rel="noopener noreferrer"
+				>
+				В «Госуслуги Дом» появился гостевой доступ →
+				</Link>
+			</li>
+			</ul>
         </div>
 
         <div className={styles.hotlineBlock}>
