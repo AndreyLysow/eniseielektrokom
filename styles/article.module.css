@@ -79,12 +79,12 @@
 	line-height: 1.5;
 }
 
-/* ===== ССЫЛКИ ===== */
+/* ===== ССЫЛКИ В ТЕКСТЕ ===== */
 .textContent a {
 	color: #00e5ff;
 	text-decoration: none;
 	font-weight: 700;
-	transition: color .3s ease;
+	transition: color .3s ease, text-shadow .3s ease;
 }
 
 .textContent a:hover {
@@ -92,12 +92,11 @@
 	text-shadow: 0 0 8px #00e5ff;
 }
 
-/* ===== КНОПКИ (фикс ширины) ===== */
+/* ===== КНОПКИ (ширина по содержимому, без подчёркивания) ===== */
 .downloadLink,
 .downloadPrimary,
 .downloadSecondary {
 	display: inline-flex;
-	/* не растягивается на всю ширину */
 	align-items: center;
 	gap: 8px;
 	margin-top: 12px;
@@ -105,11 +104,12 @@
 	font-weight: 700;
 	border-radius: 10px;
 	white-space: nowrap;
-	/* одна строка */
 	width: fit-content;
-	/* ширина по контенту */
 	max-width: 100%;
-	transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+	text-decoration: none;
+	/* ← убрано подчёркивание */
+	border: none;
+	transition: transform .12s ease, box-shadow .2s ease, background .2s ease, opacity .2s ease;
 }
 
 .downloadLink {
@@ -119,6 +119,7 @@
 
 .downloadLink:hover {
 	background: rgba(0, 123, 255, 1);
+	text-decoration: none;
 }
 
 .downloadPrimary {
@@ -126,11 +127,13 @@
 	color: #fff;
 	box-shadow: 0 8px 22px rgba(11, 115, 241, .35);
 	align-self: flex-start;
-	/* слева, не растягивать */
 }
 
 .downloadPrimary:hover {
 	transform: translateY(-1px);
+	box-shadow: 0 10px 26px rgba(11, 115, 241, .45);
+	text-decoration: none;
+	/* страховка */
 }
 
 .downloadSecondary {
@@ -141,6 +144,15 @@
 
 .downloadSecondary:hover {
 	background: rgba(255, 255, 255, .12);
+	text-decoration: none;
+}
+
+.downloadPrimary:focus-visible,
+.downloadSecondary:focus-visible,
+.downloadLink:focus-visible {
+	outline: 2px solid #7cc7ff;
+	outline-offset: 2px;
+	text-decoration: none;
 }
 
 /* ===== HERO (текст + баннер) ===== */
@@ -170,18 +182,18 @@
 	color: #dfeaff;
 	margin: 8px 0 16px;
 	overflow-wrap: anywhere;
-	/* длинные слова не ломают лэйаут */
+	/* длинные слова/ссылки не ломают сетку */
 }
 
 .heroColText {
 	min-width: 0;
-	/* позволяет тексту переноситься в гриде */
+	/* корректные переносы в гриде */
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
-/* ===== БАННЕР: всегда виден ===== */
+/* ===== БАННЕР ===== */
 .heroColMedia {
 	margin: 0;
 	justify-self: end;
@@ -194,7 +206,7 @@
 	box-shadow: 0 12px 28px rgba(0, 0, 0, .28), 0 0 22px rgba(11, 115, 241, .25);
 	padding: 10px;
 	aspect-ratio: 4/5;
-	/* резервируем место под картинку */
+	/* резервируем место под изображение */
 	display: flex;
 }
 
@@ -204,11 +216,11 @@
 	height: 100%;
 	border-radius: 12px;
 	object-fit: contain;
-	/* не обрезать баннер */
+	/* не обрезать */
 	object-position: center;
 }
 
-/* ===== ТАБЛИЦА ===== */
+/* ===== ТАБЛИЦА (если понадобится) ===== */
 .normativesTable {
 	width: 100%;
 	border-collapse: collapse;
@@ -296,7 +308,7 @@
 @media (max-width:900px) {
 	.heroUnified {
 		grid-template-columns: 1fr;
-		/* колонка */
+		/* одна колонка */
 		padding: 22px;
 		text-align: center;
 	}
@@ -313,7 +325,7 @@
 		justify-self: center;
 		max-width: min(520px, 92vw);
 		aspect-ratio: auto;
-		/* даём картинке естественную высоту */
+		/* естественная высота */
 	}
 
 	.heroColMedia img {
