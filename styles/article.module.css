@@ -1,8 +1,8 @@
 /* =========================
-   ARTICLE PAGE STYLES
+   ARTICLE PAGE (robust → mobile-lite)
    ========================= */
 
-/* ===== ОБЩЕЕ ===== */
+/* ===== WRAPPER ===== */
 .wrapper {
 	position: relative;
 	min-height: 100vh;
@@ -14,89 +14,97 @@
 	overflow-x: hidden;
 }
 
+/* ===== CONTENT ===== */
 .content {
 	max-width: 1100px;
 	margin: 0 auto;
-	padding: 100px 24px 48px;
+	padding: clamp(64px, 6vw, 104px) clamp(14px, 2.4vw, 28px) clamp(34px, 4.2vw, 56px);
 	backdrop-filter: blur(8px);
 	z-index: 3;
 }
 
+/* ===== BREADCRUMBS ===== */
 .breadcrumbsWrapper {
 	margin-bottom: 20px;
 }
 
-/* ===== ЗАГОЛОВКИ ===== */
+/* ===== TITLES ===== */
 .title {
 	text-align: center;
-	font-size: 32px;
-	line-height: 1.25;
-	margin-bottom: 30px;
+	font-size: clamp(22px, 3.2vw, 36px);
+	line-height: 1.24;
+	margin-bottom: clamp(18px, 3vw, 32px);
 	color: var(--text-main);
 	text-transform: uppercase;
-	text-shadow: 0 0 12px rgba(11, 115, 241, .6);
+	text-shadow: 0 0 14px rgba(11, 115, 241, .75);
+	letter-spacing: .2px;
 }
 
 .subtitle {
-	font-size: 22px;
+	font-size: clamp(18px, 2.6vw, 22px);
 	font-weight: 700;
 	color: #9ccdff;
-	margin: 0 0 16px;
+	margin: 0 0 clamp(12px, 2.4vw, 18px);
 	text-align: center;
 	text-transform: uppercase;
 }
 
-/* ===== КАРТОЧКИ ===== */
+/* ===== BLOCK (CARD) ===== */
 .articleBlock {
-	background: rgba(0, 0, 0, .7);
-	padding: 24px 28px;
+	background: rgba(0, 0, 0, .68);
+	padding: clamp(14px, 2.4vw, 26px) clamp(14px, 2.6vw, 28px);
 	border-radius: 12px;
-	border: 2px solid var(--brand-blue);
-	box-shadow: 0 0 20px rgba(11, 115, 241, .3);
-	margin-bottom: 28px;
+	border: 2px solid rgba(124, 199, 255, .55);
+	/* сильнее по умолчанию */
+	box-shadow:
+		0 0 22px rgba(11, 115, 241, .32),
+		inset 0 0 0.01px rgba(255, 255, 255, .001);
+	/* фикс анти-алиасинга */
+	margin-bottom: clamp(20px, 2.8vw, 32px);
 	transition: box-shadow .25s ease, border-color .25s ease, transform .12s ease;
+	position: relative;
 }
 
 .articleBlock:hover {
-	box-shadow: 0 0 32px rgba(11, 115, 241, .55);
-	border-color: #23a2ff;
+	box-shadow: 0 0 34px rgba(11, 115, 241, .52);
+	border-color: rgba(124, 199, 255, .85);
 }
 
-/* ===== ТЕКСТ ===== */
+/* ===== TEXT ===== */
 .textContent p {
-	font-size: 18px;
-	margin: 0 0 14px;
-	line-height: 1.7;
+	font-size: clamp(16px, 2.2vw, 18.5px);
+	margin: 0 0 clamp(10px, 2vw, 16px);
+	line-height: 1.68;
 	color: var(--text-main);
 }
 
-/* ===== СПИСКИ ===== */
+/* ===== LISTS ===== */
 .articleList {
 	list-style: disc;
 	padding-left: 20px;
-	margin: 12px 0 0;
+	margin: clamp(10px, 1.6vw, 14px) 0 0;
 }
 
 .articleList li {
-	font-size: 18px;
-	margin-bottom: 10px;
+	font-size: clamp(16px, 2.1vw, 18px);
+	margin-bottom: clamp(8px, 1.8vw, 12px);
 	line-height: 1.55;
 }
 
-/* ===== ССЫЛКИ ===== */
+/* ===== LINKS ===== */
 .textContent a {
-	color: #7cc7ff;
-	text-decoration: none;
+	color: #00e5ff;
 	font-weight: 700;
-	transition: color .2s ease, text-shadow .2s ease;
+	text-decoration: none;
+	transition: color .25s ease, text-shadow .25s ease;
 }
 
 .textContent a:hover {
 	color: #cfe8ff;
-	text-shadow: 0 0 8px #7cc7ff;
+	text-shadow: 0 0 10px #7cc7ff;
 }
 
-/* ===== КНОПКИ ===== */
+/* ===== CTA BUTTONS ===== */
 .downloadLink,
 .downloadPrimary,
 .downloadSecondary {
@@ -104,8 +112,9 @@
 	align-items: center;
 	gap: 8px;
 	margin-top: 12px;
-	padding: 10px 16px;
+	padding: clamp(8px, 1.6vw, 12px) clamp(12px, 2.2vw, 16px);
 	font-weight: 700;
+	font-size: clamp(14px, 2vw, 15.5px);
 	border-radius: 10px;
 	white-space: nowrap;
 	width: fit-content;
@@ -115,7 +124,7 @@
 }
 
 .downloadLink {
-	background: rgba(0, 123, 255, .9);
+	background: rgba(0, 123, 255, .95);
 	color: #fff;
 }
 
@@ -126,19 +135,18 @@
 .downloadPrimary {
 	background: linear-gradient(90deg, var(--brand-blue), var(--brand-blue-2));
 	color: #fff;
-	box-shadow: 0 8px 22px rgba(11, 115, 241, .35);
-	align-self: flex-start;
+	box-shadow: 0 10px 24px rgba(11, 115, 241, .38);
 }
 
 .downloadPrimary:hover {
 	transform: translateY(-1px);
-	box-shadow: 0 10px 26px rgba(11, 115, 241, .45);
+	box-shadow: 0 12px 28px rgba(11, 115, 241, .48);
 }
 
 .downloadSecondary {
 	background: rgba(255, 255, 255, .08);
 	color: #eaf1ff;
-	border: 1px solid rgba(255, 255, 255, .15);
+	border: 1px solid rgba(255, 255, 255, .18);
 }
 
 .downloadSecondary:hover {
@@ -159,50 +167,45 @@
 	align-items: center;
 	gap: 28px;
 	padding: 28px;
-	overflow: hidden;
 }
 
 .titleHero {
-	margin: 0 0 10px;
-	font-size: 32px;
+	margin: 0 0 12px;
+	font-size: clamp(24px, 3.2vw, 34px);
 	line-height: 1.2;
 	color: #eaf1ff;
 	text-transform: uppercase;
-	text-align: left;
-	text-shadow: 0 0 12px rgba(11, 115, 241, .6);
+	text-shadow: 0 0 14px rgba(11, 115, 241, .7);
 }
 
 .lead {
-	font-size: 18px;
-	line-height: 1.6;
+	font-size: clamp(16px, 2.2vw, 18px);
+	line-height: 1.62;
 	color: var(--text-soft);
 	margin: 8px 0 16px;
 	overflow-wrap: anywhere;
 }
 
 .heroColText {
-	min-width: 0;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
 .heroColMedia {
-	margin: 0;
 	justify-self: end;
 	width: 100%;
-	max-width: 420px;
+	max-width: 440px;
 	border-radius: 16px;
 	background: #fff;
 	border: 1px solid rgba(0, 0, 0, .08);
-	box-shadow: 0 12px 28px rgba(0, 0, 0, .28), 0 0 22px rgba(11, 115, 241, .25);
+	box-shadow: 0 12px 28px rgba(0, 0, 0, .28), 0 0 24px rgba(11, 115, 241, .28);
 	padding: 10px;
 	aspect-ratio: 4/5;
 	display: flex;
 }
 
 .heroColMedia img {
-	display: block;
 	width: 100%;
 	height: 100%;
 	border-radius: 12px;
@@ -210,19 +213,19 @@
 	object-position: center;
 }
 
-/* ===== ТАБЛИЦА ===== */
+/* ===== TABLE (optional) ===== */
 .normativesTable {
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 20px;
-	background: rgba(0, 0, 0, .6);
+	background: rgba(0, 0, 0, .62);
 	border-radius: 10px;
 	overflow: hidden;
 }
 
 .normativesTable th,
 .normativesTable td {
-	border: 1px solid rgba(255, 255, 255, .2);
+	border: 1px solid rgba(255, 255, 255, .22);
 	padding: 10px;
 	text-align: center;
 	color: var(--text-main);
@@ -235,13 +238,13 @@
 }
 
 .groupTitle {
-	background: rgba(0, 123, 255, .2);
+	background: rgba(0, 123, 255, .22);
 	font-weight: 700;
 	text-align: left;
 	padding-left: 15px;
 }
 
-/* ===== BRAND DOM ===== */
+/* ===== BRAND DOM VARIANT ===== */
 .brandDom .content {
 	background-image:
 		radial-gradient(1200px 800px at 80% -10%, rgba(11, 115, 241, .25), transparent),
@@ -252,17 +255,17 @@
 .brandDom .articleBlock {
 	background: var(--dom-card);
 	border-color: var(--dom-card-border);
-	box-shadow: 0 0 24px rgba(11, 115, 241, .28);
+	box-shadow: 0 0 26px rgba(11, 115, 241, .32);
 }
 
 .brandDom .articleBlock:hover {
-	box-shadow: 0 0 42px rgba(11, 115, 241, .55);
+	box-shadow: 0 0 40px rgba(11, 115, 241, .54);
 	border-color: #23a2ff;
 }
 
 .brandDom .title {
 	color: #eaf1ff;
-	text-shadow: 0 0 14px rgba(11, 115, 241, .8);
+	text-shadow: 0 0 16px rgba(11, 115, 241, .85);
 }
 
 .brandDom .subtitle {
@@ -275,25 +278,27 @@
 
 .brandDom .textContent a:hover {
 	color: #cfe8ff;
-	text-shadow: 0 0 8px #7cc7ff;
+	text-shadow: 0 0 9px #7cc7ff;
 }
 
-/* ===== АДАПТИВ ===== */
-@media (max-width: 1100px) {
-	.title {
-		font-size: 28px;
+/* =========================
+   RESPONSIVE TUNING
+   ========================= */
+
+/* ноутбуки / планшеты в альбомной */
+@media (max-width: 1199px) {
+	.articleBlock {
+		border-width: 1.5px;
+		box-shadow: 0 0 18px rgba(11, 115, 241, .28);
 	}
 
-	.titleHero {
-		font-size: 28px;
-	}
-
-	.heroUnified {
-		gap: 22px;
+	.heroColMedia {
+		max-width: 400px;
 	}
 }
 
-@media (max-width: 900px) {
+/* ≤1024: hero в одну колонку */
+@media (max-width: 1024px) {
 	.heroUnified {
 		grid-template-columns: 1fr;
 		padding: 22px;
@@ -310,7 +315,7 @@
 
 	.heroColMedia {
 		justify-self: center;
-		max-width: min(520px, 92vw);
+		max-width: min(460px, 92vw);
 		aspect-ratio: auto;
 	}
 
@@ -319,45 +324,38 @@
 	}
 }
 
-@media (max-width: 768px) {
-	.content {
-		padding: 68px 18px 36px;
-	}
-
-	.articleBlock {
-		padding: 20px;
-	}
-
-	.textContent p,
-	.articleList li {
-		font-size: 16.5px;
+/* телефон/портрет */
+@media (max-width: 576px) {
+	.title {
+		font-size: clamp(20px, 5.6vw, 24px);
+		text-shadow: 0 0 10px rgba(11, 115, 241, .55);
 	}
 
 	.subtitle {
-		font-size: 20px;
-	}
-}
-
-@media (max-width: 576px) {
-	.title {
-		font-size: 22px;
-		line-height: 1.3;
-		margin-bottom: 22px;
-		text-shadow: 0 0 8px rgba(11, 115, 241, .45);
+		font-size: clamp(16px, 4.4vw, 18px);
 	}
 
 	.content {
-		padding: 60px 15px 32px;
+		padding-left: 12px;
+		padding-right: 12px;
 	}
 
+	/* мобильный лайт: убираем «коробку», оставляем акцентную линию */
 	.articleBlock {
-		padding: 16px;
-		margin-bottom: 20px;
+		border: none;
+		box-shadow: none;
+		padding: 14px 12px;
 	}
 
-	.textContent p,
-	.articleList li {
-		font-size: 15.5px;
+	.articleBlock::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 2px;
+		background: linear-gradient(90deg, rgba(80, 150, 255, .9), rgba(30, 200, 255, .7));
+		border-radius: 2px;
 	}
 
 	.downloadLink,
@@ -365,20 +363,96 @@
 	.downloadSecondary {
 		font-size: 14px;
 		padding: 8px 12px;
-	}
-
-	.lead {
-		font-size: 16px;
+		border-radius: 9px;
 	}
 }
 
-@media (max-width: 400px) {
-	.title {
-		font-size: 20px;
+/* very small phones */
+@media (max-width: 360px) {
+	.content {
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 
-	.subtitle {
-		font-size: 18px;
+	.articleBlock {
+		padding: 12px 10px;
+	}
+
+	.articleList {
+		padding-left: 18px;
+	}
+}
+
+/* accessibility: less motion */
+@media (prefers-reduced-motion: reduce) {
+
+	.articleBlock,
+	.downloadLink,
+	.downloadPrimary,
+	.downloadSecondary,
+	.textContent a {
+		transition: none !important;
+	}
+}
+
+/* ==== FIX: безопасная вёрстка на сверхузких экранах ==== */
+
+/* 0) базовая защита от переполнения */
+.content {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.articleBlock {
+	max-width: 100%;
+	overflow: hidden;
+}
+
+/* не даём контенту выползти за рамку */
+.textContent,
+.articleList {
+	word-break: break-word;
+	overflow-wrap: anywhere;
+}
+
+/* ломаем длинные слова/ссылки */
+
+/* 1) у списков иногда «ползёт» из-за суммирования margin+padding */
+.articleList {
+	padding-inline-start: 18px;
+	margin-left: 0;
+}
+
+/* 2) на границе брейкпоинтов ужимаем внутренний отступ,
+      чтобы учесть толщину рамки и не вылезти на 320–360px */
+@media (max-width: 380px) {
+	.content {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.articleBlock {
+		padding: 12px 10px;
+		/* меньше горизонтального паддинга */
+		border-width: 2px;
+		/* оставляем фирменную рамку */
+		border-radius: 10px;
+	}
+
+	.textContent p {
+		margin-bottom: 10px;
+	}
+
+	.articleList {
+		padding-inline-start: 16px;
+	}
+}
+
+/* 3) ещё более узкие устройства/встроенные webview */
+@media (max-width: 340px) {
+	.articleBlock {
+		width: calc(100% - 2px);
+		/* страхуемся от субпиксельной потери ширины */
 	}
 
 	.downloadLink,
@@ -386,6 +460,13 @@
 	.downloadSecondary {
 		font-size: 13px;
 		padding: 7px 10px;
-		gap: 6px;
 	}
+}
+
+/* 4) таблицы/медиа внутри карточек — всегда по ширине карточки */
+.normativesTable,
+.textContent img,
+.textContent video {
+	max-width: 100%;
+	width: 100%;
 }
