@@ -29,6 +29,7 @@ export default function Breadcrumbs({ lastLabel }) {
 	"service-quality": "Требования к качеству коммунальных услуг",
 	"no-meter-data": "Непредоставление показаний ИПУ и ОДПУ",
 	"promivka": "Промывка систем теплоснабжения",
+	"air-vent": "Завоздушивание систем отопления",
 	"tech-connection": "Технологическое присоединение",
 	"vacancies": "Вакансии",
 	"ohs": "Охрана труда",

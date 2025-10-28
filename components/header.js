@@ -36,6 +36,7 @@ const menuData = {
             { title: "Требования к качеству услуг", link: "/articles/service-quality" },
             { title: "Последствия непредоставления показаний", link: "/articles/no-meter-data" },
             { title: "Промывка систем отопления (требования)", link: "/articles/promivka" },
+            { title: "Завоздушивание систем отопления", link: "/articles/air-vent" },
             { title: "Технологическое присоединение", link: "/articles/tech-connection" },
           ],
         },
