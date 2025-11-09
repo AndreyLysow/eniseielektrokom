@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import CustomHead from "../../components/customHead";
 import Header from "../../components/header";
@@ -113,11 +114,14 @@ export default function NewsPage({ news }) {
                 <article key={item.id} className={styles.card}>
                   {imageSrc && (
                     <div className={styles.media}>
-                      <img
+                      <Image
                         src={imageSrc}
                         alt={item.title ? `Обложка: ${item.title}` : "Обложка новости"}
+                        width={400}
+                        height={250}
                         loading="lazy"
-                        decoding="async"
+                        quality={85}
+                        style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
                       />
                  
                     </div>

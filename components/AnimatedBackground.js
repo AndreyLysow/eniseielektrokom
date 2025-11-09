@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "../styles/animatedBackground.module.css";
 
 export default function AnimatedBackground() {
@@ -141,14 +142,17 @@ export default function AnimatedBackground() {
           muted
           playsInline
           webkit-playsinline="true"
-          preload="auto"
+          preload="metadata"
           onError={() => setVideoError(true)} // Если видео не загрузилось
         />
       ) : (
-        <img
-          src="/logoetk.png" // ✅ Fallback картинка
+        <Image
+          src="/logoetk.png"
           alt="Фон"
           className={styles.videoBg}
+          fill
+          quality={75}
+          priority={false}
         />
       )}
       <div className={styles.overlay} />

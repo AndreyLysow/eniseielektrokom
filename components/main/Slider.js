@@ -70,7 +70,14 @@ export default function Slider() {
         <div ref={listRef} className={styles.cardsContainer}>
           {cards.map((c) => (
             <div key={c.title} className={styles.card}>
-              <Image src={c.img} alt={c.title} width={100} height={100} />
+              <Image 
+                src={c.img} 
+                alt={c.title} 
+                width={100} 
+                height={100}
+                loading="lazy"
+                quality={85}
+              />
               <h3 className={styles.cardTitle}>{c.title}</h3>
               <div className={styles.cardHoverContent}>
                 <p>{c.text}</p>
