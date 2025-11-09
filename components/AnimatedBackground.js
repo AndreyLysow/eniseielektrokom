@@ -11,7 +11,7 @@ export default function AnimatedBackground() {
     const video = videoRef.current;
 
     if (video) {
-      video.playbackRate = 0.7;
+      video.playbackRate = 0.35;
 
       // Попытка autoplay (на iOS может не сработать)
       video.play().catch(() => {
