@@ -8,6 +8,14 @@
 	width: 100vw;
 	height: 100vh;
 	object-fit: cover;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: crisp-edges;
+	will-change: transform;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	filter: blur(0.5px);
+	-webkit-filter: blur(0.5px);
 }
 
 .overlay {
