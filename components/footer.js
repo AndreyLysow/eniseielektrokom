@@ -35,14 +35,16 @@ const Footer = () => {
       <div className={styles.footerTop}>
         <div className={styles.footerContainer}>
           <div className={styles.footerLogoSection}>
-            <Image
-              src="/images/logoelectrokom.svg"
-              alt="Енисейэлектроком"
-              width={140}
-              height={140}
-              className={styles.footerLogo}
-              unoptimized
-            />
+            <div className={styles.footerLogoWrapper}>
+              <Image
+                src="/images/logoelectrokom.svg"
+                alt="Енисейэлектроком"
+                width={140}
+                height={140}
+                className={styles.footerLogo}
+                unoptimized
+              />
+            </div>
             <span className={styles.footerOrgName}>
               ООО Енисейская электроснабжающая<br />компания
             </span>

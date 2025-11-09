@@ -40,12 +40,25 @@
 	min-width: 0;
 }
 
+.footerLogoWrapper {
+	width: 140px;
+	height: 140px;
+	flex-shrink: 0;
+	border-radius: 50%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .footerLogo {
 	width: 140px;
 	height: 140px;
 	flex-shrink: 0;
 	object-fit: contain;
 	border-radius: 50%;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
 }
 
 .footerOrgName {
@@ -194,6 +207,11 @@
 @media (max-width: 576px) {
 	.footer {
 		padding: 30px 16px;
+	}
+
+	.footerLogoWrapper {
+		width: 120px;
+		height: 120px;
 	}
 
 	.footerLogo {

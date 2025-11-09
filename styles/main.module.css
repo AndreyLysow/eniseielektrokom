@@ -48,10 +48,11 @@
 
 .attentionBanner {
 	display: inline-block;
-	background: rgba(100, 3, 3, 0.6);
+	background: rgba(44, 44, 44, 0.85);
+	border: 2px solid rgba(255, 107, 53, 0.5);
 	border-radius: 10px;
 	padding: 20px 30px;
-	box-shadow: 0 4px 8px #D0D7E1;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 107, 53, 0.2);
 	color: white;
 	max-width: 800px;
 	margin-top: 160px;
@@ -69,14 +70,14 @@
 }
 
 .attentionButton {
-	background-color: rgba(100, 3, 3, 0.6);
+	background-color: rgba(255, 107, 53, 0.9);
 	color: white;
 	padding: 12px 24px;
 	border-radius: 5px;
 	font-size: 14px;
 	font-weight: bold;
 	text-transform: uppercase;
-	box-shadow: 0 2px 4px #D0D7E1;
+	box-shadow: 0 2px 4px rgba(255, 107, 53, 0.4);
 	border: none;
 	text-decoration: none;
 	cursor: pointer;
@@ -84,9 +85,10 @@
 }
 
 .attentionButton:hover {
-	background-color: #D0D7E1;
-	color: #151F48;
+	background-color: rgba(255, 107, 53, 1);
+	color: white;
 	transform: scale(1.05);
+	box-shadow: 0 4px 8px rgba(255, 107, 53, 0.6);
 }
 
 .footer {
