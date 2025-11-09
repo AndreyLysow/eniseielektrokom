@@ -29,13 +29,18 @@
 	max-width: 390px;
 	height: 260px;
 	border-radius: 10px;
-	background: rgba(255, 107, 53, 0.7);
-	box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
+	background: rgba(44, 44, 44, 0.75);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	border: 2px solid rgba(255, 107, 53, 0.3);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	transition: transform 0.4s;
+	transition: transform 0.4s, border-color 0.3s;
+}
+
+.card:hover {
+	border-color: rgba(255, 107, 53, 0.6);
 }
 
 .card img {
@@ -71,14 +76,14 @@
 }
 
 .baseButton {
-	background-color: rgba(255, 107, 53, 0.8);
+	background-color: rgba(255, 107, 53, 0.9);
 	color: white;
 	padding: 12px 24px;
 	border-radius: 5px;
 	font-size: 14px;
 	font-weight: bold;
 	text-transform: uppercase;
-	box-shadow: 0 2px 4px rgba(255, 107, 53, 0.4);
+	box-shadow: 0 2px 4px rgba(255, 107, 53, 0.5);
 	border: none;
 	text-decoration: none;
 	cursor: pointer;
@@ -86,9 +91,10 @@
 }
 
 .baseButton:hover {
-	background-color: rgba(255, 140, 66, 1);
+	background-color: rgba(255, 107, 53, 1);
 	color: white;
 	transform: scale(1.05);
+	box-shadow: 0 4px 8px rgba(255, 107, 53, 0.6);
 }
 
 /* ───── Стрелки навигации ───── */

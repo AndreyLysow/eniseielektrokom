@@ -1,7 +1,7 @@
 /* =============== Footer.module.css (переработанный) =============== */
 
 .footer {
-	background-color: #151F48;
+	background-color: #2C2C2C;
 	color: #ffffff;
 	padding: 40px 20px;
 	width: 100%;
@@ -42,8 +42,10 @@
 
 .footerLogo {
 	width: 140px;
-	height: auto;
+	height: 140px;
 	flex-shrink: 0;
+	object-fit: contain;
+	border-radius: 50%;
 }
 
 .footerOrgName {
@@ -106,7 +108,7 @@
 }
 
 .footerLinks a:hover {
-	color: #9CCDDB;
+	color: #FF6B35;
 	text-decoration: underline;
 }
 
@@ -128,7 +130,7 @@
 }
 
 .footerBottom a {
-	color: #9CCDDB;
+	color: #FF6B35;
 	text-decoration: none;
 }
 
@@ -196,6 +198,7 @@
 
 	.footerLogo {
 		width: 120px;
+		height: 120px;
 	}
 
 	.footerOrgName {
