@@ -10,18 +10,11 @@ const nextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    qualities: [75, 85, 100],
   },
 
   // Компрессия
   compress: true,
-
-  // Оптимизация production сборки
-  swcMinify: true,
-  
-  // Оптимизация бандлов
-  experimental: {
-    optimizeCss: true,
-  },
 
   // Headers для кэширования и безопасности
   async headers() {
