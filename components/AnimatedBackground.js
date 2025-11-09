@@ -33,7 +33,7 @@ export default function AnimatedBackground() {
       {!videoError ? (
         <video
           ref={videoRef}
-          src="/eniseysk_slow2.mp4" // ✅ Путь из public
+          src="/eniseysk2.mp4" // ✅ Путь из public
           className={styles.videoBg}
           autoPlay
           muted
