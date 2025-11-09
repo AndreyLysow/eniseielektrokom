@@ -146,14 +146,17 @@ export default function AnimatedBackground() {
           onError={() => setVideoError(true)} // Если видео не загрузилось
         />
       ) : (
-        <Image
-          src="/logoetk.png"
-          alt="Фон"
-          className={styles.videoBg}
-          fill
-          quality={75}
-          priority={false}
-        />
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <Image
+            src="/logoetk.png"
+            alt="Фон"
+            className={styles.videoBg}
+            fill
+            quality={75}
+            priority={false}
+            sizes="100vw"
+          />
+        </div>
       )}
       <div className={styles.overlay} />
     </div>
