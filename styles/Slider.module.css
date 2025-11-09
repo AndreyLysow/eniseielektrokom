@@ -29,8 +29,8 @@
 	max-width: 390px;
 	height: 260px;
 	border-radius: 10px;
-	background: rgba(3, 18, 100, 0.6);
-	box-shadow: 0 4px 8px #D0D7E1;
+	background: rgba(255, 107, 53, 0.7);
+	box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -71,14 +71,14 @@
 }
 
 .baseButton {
-	background-color: rgba(3, 18, 100, 0.6);
+	background-color: rgba(255, 107, 53, 0.8);
 	color: white;
 	padding: 12px 24px;
 	border-radius: 5px;
 	font-size: 14px;
 	font-weight: bold;
 	text-transform: uppercase;
-	box-shadow: 0 2px 4px #D0D7E1;
+	box-shadow: 0 2px 4px rgba(255, 107, 53, 0.4);
 	border: none;
 	text-decoration: none;
 	cursor: pointer;
@@ -86,8 +86,8 @@
 }
 
 .baseButton:hover {
-	background-color: #D0D7E1;
-	color: #151F48;
+	background-color: rgba(255, 140, 66, 1);
+	color: white;
 	transform: scale(1.05);
 }
 
@@ -142,7 +142,7 @@
 }
 
 .activeDot {
-	background: #4A90D9;
+	background: #FF6B35;
 }
 
 /* ───── Планшеты ───── */
