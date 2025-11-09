@@ -48,47 +48,89 @@
 
 .attentionBanner {
 	display: inline-block;
-	background: rgba(44, 44, 44, 0.85);
-	border: 2px solid rgba(255, 107, 53, 0.5);
-	border-radius: 10px;
-	padding: 20px 30px;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 107, 53, 0.2);
+	background: linear-gradient(135deg, rgba(255, 107, 53, 0.95) 0%, rgba(255, 140, 66, 0.95) 100%);
+	border: 3px solid rgba(255, 255, 255, 0.3);
+	border-radius: 15px;
+	padding: 30px 40px;
+	box-shadow: 0 8px 24px rgba(255, 107, 53, 0.5), 0 0 40px rgba(255, 107, 53, 0.3);
 	color: white;
 	max-width: 800px;
 	margin-top: 160px;
+	position: relative;
+	overflow: hidden;
+	animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.attentionBanner::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+	animation: rotate 8s linear infinite;
+	pointer-events: none;
 }
 
 .attentionBanner h1 {
 	font-size: 27px;
 	font-weight: bold;
 	margin-bottom: 10px;
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	position: relative;
+	z-index: 1;
 }
 
 .attentionBanner p {
 	font-size: 18px;
 	margin-bottom: 15px;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	position: relative;
+	z-index: 1;
+}
+
+@keyframes pulseGlow {
+	0%, 100% {
+		box-shadow: 0 8px 24px rgba(255, 107, 53, 0.5), 0 0 40px rgba(255, 107, 53, 0.3);
+	}
+	50% {
+		box-shadow: 0 8px 32px rgba(255, 107, 53, 0.7), 0 0 50px rgba(255, 107, 53, 0.5);
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 .attentionButton {
-	background-color: rgba(255, 107, 53, 0.9);
-	color: white;
-	padding: 12px 24px;
-	border-radius: 5px;
-	font-size: 14px;
+	background-color: rgba(255, 255, 255, 0.95);
+	color: #FF6B35;
+	padding: 14px 28px;
+	border-radius: 8px;
+	font-size: 15px;
 	font-weight: bold;
 	text-transform: uppercase;
-	box-shadow: 0 2px 4px rgba(255, 107, 53, 0.4);
-	border: none;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	border: 2px solid rgba(255, 255, 255, 0.5);
 	text-decoration: none;
 	cursor: pointer;
-	transition: background-color 0.3s, color 0.3s, transform 0.3s;
+	transition: all 0.3s ease;
+	position: relative;
+	z-index: 1;
+	display: inline-block;
 }
 
 .attentionButton:hover {
-	background-color: rgba(255, 107, 53, 1);
-	color: white;
-	transform: scale(1.05);
-	box-shadow: 0 4px 8px rgba(255, 107, 53, 0.6);
+	background-color: rgba(255, 255, 255, 1);
+	color: #FF6B35;
+	transform: scale(1.08) translateY(-2px);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .footer {
