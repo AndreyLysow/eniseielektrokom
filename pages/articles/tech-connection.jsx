@@ -7,13 +7,13 @@ export default function TechConnectionPage() {
   return (
     <>
       <CustomHead
-        title="Технологическое присоединение — Енисейтеплоком"
+        title="Технологическое присоединение — Енисейэлектроком"
         description="Правила подключения (технологического присоединения) к системам теплоснабжения по Постановлению №2115, включая порядок, сроки и права заявителей."
-        keywords="технологическое присоединение, подключение теплоснабжение, правила 2115, Енисейтеплоком"
+        keywords="технологическое присоединение, подключение теплоснабжение, правила 2115, Енисейэлектроком"
         ogTitle="Технологическое присоединение"
         ogDescription="Подключение к системам теплоснабжения: порядок, сроки, документы по Постановлению №2115"
         ogImage="/logoetk.png"
-        ogUrl="https://eniseiteplokom.ru/articles/tech-connection"
+        ogUrl="https://eniseielektrokom.ru/articles/tech-connection"
       />
       <Header />
       <TechConnection />

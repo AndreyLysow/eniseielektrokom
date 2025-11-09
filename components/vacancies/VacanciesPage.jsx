@@ -29,10 +29,10 @@ export default function CareersEtkom() {
           {/* Блок о компании */}
           <div className="text-image-section">
             <div className="text-content">
-              <h2>Енисейтеплоком — тепло, за которым стоит команда</h2>
+              <h2>Енисейэлектроком — электроэнергия, за которой стоит команда</h2>
               <p>
-                Мы — единая теплоснабжающая организация города Енисейска и района.
-                Эксплуатируем котельные и тепловые сети, внедряем автоматику и решения по энергоэффективности,
+                Мы — единая электроснабжающая организация города Енисейска и района.
+                Эксплуатируем подстанции и электросети, внедряем автоматику и решения по энергоэффективности,
                 поддерживаем высокий стандарт безопасности и качества.
               </p>
               <p>
@@ -41,21 +41,21 @@ export default function CareersEtkom() {
               </p>
             </div>
             <div className="image-content">
-              <Image src="/vacancies1.jpg" alt="Команда Енисейтеплоком" className="career-image" width={350} height={520} style={{ objectFit: "cover" }} priority />
+              <Image src="/vacancies1.jpg" alt="Команда Енисейэлектроком" className="career-image" width={350} height={520} style={{ objectFit: "cover" }} priority />
             </div>
           </div>
 
           {/* Плюсы */}
           <div className="text-image-section">
             <div className="image-content">
-              <Image src="/vacancies.jpg" alt="Работы на тепловых сетях" className="career-image" width={350} height={520} style={{ objectFit: "cover" }} />
+              <Image src="/vacancies.jpg" alt="Работы на электросетях" className="career-image" width={350} height={520} style={{ objectFit: "cover" }} />
             </div>
             <div className="text-content text-centered">
               <h2>Почему у нас хорошо</h2>
               <ul className="featureList">
                 {[
                   ["Смысл и результат","Ваша работа — реальный вклад в комфорт жителей и соцобъектов."],
-                  ["Реальные объекты","Котлы, насосные, КИПиА, узлы учёта — современное оборудование."],
+                  ["Реальные объекты","Подстанции, линии электропередач, КИПиА, узлы учёта — современное оборудование."],
                   ["Обучение и допуски","Инструктажи, стажировки, помощь с квалификациями."],
                   ["Порядок и безопасность","СИЗ, регламенты, понятные зоны ответственности."],
                   ["Стабильность","Социально значимая отрасль и планы модернизаций."]
@@ -78,10 +78,10 @@ export default function CareersEtkom() {
               <h2>Чем мы занимаемся</h2>
               <ul className="featureList">
                 {[
-                  "Эксплуатация котельных и тепловых сетей: ППР, текущие и аварийно-восстановительные работы.",
-                  "Модернизации: замена котлов, насосов, автоматики; внедрение узлов учёта и диспетчеризации.",
+                  "Эксплуатация подстанций и электросетей: ППР, текущие и аварийно-восстановительные работы.",
+                  "Модернизации: замена оборудования, автоматики; внедрение узлов учёта и диспетчеризации.",
                   "Контроль энергоэффективности и качества услуг.",
-                  "Ведение журналов, документации и подготовка к ОЗП."
+                  "Ведение журналов, документации и подготовка к сезонным работам."
                 ].map((t, i) => (
                   <li key={i} className="featureItem">
                     <Image src="/icons/universal_mark.svg" alt="" width={28} height={28} className="featureIcon" />
@@ -115,7 +115,7 @@ export default function CareersEtkom() {
           </div>
 
           <div className="resume-button-container">
-            <a className="resume-button" href="mailto:eniseyteplokom@mail.ru">Отправить резюме</a>
+            <a className="resume-button" href="mailto:eniseielektrokom@mail.ru">Отправить резюме</a>
           </div>
         </section>
       </main>

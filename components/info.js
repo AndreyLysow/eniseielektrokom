@@ -7,19 +7,19 @@ import AnimatedBackground from "./AnimatedBackground";
 export default function InfoDisclosure() {
   const documents = [
     {
-      name: "Бухгалтерский баланс ООО «Енисейтеплоком» за 2024 год",
+      name: "Бухгалтерский баланс ООО «Енисейэлектроком» за 2024 год",
       file: "/documents/buh-balans-2024.pdf",
     },
     {
-      name: "Пояснения к ББ и ОФР ООО «Енисейтеплоком» за 2024 год",
+      name: "Пояснения к ББ и ОФР ООО «Енисейэлектроком» за 2024 год",
       file: "/documents/poyasneniya-2024.pdf",
     },
     {
-      name: "Бухгалтерский баланс ООО «Енисейтеплоком» за 2023 год",
+      name: "Бухгалтерский баланс ООО «Енисейэлектроком» за 2023 год",
       file: "/documents/buh-balans-2023.pdf",
     },
     {
-      name: "Пояснения к ББ и ОФР ООО «Енисейтеплоком» за 2023 год",
+      name: "Пояснения к ББ и ОФР ООО «Енисейэлектроком» за 2023 год",
       file: "/documents/poyasneniya-2023.pdf",
     },
     {

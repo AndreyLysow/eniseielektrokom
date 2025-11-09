@@ -60,22 +60,22 @@ export default function Payment() {
               💻 Личный кабинет:&nbsp;
               <a
                 className={styles.cta}
-                href="https://lk.eniseiteplokom.ru/"
+                href="https://lk.eniseielektrokom.ru/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                lk.eniseiteplokom.ru
+                lk.eniseielektrokom.ru
               </a>
             </li>
 
             <li>
               📧 Email:&nbsp;
-              <a className={styles.cta} href="mailto:eniseyteplokom@mail.ru">
-                eniseyteplokom@mail.ru
+              <a className={styles.cta} href="mailto:eniseielektrokom@mail.ru">
+                eniseielektrokom@mail.ru
               </a>
               &nbsp;|&nbsp;
-              <a className={styles.cta} href="mailto:abonentam@eniseiteplokom.ru">
-                abonentam@eniseiteplokom.ru
+              <a className={styles.cta} href="mailto:abonentam@eniseielektrokom.ru">
+                abonentam@eniseielektrokom.ru
               </a>
             </li>
 
@@ -132,7 +132,7 @@ export default function Payment() {
 
           <ul className={styles.list}>
             <li>
-              🏢 В пунктах приема платежей ООО «Енисейтеплоком»:{" "}
+              🏢 В пунктах приема платежей ООО «Енисейэлектроком»:{" "}
               <strong>г. Енисейск, ул. Кирова, 81</strong>.
             </li>
 
@@ -148,11 +148,11 @@ export default function Payment() {
               🌐 Банковской картой через Личный кабинет:&nbsp;
               <a
                 className={styles.cta}
-                href="https://lk.eniseiteplokom.ru/"
+                href="https://lk.eniseielektrokom.ru/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                lk.eniseiteplokom.ru
+                lk.eniseielektrokom.ru
               </a>
             </li>
           </ul>

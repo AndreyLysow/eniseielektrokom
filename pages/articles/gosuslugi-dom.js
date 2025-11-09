@@ -13,7 +13,7 @@ export default function GosuslugiDomPage() {
         ogTitle="Госуслуги Дом"
         ogDescription="Решайте все вопросы ЖКХ в одном приложении — скачайте Госуслуги Дом."
         ogImage="/media/gosuslugi_dom.jpg"
-        ogUrl="https://eniseiteplokom.ru/articles/gosuslugi-dom"
+        ogUrl="https://eniseielektrokom.ru/articles/gosuslugi-dom"
       />
       <Header />
       <GosuslugiDom />

@@ -7,13 +7,13 @@ export default function ServiceQualityPage() {
   return (
     <>
       <CustomHead
-        title="Требования к качеству коммунальных услуг — Енисейтеплоком"
+        title="Требования к качеству коммунальных услуг — Енисейэлектроком"
         description="Допустимые отклонения качества коммунальных услуг, продолжительность перерывов, порядок перерасчета платы по ПП РФ №354."
-        keywords="качество коммунальных услуг, отопление, горячее водоснабжение, Енисейтеплоком"
+        keywords="качество коммунальных услуг, отопление, горячее водоснабжение, Енисейэлектроком"
         ogTitle="Требования к качеству коммунальных услуг"
         ogDescription="Правила предоставления коммунальных услуг: отопление и ГВС, нормативы качества"
         ogImage="/logoetk.png"
-        ogUrl="https://eniseiteplokom.ru/articles/service-quality"
+        ogUrl="https://eniseielektrokom.ru/articles/service-quality"
       />
       <Header />
       <ServiceQuality />

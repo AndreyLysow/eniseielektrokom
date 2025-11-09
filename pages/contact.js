@@ -28,7 +28,7 @@ export default function ContactPage() {
       const placemarkOffice = new window.ymaps.Placemark(
         [58.403349, 92.250467],
         {
-          hintContent: "ООО «Енисейтеплоком»",
+          hintContent: "ООО «Енисейэлектроком»",
           balloonContent: "663148, Красноярский край, Енисейский район, с. Верхнепашино, ул. Обручева, стр. 2",
         }
       );
@@ -64,7 +64,7 @@ export default function ContactPage() {
         <div className={styles.contactBlock}>
           <h2 className={styles.blockTitle}>Основной офис</h2>
           <p><strong>Адрес:</strong> 663148, Красноярский край, Енисейский район, с. Верхнепашино, ул. Обручева, стр. 2</p>
-          <p><strong>Email:</strong> <a href="mailto:eniseyteplokom@mail.ru">eniseyteplokom@mail.ru</a></p>
+          <p><strong>Email:</strong> <a href="mailto:eniseielektrokom@mail.ru">eniseielektrokom@mail.ru</a></p>
           <p><strong>Телефон:</strong> <a href="tel:+73919524957">+7 (39195) 2-49-57</a></p>
           <div id="map-office" className={styles.map}></div>
         </div>

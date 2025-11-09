@@ -7,13 +7,13 @@ export default function PromyvkaPage() {
   return (
     <>
       <CustomHead
-        title="Промывка систем теплоснабжения — Енисейтеплоком"
+        title="Промывка систем теплоснабжения — Енисейэлектроком"
         description="Полная инструкция по промывке систем теплоснабжения: методы, этапы, таблицы и нормативные требования."
-        keywords="промывка отопления, гидропневматическая промывка, Енисейтеплоком"
+        keywords="промывка отопления, гидропневматическая промывка, Енисейэлектроком"
         ogTitle="Промывка систем теплоснабжения"
         ogDescription="Методы промывки: гидропневматическая, химическая, биологическая. Требования и таблицы."
         ogImage="/logoetk.png"
-        ogUrl="https://eniseiteplokom.ru/articles/promivka"
+        ogUrl="https://eniseielektrokom.ru/articles/promivka"
       />
       <Header />
       <Promyvka />

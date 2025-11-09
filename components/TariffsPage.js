@@ -69,7 +69,7 @@ export default function SpecialAnnouncement() {
     },
     {
       name:
-        "Приказ ООО «Енисейтеплоком» №9/1-ОД от 01.07.2024 — О применении тарифов",
+        "Приказ ООО «Енисейэлектроком» №9/1-ОД от 01.07.2024 — О применении тарифов",
       file: "/documents/order-9-1od-2024.pdf",
     },
     {
@@ -101,7 +101,7 @@ export default function SpecialAnnouncement() {
           <h2 className={styles.announcementTitle}>Уважаемые потребители!</h2>
 
           <p className={styles.text}>
-            ООО «Енисейтеплоком» информирует вас о применении тарифов в
+            ООО «Енисейэлектроком» информирует вас о применении тарифов в
             соответствии с приказами Министерства тарифной политики Красноярского
             края:
           </p>
@@ -140,7 +140,7 @@ export default function SpecialAnnouncement() {
         {/* Блок «Информация по тарифам» из TariffsPage */}
         <section className={tariffStyles.tableWrapper}>
           <h2 className={styles.subtitle}>
-            Информация по тарифам ООО «Енисейтеплоком»
+            Информация по тарифам ООО «Енисейэлектроком»
           </h2>
 
           <div className={tariffStyles.tableContainer}>

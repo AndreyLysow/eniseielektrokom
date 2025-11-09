@@ -79,13 +79,13 @@ export default function NewsPage({ news }) {
   return (
     <>
       <CustomHead
-        title="Новости — Енисейтеплоком"
-        description="Актуальные новости ООО «Енисейтеплоком»"
-        keywords="Енисейтеплоком, новости"
-        ogTitle="Новости — ООО «Енисейтеплоком»"
+        title="Новости — Енисейэлектроком"
+        description="Актуальные новости ООО «Енисейэлектроком»"
+        keywords="Енисейэлектроком, новости"
+        ogTitle="Новости — ООО «Енисейэлектроком»"
         ogDescription="Читайте свежие новости"
         ogImage="/logoetk.png"
-        ogUrl="https://eniseiteplokom.ru/news"
+        ogUrl="https://eniseielektrokom.ru/news"
       />
 
       <Header />

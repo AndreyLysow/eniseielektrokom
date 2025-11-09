@@ -46,7 +46,7 @@ const menuData = {
     },
     { title: "Новости", link: "/news" },
     { title: "Раскрытие информации", link: "/info" },
-    { title: "Личный кабинет", link: "https://lk.eniseiteplokom.ru", external: true },
+    { title: "Личный кабинет", link: "https://lk.eniseielektrokom.ru", external: true },
   ],
 };
 
@@ -105,18 +105,19 @@ export default function Header() {
       <div className={styles.brand}>
         <Link href="/" prefetch={false} onClick={closeAll} aria-label="На главную">
           <Image
-            src="/logoetk.png"
-            alt="Енисейтеплоком"
+            src="/images/logoelectrokom.svg"
+            alt="Енисейэлектроком"
             width={100}
             height={100}
             priority
+            unoptimized
           />
         </Link>
         {!isMobile && (
           <span className={styles.orgName}>
             ООО &laquo;Енисейская
             <br />
-            теплоснабжающая компания&raquo;
+            электроснабжающая компания&raquo;
           </span>
         )}
       </div>

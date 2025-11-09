@@ -6,7 +6,7 @@ export default function Document() {
     <Html lang="ru">
       <Head>
         {/* Favicon */}
-        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="icon" type="image/svg+xml" href="/images/logoelectrokom.svg" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
         {/* Yandex.Metrika */}

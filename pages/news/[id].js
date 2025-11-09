@@ -67,17 +67,17 @@ export default function NewsDetail({ newsItem }) {
     return () => { cancelled = true; };
   }, [newsItem.id, baseViews]);
 
-  const pageTitle = `${newsItem.title} — Енисейтеплоком`;
-  const ogUrl = `https://eniseiteplokom.ru/news/${newsItem.id}`;
+  const pageTitle = `${newsItem.title} — Енисейэлектроком`;
+  const ogUrl = `https://eniseielektrokom.ru/news/${newsItem.id}`;
 
   return (
     <>
       <CustomHead
         title={pageTitle}
         description={`Читайте подробности: ${newsItem.title}`}
-        keywords="Енисейтеплоком, новости, ЖКХ, Енисейск"
+        keywords="Енисейэлектроком, новости, ЖКХ, Енисейск"
         ogTitle={pageTitle}
-        ogDescription="Актуальные новости для абонентов ООО «Енисейтеплоком»"
+        ogDescription="Актуальные новости для абонентов ООО «Енисейэлектроком»"
         ogImage="/logoetk.png"
         ogUrl={ogUrl}
       />

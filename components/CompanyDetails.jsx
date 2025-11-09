@@ -13,12 +13,12 @@ export default function AboutContent() {
         <h1 className={styles.title}>Реквизиты предприятия</h1>
 
         <section className={styles.card}>
-          <h2>Реквизиты ООО «Енисейская теплоснабжающая компания»</h2>
+          <h2>Реквизиты ООО «Енисейская электроснабжающая компания»</h2>
 
           <div className={styles.label}>Полное и сокращенное наименование</div>
           <div className={styles.value}>
-            Общество с ограниченной ответственностью «Енисейская теплоснабжающая компания»<br />
-            ООО «Енисейтеплоком»
+            Общество с ограниченной ответственностью «Енисейская электроснабжающая компания»<br />
+            ООО «Енисейэлектроком»
           </div>
 
           <div className={styles.label}>ИНН / КПП</div>
@@ -48,7 +48,7 @@ export default function AboutContent() {
 
           <div className={styles.label}>Email / Телефон</div>
           <div className={styles.value}>
-            eniseyteplokom@mail.ru / +7 (39195) 2-49-57
+            eniseielektrokom@mail.ru / +7 (39195) 2-49-57
           </div>
 
           <div className={styles.label}>ОКПО / ОКАТО / ОКТМО</div>

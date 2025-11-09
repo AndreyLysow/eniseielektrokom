@@ -7,13 +7,13 @@ export default function NormativesPage() {
   return (
     <>
       <CustomHead
-        title="Нормативы потребления коммунальной услуги по отоплению — Енисейтеплоком"
+        title="Нормативы потребления коммунальной услуги по отоплению — Енисейэлектроком"
         description="Нормативы отопления в жилых и нежилых помещениях на территории города Енисейска. Данные по категориям домов."
-        keywords="нормативы отопления, коммунальная услуга, Енисейтеплоком, город Енисейск"
+        keywords="нормативы отопления, коммунальная услуга, Енисейэлектроком, город Енисейск"
         ogTitle="Нормативы потребления отопления"
         ogDescription="Нормативы отопления на отопительный период по категориям зданий (Енисейск)"
         ogImage="/logoetk.png"
-        ogUrl="https://eniseiteplokom.ru/articles/normatives"
+        ogUrl="https://eniseielektrokom.ru/articles/normatives"
       />
       <Header />
       <Normatives />
