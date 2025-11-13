@@ -1,12 +1,16 @@
-"use client";
-
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import Link from "next/link";
+import { useMemo } from "react";
 import styles from "../styles/breadcrumbs.module.css";
 
 export default function Breadcrumbs({ lastLabel }) {
-  const pathname = usePathname();
-  const segments = pathname.split("/").filter(Boolean);
+  const router = useRouter();
+  
+  const { pathname, segments } = useMemo(() => {
+    const path = router.asPath.split("?")[0];
+    const segs = path.split("/").filter(Boolean);
+    return { pathname: path, segments: segs };
+  }, [router.asPath]);
 
   const labelMap = {
     "privacy-policy": "Политика конфиденциальности",
