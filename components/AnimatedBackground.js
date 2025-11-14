@@ -136,7 +136,7 @@ export default function AnimatedBackground() {
       {!videoError ? (
         <video
           ref={videoRef}
-          src="/eniseysk2.mp4" // ✅ Путь из public
+          src="/eniseysk2.mp4?v=2" // ✅ Путь из public с версией для обновления кэша
           className={styles.videoBg}
           autoPlay
           muted
