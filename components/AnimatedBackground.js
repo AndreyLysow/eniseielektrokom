@@ -31,41 +31,23 @@ export default function AnimatedBackground() {
       const handleTimeUpdate = () => {
         if (!video.duration || isTransitioningRef.current) return;
         
-        // Если осталось меньше 0.5 секунды до конца, начинаем плавный переход
-        if (video.duration - video.currentTime < 0.5) {
+        // Если осталось меньше 0.3 секунды до конца, начинаем плавный переход
+        if (video.duration - video.currentTime < 0.3) {
           isTransitioningRef.current = true;
           
           // Плавно уменьшаем прозрачность
-          video.style.transition = 'opacity 0.5s ease-in-out';
-          video.style.opacity = '0';
+          video.style.transition = 'opacity 0.3s ease-in-out';
+          video.style.opacity = '0.3';
           
-          setTimeout(() => {
-            // Переходим к началу
-            video.currentTime = 0;
-            video.style.opacity = '1';
-            isTransitioningRef.current = false;
-          }, 500);
+          // Когда видео закончится, оно автоматически перезапустится благодаря loop
+        } else if (video.currentTime < 0.5 && isTransitioningRef.current) {
+          // Плавно возвращаем прозрачность в начале нового цикла
+          video.style.opacity = '1';
+          isTransitioningRef.current = false;
         }
       };
 
-      // Плавный переход при окончании видео (резервный вариант)
-      const handleEnded = () => {
-        if (isTransitioningRef.current) return;
-        
-        isTransitioningRef.current = true;
-        video.style.transition = 'opacity 0.5s ease-in-out';
-        video.style.opacity = '0';
-        
-        setTimeout(() => {
-          video.currentTime = 0;
-          video.style.opacity = '1';
-          video.play().catch(() => {});
-          isTransitioningRef.current = false;
-        }, 500);
-      };
-
       video.addEventListener('timeupdate', handleTimeUpdate);
-      video.addEventListener('ended', handleEnded);
 
       // Попытка autoplay (на iOS может не сработать)
       video.play().catch(() => {
@@ -84,7 +66,6 @@ export default function AnimatedBackground() {
         video.removeEventListener('loadedmetadata', setPlaybackRate);
         video.removeEventListener('loadeddata', setPlaybackRate);
         video.removeEventListener('timeupdate', handleTimeUpdate);
-        video.removeEventListener('ended', handleEnded);
       };
     }
   }, []);
@@ -97,6 +78,7 @@ export default function AnimatedBackground() {
           src="/eniseysk2.mp4?v=2" // ✅ Путь из public с версией для обновления кэша
           className={styles.videoBg}
           autoPlay
+          loop
           muted
           playsInline
           webkit-playsinline="true"
