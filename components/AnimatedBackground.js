@@ -13,11 +13,14 @@ export default function AnimatedBackground() {
     const video = videoRef.current;
 
     if (video) {
-      // Устанавливаем скорость воспроизведения (в 3 раза медленнее для увеличения продолжительности)
-      const playbackRate = 0.35 / 3; // примерно 0.117
+      // Устанавливаем скорость воспроизведения для получения 12-15 секунд
+      // Если оригинальное видео ~5 секунд, то для 12-15 сек нужна скорость ~0.33-0.42
+      const playbackRate = 0.33; // примерно 15 секунд для 5-секундного видео
       
       const setPlaybackRate = () => {
-        video.playbackRate = playbackRate;
+        if (video.playbackRate !== playbackRate) {
+          video.playbackRate = playbackRate;
+        }
       };
 
       // Устанавливаем скорость после загрузки метаданных
@@ -29,19 +32,21 @@ export default function AnimatedBackground() {
 
       // Плавный переход при приближении к концу видео
       const handleTimeUpdate = () => {
-        if (!video.duration || isTransitioningRef.current) return;
+        if (!video.duration) return;
         
-        // Если осталось меньше 0.3 секунды до конца, начинаем плавный переход
-        if (video.duration - video.currentTime < 0.3) {
+        const timeRemaining = video.duration - video.currentTime;
+        
+        // Если осталось меньше 1 секунды до конца, начинаем плавный fade-out
+        if (timeRemaining < 1 && !isTransitioningRef.current) {
           isTransitioningRef.current = true;
           
-          // Плавно уменьшаем прозрачность
-          video.style.transition = 'opacity 0.3s ease-in-out';
-          video.style.opacity = '0.3';
-          
-          // Когда видео закончится, оно автоматически перезапустится благодаря loop
-        } else if (video.currentTime < 0.5 && isTransitioningRef.current) {
-          // Плавно возвращаем прозрачность в начале нового цикла
+          // Плавно уменьшаем прозрачность за 1 секунду
+          video.style.transition = 'opacity 1s ease-in-out';
+          video.style.opacity = '0';
+        } 
+        // В начале нового цикла (первые 0.5 секунды) плавно возвращаем прозрачность
+        else if (video.currentTime < 0.5 && isTransitioningRef.current) {
+          video.style.transition = 'opacity 0.8s ease-in-out';
           video.style.opacity = '1';
           isTransitioningRef.current = false;
         }
